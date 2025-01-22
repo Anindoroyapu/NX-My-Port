@@ -12,7 +12,7 @@ export default function ContactArea() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     // Add form submission logic here
-    console.log('Form submitted:', { name, email, subject, message });
+    
   };
 
 
@@ -36,7 +36,7 @@ export default function ContactArea() {
                     <i className="ri-map-pin-line"></i>
                   </span>
                   <h2>our office:</h2>
-                  <p>Jurain,Dhaka Bangladesh</p>
+                  <p>KUET IT Park, KUET , Khulna</p>
                 </div>
 
 
@@ -45,7 +45,7 @@ export default function ContactArea() {
                     <i className="ri-headphone-line"></i>
                   </span>
                   <h2>contact number:</h2>
-                  <p>+1234321321</p>
+                  <p>+880 1533 780593</p>
                 </div>
 
 
@@ -54,7 +54,7 @@ export default function ContactArea() {
                     <i className="ri-mail-line"></i>
                   </span>
                   <h2>Email us:</h2>
-                  <p>websitename@mail.com</p>
+                  <p>anindoroy112@gmail.com</p>
                 </div>
 
 
@@ -62,10 +62,10 @@ export default function ContactArea() {
                   <h2>Socials</h2>
                   <div className="about-social">
                     <ul>
-                      <li><a target='_blank' href="https://facebook.com"><i className="ri-facebook-circle-fill"></i></a></li>
-                      <li><a target='_blank' href="https://twitter.com"><i className="ri-twitter-x-line"></i></a></li>
-                      <li><a target='_blank' href="https://linkedin.com"><i className="ri-linkedin-fill"></i></a></li>
-                      <li><a target='_blank' href="https://github.com/jamilrayhan10"><i className="ri-github-line"></i></a></li>
+                      <li><a target='_blank' href="https://www.facebook.com/anindoroy441/"><i className="ri-facebook-circle-fill"></i></a></li>
+                      
+                      <li><a target='_blank' href="https://www.linkedin.com/in/anindo-roy-791026256"><i className="ri-linkedin-fill"></i></a></li>
+                      <li><a target='_blank' href="https://github.com/anindoroyapu"><i className="ri-github-line"></i></a></li>
                     </ul>
                   </div>
                 </div>

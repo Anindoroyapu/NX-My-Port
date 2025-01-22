@@ -8,6 +8,9 @@ import portfolio_img_2 from "@/assets/images/projects/_MG_6619-01.jpeg";
 import portfolio_img_3 from "@/assets/images/projects/_MG_2549-01.jpeg";
 import portfolio_img_4 from "@/assets/images/projects/_MG_8549 copy.jpg";
 import portfolio_img_5 from "@/assets/images/projects/_MG_8733 copy.jpg";
+import portfolio_img_6 from "@/assets/images/projects/_MG_1558.JPG";
+import portfolio_img_7 from "@/assets/images/projects/_MG_8733 copy.jpg";
+import portfolio_img_8 from "@/assets/images/projects/_MG_8733 copy.jpg";
 
 interface DataType {
   id: number;
@@ -50,6 +53,26 @@ const portfolio_data: DataType[] = [
     id: 5,
     col: "4",
     image: portfolio_img_5,
+    title: "Orange Rose Flower",
+    category: "Mockup",
+  },{
+    id: 6,
+    col: "4",
+    image: portfolio_img_6,
+    title: "Orange Rose Flower",
+    category: "Video",
+  },
+  {
+    id: 7,
+    col: "4",
+    image: portfolio_img_7,
+    title: "Green Plant on a Desk",
+    category: "Branding",
+  },
+  {
+    id: 8,
+    col: "4",
+    image: portfolio_img_8,
     title: "Orange Rose Flower",
     category: "Mockup",
   },

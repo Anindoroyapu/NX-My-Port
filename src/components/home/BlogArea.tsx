@@ -43,7 +43,7 @@ export default function BlogArea() {
             <div className="col-lg-6">
               <div className="blog-post-img">
                 <a href="#">
-                  <img src="assets/images/blog/blog2.jpg" alt="" />
+                  <img src="assets/images/blog/003.jpg" alt="" />
                 </a>
                 <div className="blog-post-category">
                   <a href="#">Branding</a>
@@ -69,7 +69,7 @@ export default function BlogArea() {
             <div className="col-lg-6">
               <div className="blog-post-img">
                 <a href="#">
-                  <img src="assets/images/blog/blog3.jpg" alt="" />
+                  <img src="assets/images/blog/001.jpg" alt="" />
                 </a>
                 <div className="blog-post-category">
                   <a href="#">Design</a>
