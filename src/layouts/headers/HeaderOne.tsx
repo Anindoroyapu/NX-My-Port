@@ -1,18 +1,19 @@
-"use client"
+"use client";
 import Link from "next/link";
 import UseSticky from "@/hooks/UseSticky";
-import NavMenu from "./NavMenu"; 
+import NavMenu from "./NavMenu";
 import { useState } from "react";
 import Sidebar from "@/components/common/Sidebar";
+import Logo from "@/assets/images/SignMy@2x.png";
+import Image from "next/image";
 
 export default function HeaderOne() {
-
-  const { sticky } = UseSticky()
+  const { sticky } = UseSticky();
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <header className={`main-header ${sticky ? 'fixed-header' : ''}`}>
+      <header className={`main-header ${sticky ? "fixed-header" : ""}`}>
         <div className="header-upper">
           <div className="container">
             <div className="header-inner">
@@ -20,18 +21,26 @@ export default function HeaderOne() {
                 <div className="col-xl-2 col-lg-2 col-md-6 col-6 col-sm-3">
                   <div className="logo-area">
                     <div className="logo">
-                      <Link href="/"><img src="assets/images/logo.png" alt="" /></Link>
+                      <Link href="/">
+                        <Image src={Logo} alt="" width={1000} height={30} />
+                      </Link>
                     </div>
                   </div>
                 </div>
                 <div className="col-xl-10 col-lg-10 col-md-6 col-6 col-sm-9">
                   <div className="main-menu d-none d-lg-block">
                     <nav id="mobile-menu">
-                      <NavMenu /> 
+                      <NavMenu />
                     </nav>
                   </div>
                   <div className="side-menu-icon d-lg-none text-end">
-                    <a style={{ cursor: "pointer" }} onClick={() => setOpen(!open)} className="info-toggle-btn f-right sidebar-toggle-btn"><i className="fal fa-bars"></i></a>
+                    <a
+                      style={{ cursor: "pointer" }}
+                      onClick={() => setOpen(!open)}
+                      className="info-toggle-btn f-right sidebar-toggle-btn"
+                    >
+                      <i className="fal fa-bars"></i>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -42,5 +51,5 @@ export default function HeaderOne() {
 
       <Sidebar open={open} setOpen={setOpen} />
     </>
-  )
+  );
 }
