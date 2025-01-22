@@ -1,5 +1,4 @@
-
-import React from 'react'
+import React from "react";
 
 export default function TestimonoalArea() {
   return (
@@ -15,98 +14,92 @@ export default function TestimonoalArea() {
           </div>
           <div className="row">
             <div className="col-lg-6 col-md-6">
-
               <div className="testimonial-item wow fadeInUp delay-0-2s">
                 <div className="author">
-                  <img src="assets/images/testimonials/author1.jpg" alt="Author" />
+                  <img
+                    src="assets/images/avatar/tanjirul-01.jpg"
+                    alt="Author"
+                  />
                 </div>
                 <div className="text">
-                  Financial planners help people to knowledge in about how to
-                  invest and in save their moneye the most efficient way eve plan
-                  ners help people tioniio know ledige in about how.
+                  This photograph is truly stunning! The framing, lighting, and
+                  details are so beautifully captured that it instantly grabs
+                  attention. You are a true artist, and every click tells a
+                  unique story. Looking forward to seeing more incredible work
+                  on this website!
                 </div>
                 <div className="testi-des">
-                  <h5>Zonathon Doe</h5>
+                  <h5>তানজিরুল ইসলাম নাদিম</h5>
                   <span>CEO & Founder X</span>
                 </div>
               </div>
-
             </div>
             <div className="col-lg-6 col-md-6">
-
               <div className="testimonial-item wow fadeInUp delay-0-4s">
                 <div className="author">
-                  <img src="assets/images/testimonials/author2.jpg" alt="Author" />
+                  <img src="assets/images/avatar/pantho-01.jpg" alt="Author" />
                 </div>
                 <div className="text">
-                  Asian planners help people to knowledge in about how to
-                  invest and in save their moneye the most efficient way eve plan
-                  ners help people tioniio know ledige in about how.
+                  Amazing photography! The lighting, framing, and details are
+                  absolutely perfect. Can’t wait to see more of your work!" Feel
+                  free to tweak it
                 </div>
                 <div className="testi-des">
-                  <h5>Martin Smith</h5>
-                  <span>CEO & Founder Google</span>
+                  <h5>Pantho Sarkar</h5>
+                  <span>CEO & Founder X</span>
                 </div>
               </div>
-
             </div>
             <div className="col-lg-4 col-md-6">
-
               <div className="testimonial-item wow fadeInUp delay-0-6s">
                 <div className="author">
-                  <img src="assets/images/testimonials/author3.jpg" alt="Author" />
+                  <img src="assets/images/avatar/farabi-01.jpg" alt="Author" />
                 </div>
                 <div className="text">
-                  Hello  planners help people to knowledge in about how to
-                  invest and in save their moneye the most efficient way eve plan
-                  ners help people tioniio know ledige in about how.
+                  Absolutely breathtaking! The composition and attention to
+                  detail make this photo stand out. It feels like a moment
+                  frozen in perfection. Keep up the incredible work!
                 </div>
                 <div className="testi-des">
-                  <h5>Methail Dev</h5>
-                  <span>Managing Director -  Paydesk</span>
+                  <h5>Rakibul Islam</h5>
+                  <span>Managing Director - X</span>
                 </div>
               </div>
-
             </div>
             <div className="col-lg-4 col-md-6">
-
               <div className="testimonial-item wow fadeInUp delay-0-8s">
-                <div className="author">
-                  <img src="assets/images/testimonials/author4.jpg" alt="Author" />
+                <div className="author ">
+                  <img src="assets/images/avatar/chumky-01.jpg" alt="Author" />
                 </div>
                 <div className="text">
-                  Financial planners help people to knowledge in about how to
-                  invest and in save their moneye the most efficient way eve plan
-                  ners help people tioniio know ledige in about how.
+                  What an incredible shot! The way you’ve captured the essence
+                  of the moment is remarkable. This photo speaks volumes and is
+                  truly inspiring. Can’t wait to see more of your talent!
                 </div>
                 <div className="testi-des">
-                  <h5>Eliana tweet</h5>
-                  <span>CEO & Founder Tesla</span>
+                  <h5>Chumky Dam</h5>
+                  <span>CEO & Founder 0</span>
                 </div>
               </div>
-
             </div>
             <div className="col-lg-4 col-md-6">
-
               <div className="testimonial-item wow fadeInUp delay-0-9s">
                 <div className="author">
-                  <img src="assets/images/testimonials/author5.jpg" alt="Author" />
+                  <img src="assets/images/avatar/anamika-01.jpg" alt="Author" />
                 </div>
                 <div className="text">
-                  Yelp  planners help people to knowledge in about how to
-                  invest and in save their moneye the most efficient way eve plan
-                  ners help people tioniio know ledige in about how.
+                  Amazing photography! The lighting, framing, and details are
+                  absolutely perfect. Can’t wait to see more of your work!
                 </div>
                 <div className="testi-des">
-                  <h5>Henry Clark</h5>
+                  <h5>Anamika Roy</h5>
                   <span>Founder Oxyzen</span>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </section>
     </>
-  )
+  );
 }

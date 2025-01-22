@@ -20,11 +20,9 @@ export default function HeaderOne() {
               <div className="row align-items-center">
                 <div className="col-xl-2 col-lg-2 col-md-6 col-6 col-sm-3">
                   <div className="logo-area">
-                    <div className="logo">
-                      <Link href="/">
-                        <Image src={Logo} alt="" width={1000} height={30} />
-                      </Link>
-                    </div>
+                    <Link href="/">
+                      <Image src={Logo} alt="" width={1000} height={40} />
+                    </Link>
                   </div>
                 </div>
                 <div className="col-xl-10 col-lg-10 col-md-6 col-6 col-sm-9">

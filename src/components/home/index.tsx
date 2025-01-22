@@ -1,15 +1,14 @@
-
-import React from 'react'
-import HeroArea from './HeroArea'
-import BrandArea from './BrandArea'
-import AboutArea from './AboutArea'
-import ServiceArea from './ServiceArea'
-import HeaderOne from '@/layouts/headers/HeaderOne'
-import PortfolioArea from './PortfolioArea'
-import TestimonoalArea from './TestimonoalArea'
-import BlogArea from './BlogArea'
-import ContactArea from './ContactArea'
-import FooterOne from '@/layouts/footers/FooterOne'
+import React from "react";
+import HeroArea from "./HeroArea";
+import BrandArea from "./BrandArea";
+import AboutArea from "./AboutArea";
+import ServiceArea from "./ServiceArea";
+import HeaderOne from "@/layouts/headers/HeaderOne";
+import PortfolioArea from "./PortfolioArea";
+import TestimonoalArea from "./TestimonoalArea";
+import BlogArea from "./BlogArea";
+import ContactArea from "./ContactArea";
+import FooterOne from "@/layouts/footers/FooterOne";
 
 export default function Home() {
   return (
@@ -21,7 +20,7 @@ export default function Home() {
             <HeroArea />
             <BrandArea />
             <AboutArea />
-            <ServiceArea />
+            {/* <ServiceArea /> */}
             <PortfolioArea />
             <TestimonoalArea />
             <BlogArea />
@@ -29,7 +28,7 @@ export default function Home() {
           </main>
           <FooterOne />
         </div>
-      </div> 
+      </div>
     </>
-  )
+  );
 }

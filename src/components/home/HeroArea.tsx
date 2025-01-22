@@ -65,8 +65,8 @@ export default function HeroArea() {
             <div className="col-lg-3 pt-30">
               <div className="hero-content wow fadeInUp delay-0-4s">
                 <p>
-                  Hi, I’m Anindo , a passionate Developer dedicated to creating
-                  user-friendly digital experiences.
+                  Hi, I’m Anindo , a passionate Photographer dedicated to
+                  creating user-friendly digital experiences.
                 </p>
                 <a className="theme-btn rounded-3" href="">
                   Get In touch

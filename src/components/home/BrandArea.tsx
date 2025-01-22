@@ -1,8 +1,7 @@
-"use client"
-import React, { useEffect } from 'react'
+"use client";
+import React, { useEffect } from "react";
 
 export default function BrandArea() {
-
   useEffect(() => {
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       addAnimation();
@@ -32,14 +31,28 @@ export default function BrandArea() {
             <div className="col-lg-12">
               <h2>Company I Worked With</h2>
               <div className="company-list">
-                <div className="scroller" data-direction="left" data-speed="slow">
-                  <div className="scroller__inner">
-                    <img src="assets/images/client-logos/partner1.png" alt="Company" />
-                    <img src="assets/images/client-logos/partner2.png" alt="Company" />
-                    <img src="assets/images/client-logos/partner3.png" alt="Company" />
-                    <img src="assets/images/client-logos/partner4.png" alt="Company" />
-                    <img src="assets/images/client-logos/partner5.png" alt="Company" />
-                    <img src="assets/images/client-logos/partner1.png" alt="Company" />
+                <div
+                  className="scroller"
+                  data-direction="left"
+                  data-speed="slow"
+                >
+                  <div className="scroller__inner d-flex">
+                    <img
+                      src="assets/images/client-logos/icon-bik-logo.svg"
+                      alt="Company"
+                    />
+                    <img
+                      src="assets/images/client-logos/icon-bik-logo.svg"
+                      alt="Company"
+                    />
+                    <img
+                      src="assets/images/client-logos/icon-bik-logo.svg"
+                      alt="Company"
+                    />
+                    <img
+                      src="assets/images/client-logos/icon-bik-logo.svg"
+                      alt="Company"
+                    />
                   </div>
                 </div>
               </div>
@@ -48,5 +61,5 @@ export default function BrandArea() {
         </div>
       </div>
     </>
-  )
+  );
 }
