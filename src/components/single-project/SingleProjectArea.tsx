@@ -1,11 +1,11 @@
 "use client";
-import React, { useState } from 'react'
-import img_1 from "@/assets/images/projects/work1.jpg";
-import img_2 from "@/assets/images/projects/work2.jpg";
-import img_3 from "@/assets/images/projects/work3.jpg";
-import img_4 from "@/assets/images/projects/work4.jpg";
-import Image from 'next/image';
-import ImagePopup from '@/modals/ImagePopup';
+import React, { useState } from "react";
+import img_1 from "@/assets/images/projects/_MG_6619-01.jpeg";
+import img_2 from "@/assets/images/projects/_MG_0151 copy.jpg";
+import img_3 from "@/assets/images/projects/_MG_1559.jpg";
+import img_4 from "@/assets/images/projects/_MG_2549-01.jpeg";
+import Image from "next/image";
+import ImagePopup from "@/modals/ImagePopup";
 
 const portfolio_images = [
   {
@@ -24,10 +24,9 @@ const portfolio_images = [
     id: 4,
     image: img_4,
   },
-]
+];
 
 export default function SingleProjectArea() {
-
   // photoIndex
   const [photoIndex, setPhotoIndex] = useState(null);
   // image open state
@@ -40,17 +39,15 @@ export default function SingleProjectArea() {
   //  images
   const image = portfolio_images.slice(0, 5).map((item) => item.image.src);
 
-
   return (
     <>
       <div className="single-project-page-design">
         <div className="single-project-image">
-          <img src="assets/images/projects/work2.jpg" alt="image" />
+          <img src="assets/images/projects/_MG_0151 copy.jpg" alt="image" />
         </div>
         <div className="container pt-60 pb-40">
           <div className="row">
             <div className="col-lg-4">
-
               <div className="single-project-page-left wow fadeInUp delay-0-2s">
                 <div className="single-info">
                   <p>Year</p>
@@ -62,35 +59,54 @@ export default function SingleProjectArea() {
                 </div>
                 <div className="single-info">
                   <p>Services</p>
-                  <h3>Web Design</h3>
+                  <h3>Photography</h3>
                 </div>
                 <div className="single-info">
                   <p>Project</p>
                   <h3>Creative</h3>
                 </div>
               </div>
-
             </div>
 
             <div className="col-lg-8">
               <div className="single-project-page-right wow fadeInUp delay-0-4s">
-                <h2>
-                  Description
-                </h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit utsadi sfejdis aliquam, purus sit amet luctus venenatis, lectus magna sansit trandis fringilla urna, porttitor rhoncus dolor purus non enim dollors praesent tabasi elementum facilisis leo.</p>
-                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable sourc consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+                <h2>Description</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit utsadi
+                  sfejdis aliquam, purus sit amet luctus venenatis, lectus magna
+                  sansit trandis fringilla urna, porttitor rhoncus dolor purus
+                  non enim dollors praesent tabasi elementum facilisis leo.
+                </p>
+                <p>
+                  Contrary to popular belief, Lorem Ipsum is not simply random
+                  text. It has roots in a piece of classical Latin literature
+                  from 45 BC, making it over 2000 years old. Richard McClintock,
+                  a Latin professor at Hampden-Sydney College in Virginia,
+                  looked up one of the more obscure Latin words, consectetur,
+                  from a Lorem Ipsum passage, and going through the cites of the
+                  word in classical literature, discovered the undoubtable sourc
+                  consectetur, from a Lorem Ipsum passage, and going through the
+                  cites of the word in classical literature, discovered the
+                  undoubtable source.
+                </p>
               </div>
             </div>
-
           </div>
 
           <div className="row pt-60">
             {portfolio_images.map((item, i) => (
               <div className="col-lg-6">
-                <a style={{ cursor: "pointer" }}
-                  onClick={() => handleImagePopup(i)} className="work-popup">
+                <a
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleImagePopup(i)}
+                  className="work-popup"
+                >
                   <div className="single-image wow fadeInUp delay-0-2s">
-                    <Image src={item.image} style={{ height: "auto" }} alt="gallery" />
+                    <Image
+                      src={item.image}
+                      style={{ height: "auto" }}
+                      alt="gallery"
+                    />
                   </div>
                 </a>
               </div>
@@ -109,7 +125,6 @@ export default function SingleProjectArea() {
         />
       )}
       {/* image light box end */}
-
     </>
-  )
+  );
 }

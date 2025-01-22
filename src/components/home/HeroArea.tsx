@@ -59,14 +59,15 @@ export default function HeroArea() {
             </div>
             <div className="col-lg-6 pt-50">
               <div className="hero-image">
-                <Image src={AnindoImg} alt="" width={400} height={500} />
+                <Image src={AnindoImg} alt="" width={300} height={500} />
               </div>
             </div>
             <div className="col-lg-3 pt-30">
               <div className="hero-content wow fadeInUp delay-0-4s">
                 <p>
-                  Hi, I’m Anindo , a passionate Photographer dedicated to
-                  creating user-friendly digital experiences.
+                  Hi, I’m Anindo—a passionate photographer and a creative mind
+                  dedicated to crafting user-friendly and visually appealing
+                  digital experiences.
                 </p>
                 <a className="theme-btn rounded-3" href="">
                   Get In touch
