@@ -80,16 +80,13 @@ const portfolio_data: DataType[] = [
 ];
 
 export default function PortfolioArea() {
-  // photoIndex
   const [photoIndex, setPhotoIndex] = useState(null);
-  // image open state
   const [isOpen, setIsOpen] = useState(false);
-  // handleImagePopup
   const handleImagePopup = (i: any) => {
     setPhotoIndex(i);
     setIsOpen(true);
   };
-  //  images
+
   const image = portfolio_data.slice(0, 5).map((item) => item.image.src);
 
   return (
@@ -129,7 +126,6 @@ export default function PortfolioArea() {
         </div>
       </div>
 
-      {/* image light box start */}
       {isOpen && (
         <ImagePopup
           images={image}
@@ -138,7 +134,6 @@ export default function PortfolioArea() {
           setPhotoIndex={setPhotoIndex}
         />
       )}
-      {/* image light box end */}
     </>
   );
 }
