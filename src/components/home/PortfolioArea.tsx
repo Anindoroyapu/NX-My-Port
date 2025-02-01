@@ -10,7 +10,7 @@ import portfolio_img_4 from "@/assets/images/projects/_MG_8549 copy.jpg";
 import portfolio_img_5 from "@/assets/images/projects/_MG_8733 copy.jpg";
 import portfolio_img_6 from "@/assets/images/projects/_MG_1558.jpg";
 import portfolio_img_7 from "@/assets/images/projects/_MG_1559.jpg";
-import portfolio_img_8 from "@/assets/images/projects/_MG_1559.jpg";
+import portfolio_img_8 from "@/assets/images/projects/IMG_0093.jpg";
 
 interface DataType {
   id: number;
