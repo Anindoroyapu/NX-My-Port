@@ -20,7 +20,7 @@ export default function BlogArea() {
                   <img src="assets/images/blog/004.jpg" alt="" />
                 </a>
                 <div className="blog-post-category">
-                  <a href="#">Help</a>
+                  <a href="#">Birds Photography</a>
                 </div>
               </div>
             </div>
@@ -29,11 +29,11 @@ export default function BlogArea() {
                 <h3>Posted on Aug 28</h3>
                 <h2>
                   <a className="link-decoration" href="#">
-                    Create a Landing Page That Performs Great
+                    Capture the Beauty of Birds with a Stunning Photography!
                   </a>
                 </h2>
                 <a className="theme-btn theme-btn-two" href="#">
-                  Read more <i className="ri-arrow-right-line"></i>
+                  See more Photography <i className="ri-arrow-right-line"></i>
                 </a>
               </div>
             </div>
@@ -46,20 +46,20 @@ export default function BlogArea() {
                   <img src="assets/images/blog/003.jpg" alt="" />
                 </a>
                 <div className="blog-post-category">
-                  <a href="#">Branding</a>
+                  <a href="#">Animal Photography</a>
                 </div>
               </div>
             </div>
             <div className="col-lg-6">
               <div className="blog-post-caption">
-                <h3>Posted on Aug 28</h3>
+                <h3>Posted on sep 22</h3>
                 <h2>
                   <a className="link-decoration" href="#">
-                    Starting and Growing a Career in Web Design
+                    Capture the Beauty of Animal with a Stunning Photography
                   </a>
                 </h2>
                 <a className="theme-btn theme-btn-two" href="#">
-                  Read more <i className="ri-arrow-right-line"></i>
+                  See more Photography <i className="ri-arrow-right-line"></i>
                 </a>
               </div>
             </div>
@@ -72,20 +72,20 @@ export default function BlogArea() {
                   <img src="assets/images/blog/001.jpg" alt="" />
                 </a>
                 <div className="blog-post-category">
-                  <a href="#">Design</a>
+                  <a href="#">Flower Photography</a>
                 </div>
               </div>
             </div>
             <div className="col-lg-6">
               <div className="blog-post-caption">
-                <h3>Posted on Aug 28</h3>
+                <h3>Posted on jan 18</h3>
                 <h2>
                   <a className="link-decoration" href="#">
-                    How Can Designers Prepare for the Future?
+                    Capture the Beauty of Flower with a Stunning Photography
                   </a>
                 </h2>
                 <a className="theme-btn theme-btn-two" href="#">
-                  Read more <i className="ri-arrow-right-line"></i>
+                  See more Photography <i className="ri-arrow-right-line"></i>
                 </a>
               </div>
             </div>

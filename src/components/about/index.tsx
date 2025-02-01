@@ -13,8 +13,8 @@ export default function About() {
         <div id="smooth-content">
           <main>
             <Breadcrumb title="About Me" />
-            {/* <ResumeArea />
-            <SkillArea /> */}
+            {/* <ResumeArea /> */}
+            <SkillArea />
           </main>
           <FooterOne />
         </div>

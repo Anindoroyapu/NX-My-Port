@@ -10,7 +10,7 @@ export default function FooterOne() {
               <div className="footer-top">
                 <p> Have a project in mind?</p>
                 <h2>
-                  <a href="mailto:hello@websitename.com">lets work</a>
+                  <a href="mailto:anindoroy112@gmail.com">lets work</a>
                 </h2>
               </div>
             </div>
@@ -18,7 +18,7 @@ export default function FooterOne() {
           <div className="row">
             <div className="col-lg-6 col-sm-6">
               <p className="copy-left-text">
-                Template by{" "}
+                Template by
                 <a target="_blank" href="">
                   Anindo Roy®
                 </a>
