@@ -12,13 +12,13 @@ import portfolio_img_6 from "@/assets/images/projects/_MG_1558.jpg";
 import portfolio_img_7 from "@/assets/images/projects/_MG_1559.jpg";
 import portfolio_img_8 from "@/assets/images/projects/IMG_0093.jpg";
 
-interface DataType {
+type DataType = {
   id: number;
   col: string;
   image: StaticImageData;
   title: string;
   category: string;
-}
+};
 
 const portfolio_data: DataType[] = [
   {
