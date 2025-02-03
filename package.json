@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "gsap": "^3.12.5",

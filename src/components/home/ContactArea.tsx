@@ -1,6 +1,7 @@
 
 "use client"
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import emailjs from '@emailjs/browser';
 
 export default function ContactArea() {
 
@@ -8,16 +9,31 @@ export default function ContactArea() {
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
+  const form = useRef<HTMLFormElement | null>(null);
+
+  const sendEmail = (e:any) => {
+    e.preventDefault();
+
+    if (form.current) {
+      emailjs
+        .sendForm('service_3x1x6nu', 'template_ucfx14c', form.current, 'WScDiKIp5jDk31IgB')
+        .then(
+          () => {
+            console.log('SUCCESS!');
+          },
+          (error) => {
+            console.log('FAILED...', error.text);
+          },
+        );
+    }
+  };
 
   const handleSubmit = (e: any) => {
-    e.preventDefault();
-    // Add form submission logic here
-    
+    e.preventDefault();    
   };
 
 
   return (
-    <>
       <section id="contact" className="contact-area">
         <div className="container">
           <div className="row">
@@ -75,7 +91,7 @@ export default function ContactArea() {
 
             <div className="col-lg-8">
               <div className="contact-form contact-form-area wow fadeInUp delay-0-4s">
-                <form id="contactForm" className="contact-form" onSubmit={handleSubmit}>
+                <form id="contactForm" className="contact-form" ref={form} onSubmit={sendEmail}>
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
@@ -89,6 +105,7 @@ export default function ContactArea() {
                           placeholder="Steve Milner"
                           required
                           data-error="Please enter your Name"
+                          name='user_name'
                         />
                         <label htmlFor="name" className="for-icon"><i className="far fa-user"></i></label>
                         <div className="help-block with-errors"></div>
@@ -106,6 +123,8 @@ export default function ContactArea() {
                           placeholder="hello@websitename.com"
                           required
                           data-error="Please enter your Email"
+                          name='user_email'
+                          
                         />
                         <label htmlFor="email" className="for-icon"><i className="far fa-envelope"></i></label>
                         <div className="help-block with-errors"></div>
@@ -123,6 +142,7 @@ export default function ContactArea() {
                           placeholder="Your Subject"
                           required
                           data-error="Please enter your Subject"
+                          name='subject'
                         />
                         <label htmlFor="subject" className="for-icon"><i className="far fa-user"></i></label>
                         <div className="help-block with-errors"></div>
@@ -141,13 +161,14 @@ export default function ContactArea() {
                           placeholder="Write Your message"
                           required
                           data-error="Please Write your Message"
+                          
                         ></textarea>
                         <div className="help-block with-errors"></div>
                       </div>
                     </div>
                     <div className="col-md-12">
                       <div className="form-group mb-0">
-                        <button type="submit" className="theme-btn">
+                        <button type="submit" className="theme-btn" onClick={sendEmail}>
                           Send Me Message <i className="ri-mail-line"></i>
                         </button>
                         <div id="msgSubmit" className="hidden"></div>
@@ -166,6 +187,5 @@ export default function ContactArea() {
         </div>
       </section>
 
-    </>
   )
 }
