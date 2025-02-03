@@ -14,9 +14,9 @@ export default function ContactArea() {
   const sendEmail = (e:any) => {
     e.preventDefault();
 
-    if (form.current) {
+    if (form.current){
       emailjs
-        .sendForm('service_3x1x6nu', 'template_ucfx14c', form.current, 'WScDiKIp5jDk31IgB')
+        .sendForm('service_qbf21ap', 'template_ucfx14c', form.current, 'WScDiKIp5jDk31IgB')
         .then(
           () => {
             console.log('SUCCESS!');
@@ -27,12 +27,6 @@ export default function ContactArea() {
         );
     }
   };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();    
-  };
-
-
   return (
       <section id="contact" className="contact-area">
         <div className="container">
