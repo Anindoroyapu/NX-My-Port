@@ -62,7 +62,7 @@ export default function BrandArea() {
                   data-direction="right"
                   data-speed="slow"
                 >
-                  <div className="scroller__inner d-flex">
+                  <div className="scroller__inner_img d-flex">
                     <img
                       src="assets/images/client-logos/01.jpg"
                       alt="Company"

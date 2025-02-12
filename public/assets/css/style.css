@@ -3329,10 +3329,25 @@ ul.blog_pagination li a:hover {
   gap: 80px;
   gap: 5rem;
 }
+.scroller__inner_img {
+  padding-block: 16px;
+  padding-block: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  gap: 5px;
+  gap: 5px;
+}
 
 .scroller__inner img {
   margin-right: 30px;
   height: 40px;
+}
+.scroller__inner_img img {
+  margin-right: 10px;
+  height: 120px;
 }
 
 .scroller[data-animated="true"] {
@@ -3356,6 +3371,17 @@ ul.blog_pagination li a:hover {
   -webkit-animation: scroll var(--_animation-duration, 40s)
     var(--_animation-direction, forwards) linear infinite;
   animation: scroll var(--_animation-duration, 40s)
+    var(--_animation-direction, forwards) linear infinite;
+}
+.scroller[data-animated="true"] .scroller__inner_img {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-animation: scroll var(--_animation-duration, 200s)
+    var(--_animation-direction, forwards) linear infinite;
+  animation: scroll var(--_animation-duration, 200s)
     var(--_animation-direction, forwards) linear infinite;
 }
 
