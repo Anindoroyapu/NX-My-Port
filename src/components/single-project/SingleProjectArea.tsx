@@ -55,7 +55,7 @@ export default function SingleProjectArea() {
                 </div>
                 <div className="single-info">
                   <p>Client</p>
-                  <h3>Bento Studio</h3>
+                  <h3>ASHA Studio</h3>
                 </div>
                 <div className="single-info">
                   <p>Services</p>
@@ -72,23 +72,20 @@ export default function SingleProjectArea() {
               <div className="single-project-page-right wow fadeInUp delay-0-4s">
                 <h2>Description</h2>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit utsadi
-                  sfejdis aliquam, purus sit amet luctus venenatis, lectus magna
-                  sansit trandis fringilla urna, porttitor rhoncus dolor purus
-                  non enim dollors praesent tabasi elementum facilisis leo.
+                  I specialize in portrait photography, turning moments into
+                  memories that tell unique, personal stories. My work focuses
+                  on capturing authentic emotions, natural expressions, and the
+                  beauty of individuality in every frame.
                 </p>
                 <p>
-                  Contrary to popular belief, Lorem Ipsum is not simply random
-                  text. It has roots in a piece of classical Latin literature
-                  from 45 BC, making it over 2000 years old. Richard McClintock,
-                  a Latin professor at Hampden-Sydney College in Virginia,
-                  looked up one of the more obscure Latin words, consectetur,
-                  from a Lorem Ipsum passage, and going through the cites of the
-                  word in classical literature, discovered the undoubtable sourc
-                  consectetur, from a Lorem Ipsum passage, and going through the
-                  cites of the word in classical literature, discovered the
-                  undoubtable source.
+                  With an emphasis on lighting, composition, and connection, I
+                  aim to create portraits that feel timeless and meaningful.
+                  Whether it’s a candid smile or a thoughtful gaze, each image
+                  is crafted to celebrate the essence of the person in front of
+                  the lens. For collaborations or bookings, let’s connect and
+                  create portraits that truly reflect you.
                 </p>
+                <p>Portrait Photographer | Capturing Authentic Emotions</p>
               </div>
             </div>
           </div>
