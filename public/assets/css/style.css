@@ -3347,7 +3347,7 @@ ul.blog_pagination li a:hover {
 }
 .scroller__inner_img img {
   margin-right: 10px;
-  height: 120px;
+  height: 150px;
 }
 
 .scroller[data-animated="true"] {
