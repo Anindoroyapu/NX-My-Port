@@ -1,9 +1,7 @@
-"use client" 
+"use client";
 import React, { useState, useEffect, useRef } from "react";
 
-
-const ScrollToTop = () => { 
-
+const ScrollToTop = () => {
   const [showScroll, setShowScroll] = useState(false);
 
   const checkScrollTop = () => {
@@ -23,7 +21,6 @@ const ScrollToTop = () => {
     return () => window.removeEventListener("scroll", checkScrollTop);
   }, []);
 
-
   // Progress animation
   const [isActive, setIsActive] = useState(false);
   const progressRef = useRef<SVGPathElement | null>(null);
@@ -37,11 +34,11 @@ const ScrollToTop = () => {
     const pathLength = progressPath.getTotalLength();
 
     // Initial path setup
-    progressPath.style.transition = 'none';
+    progressPath.style.transition = "none";
     progressPath.style.strokeDasharray = `${pathLength} ${pathLength}`;
     progressPath.style.strokeDashoffset = `${pathLength}`;
     progressPath.getBoundingClientRect();
-    progressPath.style.transition = 'stroke-dashoffset 10ms linear';
+    progressPath.style.transition = "stroke-dashoffset 10ms linear";
 
     // Update progress based on scroll position
     const updateProgress = () => {
@@ -55,30 +52,34 @@ const ScrollToTop = () => {
     };
 
     // Scroll event listener
-    window.addEventListener('scroll', updateProgress);
+    window.addEventListener("scroll", updateProgress);
 
     // Cleanup on unmount
     return () => {
-      window.removeEventListener('scroll', updateProgress);
+      window.removeEventListener("scroll", updateProgress);
     };
   }, []);
 
-
-
-
-
-
-
   return (
-    <>
-      <div className={`progress-wrap cursor-pointer  ${isActive ? 'active-progress' : ''}`} onClick={scrollTop}>
-        <i className="ri-arrow-up-s-line"></i>
-        <svg className="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-          <path ref={progressRef} d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
-        </svg>
-      </div>
-
-    </>
+    <div
+      className={`progress-wrap cursor-pointer  ${
+        isActive ? "active-progress" : ""
+      }`}
+      onClick={scrollTop}
+    >
+      <i className="ri-arrow-up-s-line"></i>
+      <svg
+        className="progress-circle svg-content"
+        width="100%"
+        height="100%"
+        viewBox="-1 -1 102 102"
+      >
+        <path
+          ref={progressRef}
+          d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
+        />
+      </svg>
+    </div>
   );
 };
 
