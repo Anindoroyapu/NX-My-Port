@@ -3,16 +3,25 @@ import React from "react";
 import TanjirulImg from "@/assets/images/avatar/tanjirul-01.jpg";
 import FarabiImg from "@/assets/images/avatar/farabi-01.jpg";
 import PanthoImg from "@/assets/images/avatar/pantho-01.jpg";
-import AnindoImg from "@/assets/images/avatar/anindo-01.jpeg";
-
+import HeroImg from "@/assets/images/projects/IMG_0093.jpg";
+import indexHeaderBg from "@/assets/images/projects/asha-main.jpg";
 export default function HeroArea() {
   return (
-    <section id="home" className="main-hero-area">
+    <section
+      id="home"
+      className="main-hero-area "
+      style={{
+        backgroundImage: `url(${indexHeaderBg.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        // opacity: 0.5,
+      }}
+    >
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="hero-content wow fadeInUp text-center delay-0-2s">
-              <h2>ANINDO ROY</h2>
+              <h2>ASHA STD</h2>
             </div>
           </div>
         </div>
@@ -57,8 +66,15 @@ export default function HeroArea() {
             </div>
           </div>
           <div className="col-lg-6 pt-50">
-            <div className="hero-image">
-              <Image src={AnindoImg} alt="" width={300} height={500} />
+            <div className="hero-image ">
+              <Image
+                src={HeroImg}
+                alt=""
+                width={0}
+                height={0}
+                sizes="100vh"
+                className="w-full h-auto"
+              />
             </div>
           </div>
           <div className="col-lg-3 pt-30">
