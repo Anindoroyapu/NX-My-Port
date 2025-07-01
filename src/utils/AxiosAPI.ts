@@ -6,7 +6,6 @@ class AxiosAPI {
 
   setHeaders(): this {
     axios.defaults.headers.common["Content-Type"] = "application/json";
-
     axios.defaults.headers.common["Client-Time"] = new Date().toISOString();
 
     return this;
@@ -15,7 +14,6 @@ class AxiosAPI {
   setUrl = (url: string, query: { [key: string]: string } = {}): this => {
     this.url = url;
 
-    //if query object is not empty, append query string to url
     const queryKeys = Object.keys(query);
     if (queryKeys.length > 0) {
       const queryString = queryKeys
@@ -30,19 +28,16 @@ class AxiosAPI {
     return this;
   };
 
-  setPath = (path: string, query = {}) => {
+  setPath = (path: string, query = {}): this => {
     const rUrl = path
       .split("/")
       .filter((item) => !!item)
       .join("/");
 
-    // const url = new URLParse(`${getApiUrl()}/${rUrl}`, true);
-    const url = new URLParse(`https://locahost/api/${rUrl}`, true);
+    // ⛳️ TODO: Replace with environment variable in production
+    const url = new URLParse(`http://localhost:5050/api/${rUrl}`, true);
 
-    // Create a new query object
     const newQuery = { ...url.query, ...query };
-
-    // Set the new query object
     url.set("query", newQuery);
 
     this.url = url.toString();
@@ -54,16 +49,13 @@ class AxiosAPI {
 
   get(options?: AxiosRequestConfig): Promise<AxiosResponse> {
     this.setHeaders();
-    return new Promise((resolve, reject) => {
-      axios
-        .get(this.url, options)
-        .then((response: AxiosResponse) => {
-          resolve(response);
-        })
-        .catch((err: Error) => {
-          reject(err);
-        });
-    });
+    return axios
+      .get(this.url, options)
+      .then((response: AxiosResponse) => response)
+      .catch((err) => {
+        console.error("GET error:", err); // 🔍 Debug
+        throw err;
+      });
   }
 
   post(
@@ -71,16 +63,13 @@ class AxiosAPI {
     options?: AxiosRequestConfig
   ): Promise<AxiosResponse> {
     this.setHeaders();
-    return new Promise((resolve, reject) => {
-      axios
-        .post(this.url, params, options)
-        .then((response: AxiosResponse) => {
-          resolve(response);
-        })
-        .catch((err: Error) => {
-          reject(err);
-        });
-    });
+    return axios
+      .post(this.url, params, options)
+      .then((response: AxiosResponse) => response)
+      .catch((err) => {
+        console.error("POST error:", err); // 🔍 Debug
+        throw err;
+      });
   }
 }
 

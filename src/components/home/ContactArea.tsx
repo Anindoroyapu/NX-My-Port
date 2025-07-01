@@ -33,7 +33,6 @@ export default function ContactArea() {
         details: formData.details,
       });
       setMessage("success", message);
-      setFormData((prev) => ({ ...prev, otp: "" }));
     } catch (ex) {
       setMessage("error", handleAxiosError(ex));
     }
@@ -119,7 +118,7 @@ export default function ContactArea() {
 
           <div className="col-lg-8">
             <div className="contact-form contact-form-area wow fadeInUp delay-0-4s">
-              <form
+              <div
                 // id="contactForm"
                 className="contact-form"
                 onSubmit={handleContact}
@@ -157,6 +156,26 @@ export default function ContactArea() {
                         // required
                         data-error="Please enter your Email"
                         name="email"
+                        onChange={handleChange}
+                      />
+                      <label htmlFor="email" className="for-icon">
+                        <i className="far fa-envelope"></i>
+                      </label>
+                      <div className="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label htmlFor="phone">Phone Number</label>
+                      <input
+                        type="text"
+                        id="phone"
+                        className="form-control"
+                        value={formData.phone}
+                        placeholder="+880 1*** ******"
+                        // required
+                        data-error="Please enter your Phone Number"
+                        name="phone"
                         onChange={handleChange}
                       />
                       <label htmlFor="email" className="for-icon">
@@ -204,7 +223,11 @@ export default function ContactArea() {
                   </div>
                   <div className="col-md-12">
                     <div className="form-group mb-0">
-                      <button type="submit" className="theme-btn">
+                      <button
+                        type="submit"
+                        className="theme-btn"
+                        onClick={handleContact}
+                      >
                         Send Me Message <i className="ri-mail-line"></i>
                       </button>
                       {/* <div id="msgSubmit" className="hidden"></div> */}
@@ -219,7 +242,7 @@ export default function ContactArea() {
                     </p>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
