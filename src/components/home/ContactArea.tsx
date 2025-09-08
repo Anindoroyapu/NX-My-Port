@@ -13,7 +13,7 @@ export default function ContactArea() {
     email: string;
     phone: string;
     subject: string;
-    details: string;
+    message: string;
   };
 
   const [formData, setFormData] = useState<TFormData>({
@@ -21,7 +21,7 @@ export default function ContactArea() {
     email: "",
     phone: "",
     subject: "",
-    details: "",
+    message: "",
   });
   const handleContact = async () => {
     try {
@@ -30,7 +30,7 @@ export default function ContactArea() {
         email: formData.email,
         phone: formData.phone,
         subject: formData.subject,
-        details: formData.details,
+        message: formData.message,
       });
       setMessage("success", message);
     } catch (ex) {
@@ -208,11 +208,11 @@ export default function ContactArea() {
                     <div className="form-group">
                       <label htmlFor="message">Your Message</label>
                       <textarea
-                        name="details"
-                        id="details"
+                        name="message"
+                        id="message"
                         className="form-control"
                         rows={4}
-                        value={formData.details}
+                        value={formData.message}
                         placeholder="Write Your message"
                         // required
                         data-error="Please Write your Message"
