@@ -36,6 +36,7 @@ const menu_data: DataType[] = [
     sub_menus: [
       { link: "/projects", title: "Projects List" },
       { link: "/single-project", title: "Single Portfolio" },
+      { link: "/project-details", title: "Project Details" },
     ],
   },
   // {

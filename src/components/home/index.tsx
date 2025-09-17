@@ -9,6 +9,7 @@ import TestimonoalArea from "./TestimonoalArea";
 import BlogArea from "./BlogArea";
 import ContactArea from "./ContactArea";
 import FooterOne from "@/layouts/footers/FooterOne";
+import AlbumPage from "./AlbumPage";
 
 export default function Home() {
   return (
@@ -21,7 +22,9 @@ export default function Home() {
             <BrandArea />
             <AboutArea />
             {/* <ServiceArea /> */}
+            <AlbumPage />
             <PortfolioArea />
+
             <TestimonoalArea />
             <BlogArea />
             <ContactArea />
