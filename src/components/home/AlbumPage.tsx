@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 const albums = [
@@ -54,6 +55,8 @@ const albums = [
   },
 ];
 const AlbumPage = () => {
+  const [hovered, setHovered] = React.useState(false);
+
   return (
     <div className="bg-white">
       <section id="albums" className="container  my-5 py-md-5">
@@ -74,34 +77,46 @@ const AlbumPage = () => {
                 >
                   {album.images.slice(0, 3).map((image, imgIndex) => {
                     const styles = [
-                      { zIndex: 3, transform: "rotate(3deg) scale(1)" },
+                      {
+                        zIndex: 3,
+                        transform: "rotate(3deg) scale(1)",
+                        transition: "transform 0.3s",
+                      },
                       {
                         zIndex: 2,
                         transform: "rotate(-7deg) scale(0.95) translateY(20px)",
+                        transition: "transform 0.3s",
                       },
                       {
                         zIndex: 1,
                         transform: "rotate(12deg) scale(0.9) translateY(30px)",
+                        transition: "transform 0.3s",
                       },
                     ];
+
                     return (
                       <img
                         key={imgIndex}
                         src={image.src}
                         alt={image.alt}
-                        className="img-fluid position-absolute shadow-lg rounded"
+                        className="img-fluid position-absolute shadow-lg rounded "
                         style={{
                           width: "85%",
                           height: "240px",
                           objectFit: "cover",
                           ...styles[imgIndex],
+                          ...(hovered && {
+                            transform: "rotate(1deg) scale(1)",
+                          }),
                         }}
+                        onMouseEnter={() => setHovered(true)}
+                        onMouseLeave={() => setHovered(false)}
                       />
                     );
                   })}
                 </div>
                 <div className="mt-3">
-                  <h3 className="fw-normal text-muted h5 mb-1">
+                  <h3 className="fw-normal text-muted h5 mb-1 ">
                     {album.title}
                   </h3>
                   <p className="text-muted small">{`A collection of ${album.images.length} photos`}</p>

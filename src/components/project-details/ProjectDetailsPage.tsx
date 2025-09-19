@@ -54,7 +54,7 @@ const ProjectDetailSection = () => (
         className="position-relative d-flex flex-column justify-content-center align-items-center text-center text-white"
         style={{
           backgroundImage:
-            "url('https://images.pexels.com/photos/3771835/pexels-photo-3771835.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+            "url('https://raw.githubusercontent.com/Anindoroyapu/image_ar/main/DSC07893.jpg')",
           minHeight: "85vh",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -69,7 +69,7 @@ const ProjectDetailSection = () => (
             className="text-uppercase small"
             style={{ letterSpacing: "0.4em" }}
           >
-            INSPIRE 2026
+            INSPIRE 2016
           </p>
           <h1 className="display-2 fw-normal my-4">
             Vouge Italia December Campaign

@@ -6,6 +6,7 @@ import PanthoImg from "@/assets/images/avatar/pantho-01.jpg";
 import HeroImg from "@/assets/images/projects/IMG_0093.jpg";
 import indexHeaderBg from "@/assets/images/projects/asha-main.jpg";
 import Link from "next/link";
+
 export default function HeroArea() {
   return (
     <section
