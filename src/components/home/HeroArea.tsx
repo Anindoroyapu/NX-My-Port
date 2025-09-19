@@ -5,6 +5,7 @@ import FarabiImg from "@/assets/images/avatar/farabi-01.jpg";
 import PanthoImg from "@/assets/images/avatar/pantho-01.jpg";
 import HeroImg from "@/assets/images/projects/IMG_0093.jpg";
 import indexHeaderBg from "@/assets/images/projects/asha-main.jpg";
+import Link from "next/link";
 export default function HeroArea() {
   return (
     <section
@@ -84,9 +85,9 @@ export default function HeroArea() {
                 dedicated to crafting user-friendly and visually appealing
                 digital experiences.
               </p>
-              <a className="theme-btn rounded-3" href="">
-                Get In touch
-              </a>
+              <Link className="theme-btn rounded-3" href="">
+                Booking Us
+              </Link>
             </div>
           </div>
         </div>
