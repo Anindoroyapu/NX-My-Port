@@ -154,19 +154,6 @@ const ProjectDetailSection = () => {
                 </div>
               ))}
             </div>
-            {/* <div className="grid grid-cols-3 gap-4 p-4">
-              {images2.map((src, idx) => (
-                <Image
-                  key={idx}
-                  src={src}
-                  alt={`Project image ${idx + 1}`}
-                  width={100}
-                  height={100}
-                  quality={30}
-                  className="rounded-lg"
-                />
-              ))}
-            </div> */}
           </div>
           <div
             className="d-flex align-items-center justify-content-center text-center mt-5"
