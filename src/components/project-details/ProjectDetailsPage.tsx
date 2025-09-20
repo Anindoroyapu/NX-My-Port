@@ -51,7 +51,7 @@ const dots = [{ opacity: 1 }, { opacity: 0.5 }, { opacity: 0.5 }];
 
 const ProjectDetailSection = () => {
   const [images2, setImages] = useState<string[]>([]);
-  console.log(images2, "images");
+
   useEffect(() => {
     async function fetchImages() {
       const res = await fetch(
@@ -144,8 +144,8 @@ const ProjectDetailSection = () => {
               {images2.map((src, idx) => (
                 <div className="col" key={idx}>
                   <Image
-                    width={500}
-                    height={800}
+                    width={200}
+                    height={200}
                     src={src}
                     alt={`Project image ${idx + 1}`}
                     className="img-fluid w-100 h-100"
