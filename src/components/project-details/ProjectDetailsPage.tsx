@@ -126,7 +126,7 @@ const ProjectDetailSection = () => {
             </p>
           </div>
         </section>
-        <section className="py-5">
+        <section className="py-5 mb-50">
           <div className="container-fluid">
             {/* <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
               {images.map(({ src, alt }, i) => (
@@ -154,26 +154,6 @@ const ProjectDetailSection = () => {
                 </div>
               ))}
             </div>
-          </div>
-          <div
-            className="d-flex align-items-center justify-content-center text-center mt-5"
-            role="status"
-            aria-label="Loading content"
-          >
-            <div
-              style={{ width: "50px", height: "1px" }}
-              className="bg-secondary-subtle"
-            />
-            <p
-              className="fw-bold text-secondary px-4 text-uppercase"
-              style={{ letterSpacing: "0.3em" }}
-            >
-              LOADING
-            </p>
-            <div
-              style={{ width: "50px", height: "1px" }}
-              className="bg-secondary-subtle"
-            />
           </div>
         </section>
       </div>
