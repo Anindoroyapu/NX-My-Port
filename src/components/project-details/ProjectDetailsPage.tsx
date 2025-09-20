@@ -144,8 +144,8 @@ const ProjectDetailSection = () => {
               {images2.map((src, idx) => (
                 <div className="col" key={idx}>
                   <Image
-                    width={200}
-                    height={200}
+                    width={500}
+                    height={300}
                     src={src}
                     alt={`Project image ${idx + 1}`}
                     className="img-fluid w-100 h-100"
