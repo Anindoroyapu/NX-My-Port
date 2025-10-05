@@ -9,7 +9,7 @@ const img4 = "/assets/images/posts/4.jpg";
 const img5 = "/assets/images/posts/5.jpg";
 const img6 = "/assets/images/posts/6.jpg";
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   adContainer: {
     background: "linear-gradient(160deg, var(--bg-light), var(--bg-dark))",
     borderRadius: 15,
@@ -18,22 +18,18 @@ const styles = {
     padding: "2rem 1.5rem 3rem 1.5rem",
     boxShadow: "0 10px 30px rgba(0, 0, 0, 0.5)",
     overflow: "hidden",
-    position: "relative" as const,
+    position: "relative",
     fontFamily: "var(--font-body)",
     backgroundColor: "#1a0d0c",
     color: "var(--text-light)",
-    justifyContent: "center",
-    alignItems: "center",
-    minHeight: "100vh",
-    margin: 0,
   },
   photoGallery: {
-    position: "relative" as const,
+    position: "relative",
     height: 300,
     marginBottom: "2rem",
   },
   photo: {
-    position: "absolute" as const,
+    position: "absolute",
     backgroundColor: "#fff",
     padding: 8,
     border: "1px solid #eee",
@@ -44,8 +40,8 @@ const styles = {
     cursor: "pointer",
   },
   offerDetails: {
-    textAlign: "center" as const,
-    position: "relative" as const,
+    textAlign: "center",
+    position: "relative",
     zIndex: 5,
   },
   mainOffer: {
@@ -76,13 +72,13 @@ const styles = {
     fontSize: "2.5rem",
     color: "#e0e0e0",
     margin: "1.5rem 0 1rem 0",
-    position: "relative" as const,
+    position: "relative",
     display: "inline-block",
     zIndex: 1,
   },
   packagesTitleBefore: {
     content: "''",
-    position: "absolute" as const,
+    position: "absolute",
     left: "50%",
     top: "50%",
     transform: "translate(-50%, -50%) rotate(-2deg) skewX(-15deg)",
@@ -91,14 +87,14 @@ const styles = {
     backgroundColor: "rgba(255, 255, 255, 0.08)",
     borderRadius: 5,
     zIndex: -1,
-    pointerEvents: "none" as const,
+    pointerEvents: "none",
   },
   packageList: {
     listStyle: "none",
     padding: 0,
     margin: "2rem auto 0 auto",
     maxWidth: 480,
-    textAlign: "left" as const,
+    textAlign: "left",
   },
   packageListItem: {
     display: "flex",
@@ -111,12 +107,11 @@ const styles = {
     background: "rgba(255, 255, 255, 0.05)",
     border: "1px solid rgba(255, 255, 255, 0.1)",
     boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
-    transition: "transform 0.2s ease-out, background 0.2s ease-out",
-    position: "relative" as const,
+    position: "relative",
   },
   packageListItemBefore: {
     content: "''",
-    position: "absolute" as const,
+    position: "absolute",
     left: 15,
     top: "50%",
     transform: "translateY(-50%)",
@@ -133,9 +128,97 @@ const styles = {
   },
   packageListItemPrice: {
     fontWeight: 700,
-    color: "var(--accent)",
-    whiteSpace: "nowrap" as const,
+    color: "yellow",
+    whiteSpace: "nowrap",
     fontSize: "1.1rem",
+  },
+  customPackageSection: {
+    marginTop: "3rem",
+    padding: "2rem 1.5rem",
+    background: "rgba(0, 0, 0, 0.2)",
+    borderRadius: 15,
+  },
+  customPackagePrompt: {
+    fontSize: "1rem",
+    opacity: 0.8,
+    maxWidth: 400,
+    margin: "0.5rem auto 1.5rem auto",
+  },
+  textarea: {
+    width: "100%",
+    maxWidth: 480,
+    padding: "0.75rem",
+    borderRadius: 8,
+    border: "1px solid rgba(255, 255, 255, 0.2)",
+    background: "rgba(0, 0, 0, 0.2)",
+    color: "var(--text-light)",
+    fontSize: "1rem",
+    fontFamily: "var(--font-body)",
+    resize: "vertical",
+    boxSizing: "border-box",
+  },
+  button: {
+    display: "block",
+    width: "100%",
+    maxWidth: 480,
+    margin: "1rem auto 0 auto",
+    padding: "0.75rem",
+    borderRadius: 8,
+    border: "none",
+    background: "var(--accent)",
+    color: "var(--text-dark)",
+    fontSize: "1.1rem",
+    fontWeight: 700,
+    cursor: "pointer",
+    transition: "background-color 0.2s, transform 0.2s, opacity 0.2s",
+  },
+  loading: {
+    marginTop: "1.5rem",
+    fontSize: "1rem",
+    color: "var(--accent)",
+  },
+  error: {
+    marginTop: "1.5rem",
+    fontSize: "1rem",
+    color: "#ff6b6b",
+    background: "rgba(255, 107, 107, 0.1)",
+    padding: "0.5rem",
+    borderRadius: 5,
+    border: "1px solid rgba(255, 107, 107, 0.3)",
+    maxWidth: 480,
+    margin: "1.5rem auto 0 auto",
+  },
+  generatedPackageCard: {
+    marginTop: "2rem",
+    padding: "1.5rem",
+    background:
+      "linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))",
+    borderRadius: 10,
+    border: "1px solid rgba(255, 255, 255, 0.15)",
+    textAlign: "left",
+    maxWidth: 480,
+    margin: "2rem auto 0 auto",
+    boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
+  },
+  generatedPackageTitle: {
+    fontFamily: "var(--font-bengali)",
+    fontSize: "1.75rem",
+    color: "var(--accent)",
+    marginBottom: "1rem",
+    borderBottom: "1px solid rgba(255,255,255,0.1)",
+    paddingBottom: "0.75rem",
+  },
+  generatedPackageDescription: {
+    fontSize: "1rem",
+    lineHeight: 1.6,
+    whiteSpace: "pre-wrap",
+    marginBottom: "1.5rem",
+  },
+  generatedPackagePrice: {
+    fontSize: "1.5rem",
+    fontWeight: 700,
+    textAlign: "right",
+    color: "#fff",
   },
 };
 
@@ -280,14 +363,12 @@ export default function PostsPage() {
         <p style={styles.subOffer} className="mb-4">
           পাচ্ছেন আউটডোর ফটোগ্রাফি
         </p>
-
         <div style={{ position: "relative", display: "inline-block" }}>
           <span style={styles.packagesTitle} className="fs-2 font-marker">
             Our Other Packages
           </span>
           <span style={styles.packagesTitleBefore} />
         </div>
-
         <ul
           style={styles.packageList}
           className="list-unstyled mx-auto mt-1"
@@ -312,6 +393,7 @@ export default function PostsPage() {
             </li>
           ))}
         </ul>
+        <p>*Contact us for custom packages and group discounts!</p>
       </section>
     </main>
   );
