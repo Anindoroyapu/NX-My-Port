@@ -303,7 +303,7 @@ const photos = [
 
 const packages = [
   { name: "Single/Couple Person Photoshoot", price: "999/-" },
-  { name: "Bridal Photoshoot", price: "1499/-" },
+  { name: "Bridal Photoshoot hourly", price: "1499/-" },
   { name: "Baby Outdoor Photoshoot", price: "1499/-" },
   { name: "Birthday Indoor/Outdoor Photoshoot", price: "2999/-" },
   { name: "Wedding Full Day Coverage", price: "Message Us" },
