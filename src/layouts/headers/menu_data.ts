@@ -51,5 +51,11 @@ const menu_data: DataType[] = [
     link: "/contact",
     has_dropdown: false,
   },
+  {
+    id: 7,
+    title: "Posts",
+    link: "/posts",
+    has_dropdown: false,
+  },
 ];
 export default menu_data;
