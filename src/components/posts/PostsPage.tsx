@@ -19,6 +19,13 @@ const styles = {
     boxShadow: "0 10px 30px rgba(0, 0, 0, 0.5)",
     overflow: "hidden",
     position: "relative" as const,
+    fontFamily: "var(--font-body)",
+    backgroundColor: "#1a0d0c",
+    color: "var(--text-light)",
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: "100vh",
+    margin: 0,
   },
   photoGallery: {
     position: "relative" as const,
@@ -212,16 +219,11 @@ const photos = [
 ];
 
 const packages = [
-  { name: "Single Person Photoshoot", price: "999/-" },
-  { name: "Couple Outdoor Photoshoot", price: "1199/-" },
+  { name: "Single/Couple Person Photoshoot", price: "999/-" },
   { name: "Bridal Photoshoot", price: "1499/-" },
   { name: "Baby Outdoor Photoshoot", price: "1499/-" },
-  { name: "Maternity Outdoor Photoshoot", price: "1999/-" },
   { name: "Birthday Indoor/Outdoor Photoshoot", price: "2999/-" },
-  { name: "Family Outdoor Photoshoot", price: "2999/-" },
-  { name: "Event Coverage", price: "4999/-" },
-  { name: "Pre-Wedding Photoshoot", price: "8999/-" },
-  { name: "Wedding Full Day Coverage", price: "19999/-" },
+  { name: "Wedding Full Day Coverage", price: "Message Us" },
 ];
 
 export default function PostsPage() {
@@ -271,7 +273,7 @@ export default function PostsPage() {
             style={styles.priceHighlight}
             className="px-3 py-1 rounded bg-warning text-dark"
           >
-            ৩৯৯
+            ৯৯৯
           </span>{" "}
           টাকায়
         </h1>
