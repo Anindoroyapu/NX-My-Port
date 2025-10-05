@@ -75,7 +75,7 @@ const styles = {
     fontFamily: "var(--font-script)",
     fontSize: "2.5rem",
     color: "#e0e0e0",
-    margin: "3rem 0 1rem 0",
+    margin: "1.5rem 0 1rem 0",
     position: "relative" as const,
     display: "inline-block",
     zIndex: 1,
@@ -105,7 +105,7 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "center",
     fontSize: "1rem",
-    padding: "1rem 1.5rem",
+    padding: "0.5rem 1rem",
     marginBottom: "0.75rem",
     borderRadius: 10,
     background: "rgba(255, 255, 255, 0.05)",
@@ -282,7 +282,7 @@ export default function PostsPage() {
         </p>
 
         <div style={{ position: "relative", display: "inline-block" }}>
-          <span style={styles.packagesTitle} className="fs-2">
+          <span style={styles.packagesTitle} className="fs-2 font-marker">
             Our Other Packages
           </span>
           <span style={styles.packagesTitleBefore} />
@@ -290,14 +290,14 @@ export default function PostsPage() {
 
         <ul
           style={styles.packageList}
-          className="list-unstyled mx-auto mt-4"
+          className="list-unstyled mx-auto mt-1"
           aria-label="Photography Packages"
         >
           {packages.map((pkg, idx) => (
             <li
               key={idx}
               style={styles.packageListItem}
-              className="d-flex justify-content-between align-items-center mb-3 position-relative"
+              className="d-flex justify-content-between align-items-center mb-1.5 position-relative"
             >
               <span style={styles.packageListItemName}>{pkg.name}</span>
               <span style={styles.packageListItemPrice}>{pkg.price}</span>
