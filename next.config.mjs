@@ -4,6 +4,10 @@ const nextConfig = {
   images: {
     domains: ["raw.githubusercontent.com"],
   },
+  fontFamily: {
+    permanentMarker: ["Permanent Marker", "cursive"],
+    rammetto: ["Rammetto One", "cursive"],
+  },
 };
 
 export default nextConfig;

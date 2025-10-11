@@ -23,6 +23,10 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
           rel="stylesheet"
+        />{" "}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap"
+          rel="stylesheet"
         />
       </head>
       <body>
