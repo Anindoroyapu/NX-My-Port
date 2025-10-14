@@ -311,7 +311,7 @@ const packages = [
 
 export default function PostsPage() {
   return (
-    <main style={styles.adContainer} className="mx-auto my-5">
+    <main style={styles.adContainer} className="mx-auto ">
       <section style={styles.photoGallery} className="position-relative mb-4">
         {photos.map((photo, idx) => (
           <div
