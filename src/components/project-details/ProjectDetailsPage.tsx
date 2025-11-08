@@ -4,48 +4,7 @@ import HeaderOne from "@/layouts/headers/HeaderOne";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-const images = [
-  {
-    src: "https://images.pexels.com/photos/4009023/pexels-photo-4009023.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Dog reaching for food bowl",
-  },
-  {
-    src: "https://images.pexels.com/photos/3772510/pexels-photo-3772510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Woman in brown hat drinking coffee",
-  },
-  {
-    src: "https://images.pexels.com/photos/8996541/pexels-photo-8996541.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Foot in white sneaker on a disco ball",
-  },
-  {
-    src: "https://images.pexels.com/photos/3224164/pexels-photo-3224164.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Christmas decorations with candles",
-  },
-  {
-    src: "https://images.pexels.com/photos/863988/pexels-photo-863988.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Man pouring water on his head in a lake",
-  },
-  {
-    src: "https://images.pexels.com/photos/1618269/pexels-photo-1618269.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Modern building at dusk",
-  },
-  {
-    src: "https://images.pexels.com/photos/165427/pexels-photo-165427.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Large cargo ship on the water",
-  },
-  {
-    src: "https://images.pexels.com/photos/3762800/pexels-photo-3762800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Woman in a grey coat getting out of a car",
-  },
-  {
-    src: "https://images.pexels.com/photos/8901353/pexels-photo-8901353.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Riot police with shields in black and white",
-  },
-  {
-    src: "https://images.pexels.com/photos/933054/pexels-photo-933054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Close up of rocky ground in black and white",
-  },
-];
+
 
 const dots = [{ opacity: 1 }, { opacity: 0.5 }, { opacity: 0.5 }];
 
@@ -73,7 +32,7 @@ const ProjectDetailSection = () => {
           className="position-relative d-flex flex-column justify-content-center align-items-center text-center text-white"
           style={{
             backgroundImage:
-              "url('https://raw.githubusercontent.com/Anindoroyapu/image_ar/main/DSC07893.jpg')",
+              "url('https://raw.githubusercontent.com/Anindoroyapu/image_ar/main/DSC07893.gif')",
             minHeight: "85vh",
             backgroundSize: "cover",
             backgroundPosition: "center",
