@@ -35,7 +35,8 @@ class AxiosAPI {
       .join("/");
 
     // ⛳️ TODO: Replace with environment variable in production
-    const url = new URLParse(`https://admin.ashaa.xyz/api/${rUrl}`, true);
+    // const url = new URLParse(`https://admin.ashaa.xyz/api/${rUrl}`, true);
+    const url = new URLParse(`https://localhost:5050/api/${rUrl}`, true);
 
     const newQuery = { ...url.query, ...query };
     url.set("query", newQuery);

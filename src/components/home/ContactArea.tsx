@@ -3,10 +3,13 @@ import { useTemplate } from "@/contexts/TemplateProvider";
 import { handleAxiosError } from "@/utils/handleAxiosError";
 import useApi from "@/utils/useApi";
 import React, { useState } from "react";
+import SuccessModal from "../contact/modal/SuccessModal";
 
 export default function ContactArea() {
   const { post } = useApi();
   const { setMessage } = useTemplate();
+const [successMessage, setSuccessMessage] = useState<boolean>();
+
 
   type TFormData = {
     fullName: string;
@@ -33,10 +36,20 @@ export default function ContactArea() {
         message: formData.message,
       });
       setMessage("success", message);
+      setSuccessMessage(true);
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
     } catch (ex) {
       setMessage("error", handleAxiosError(ex));
     }
   };
+
+console.log(successMessage,"successMessage")
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -48,7 +61,7 @@ export default function ContactArea() {
   };
 
   return (
-    <section id="contact" className="contact-area">
+    <section id="contact" className="contact-area relative">
       <div className="container">
         <div className="row">
           <div className="col-xl-12 col-lg-12">
@@ -247,6 +260,11 @@ export default function ContactArea() {
           </div>
         </div>
       </div>
+
+      {/* //success message */}
+     
+        <SuccessModal isOpen={successMessage} onClose={() => setSuccessMessage(false)} productName={formData.fullName} />
+     
     </section>
   );
 }
