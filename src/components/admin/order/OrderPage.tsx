@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useMemo } from "react";
-import ReactDOM from "react-dom/client";
+
 import SettingsPage from "./SettingsPage";
 import ProductsPage from "./ProductsPage";
 import AnalyticsPage from "./AnalyticsPage";

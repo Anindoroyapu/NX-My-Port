@@ -25,7 +25,7 @@ export default function ContactArea() {
   });
   const handleContact = async () => {
     try {
-      const { message } = await post<any>(`Booking`, {
+      const { message } = await post<any>(`Contact`, {
         fullName: formData.fullName,
         email: formData.email,
         phone: formData.phone,
