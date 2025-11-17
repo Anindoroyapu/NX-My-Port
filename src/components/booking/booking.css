@@ -1,0 +1,39 @@
+h1, h2, h3, h4, h5, h6,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+    font-family: 'Playfair Display', serif;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #5eead4 !important;
+    box-shadow: 0 0 0 .25rem rgba(94,234,212,.25) !important;
+}
+
+.form-control::placeholder {
+    color: #a1a1aa !important;
+}
+
+.form-select option {
+    background: #27272a;
+    color: #fff;
+}
+
+.form-control::-webkit-calendar-picker-indicator {
+    filter: invert(.8);
+}
+
+.btn-teal {
+    --bs-btn-color: #0f172a;
+    --bs-btn-bg: #5eead4;
+    --bs-btn-border-color: #5eead4;
+    --bs-btn-hover-bg: #99f6e4;
+    --bs-btn-hover-border-color: #99f6e4;
+}
+
+.hover-scale {
+    transition: transform .3s ease-in-out;
+}
+
+.hover-scale:not(:disabled):hover {
+    transform: scale(1.05);
+}

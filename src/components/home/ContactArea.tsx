@@ -49,7 +49,6 @@ const [successMessage, setSuccessMessage] = useState<boolean>();
     }
   };
 
-console.log(successMessage,"successMessage")
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

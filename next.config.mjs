@@ -9,6 +9,9 @@ const nextConfig = {
     permanentMarker: ["Permanent Marker", "cursive"],
     rammetto: ["Rammetto One", "cursive"],
   },
+    plugins: {
+    "@tailwindcss/postcss": {},
+  },
 };
 
 export default nextConfig;

@@ -5,6 +5,7 @@ import ContactArea from "../home/ContactArea";
 import FooterOne from "@/layouts/footers/FooterOne";
 
 export default function Contact() {
+  
   return (
     <>
       <HeaderOne />
