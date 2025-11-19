@@ -262,7 +262,7 @@ const [successMessage, setSuccessMessage] = useState<boolean>();
 
       {/* //success message */}
      
-        <SuccessModal isOpen={successMessage} onClose={() => setSuccessMessage(false)} productName={formData.fullName} />
+        {/* <SuccessModal isOpen={successMessage} onClose={() => setSuccessMessage(false)} productName={formData.fullName} /> */}
      
     </section>
   );
