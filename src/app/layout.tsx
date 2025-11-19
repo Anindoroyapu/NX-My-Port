@@ -1,6 +1,8 @@
 import TemplateProvider from "@/contexts/TemplateProvider";
 import "../styles/index.css";
 import ComposeProviders from "@/lib/ComposeProviders";
+import React from "react";
+import "tailwindcss";
 
 export default function RootLayout({
   children,

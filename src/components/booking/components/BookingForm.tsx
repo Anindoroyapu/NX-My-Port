@@ -7,21 +7,24 @@ import { Select } from './ui/Select';
 import { Textarea } from './ui/Textarea';
 import { Button } from './ui/Button';
 import { Label } from './ui/Label';
+import useApi from '@/utils/useApi';
 
 const initialFormData: BookingFormData = {
-  full_name: '',
-  email: '',
-  phone: '',
-  subject: '',
-  booking_type: PHOTOGRAPHY_SERVICES[0],
+  fullName: 'asha lenscraft',
+  email: 'asha@example.com',
+  phone: ' +1 234 567 890',
+  subject: ' Wedding Photoshoot',
+  bookingType: PHOTOGRAPHY_SERVICES[0],
+  bookingCost: "0",
   package: PHOTOGRAPHY_PACKAGES[0],
-  start_date: '',
-  end_date: '',
+  startDate: '  ',
+  endDate: '',
   location: '',
   message: '',
-  payment_method: PAYMENT_METHODS[0],
+  paymentMethod: PAYMENT_METHODS[0],
   status: 'pending',
-  payment_status: 'unpaid',
+  paymentStatus: 'unpaid',
+  totalCost: '100'
 };
 
 const CameraIcon: React.FC<{ className?: string }> = ({ className }) => (
@@ -48,16 +51,21 @@ const BookingForm: React.FC = () => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
+const { post } = useApi();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
-    // Simulate API call to /Booking
-    setTimeout(() => {
-      console.log('Form submitted to /Booking with payload:', formData);
-      setIsLoading(false);
-      setIsSubmitted(true);
-    }, 1500);
+ 
+    try {
+   const { message } = await post<any>(`Booking`, {
+      ...formData
+      });}
+    catch (error) {
+      console.error('Error submitting booking form:', error);
+    } finally {
+
+    }
+   
   };
 
   if (isSubmitted) {
@@ -74,92 +82,132 @@ const BookingForm: React.FC = () => {
   }
 
   return (
-    <div className="bg-white bg-opacity-10 backdrop-blur-md text-white p-4 p-md-5 rounded-3 shadow-lg border border-white border-opacity-25">
+    <div className="bg-white bg-opacity-10 backdrop-blur-md text-black p-4  rounded-3 shadow-lg border border-white border-opacity-25">
       <div className="text-center mb-5">
         <CameraIcon className="mx-auto mb-3 text-info"/>
-        <h1 className="display-4 fw-bold">Asha Lenscraft</h1>
-        <p className="text-white-50 mt-2 fs-5">Book Your Photoshoot</p>
+        <h1 className="display-4 fw-bold text-black">Asha Lenscraft</h1>
+        <p className="text-black mt-2 fs-5">Book Your Photoshoot</p>
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="row g-4 mb-3">
-          <div className="col-md-6">
-            <Label htmlFor="full_name">Full Name</Label>
-            <Input id="full_name" name="full_name" type="text" value={formData.full_name} onChange={handleChange} placeholder="e.g. John Doe" required />
-          </div>
-          <div className="col-md-6">
-            <Label htmlFor="email">Email Address</Label>
-            <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="e.g. john.doe@example.com" required />
-          </div>
-        </div>
+        <div className=" ">
+            <div className="contact-form contact-form-area wow fadeInUp delay-0-4s">
+              <div
+               
+                className="contact-form flex"
 
-        <div className="row g-4 mb-3">
-            <div className="col-md-6">
-                <Label htmlFor="phone">Phone Number</Label>
-                <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="e.g. +1 234 567 890" required />
+              >
+                <div className=" ">
+                  <div className=" col-md-6">
+                    <div className="form-group ">
+                      <label htmlFor="name">Full Name</label>
+                      <input
+                        type="text"
+                        id="fullName"
+                        className="form-control form-control-sm"
+                        value={formData.fullName}
+                        placeholder="Steve Milner"
+                        // required
+                        data-error="Please enter your Name"
+                        name="fullName"
+                        onChange={handleChange}
+                      />
+                      <label htmlFor="name" className="for-icon">
+                        <i className="far fa-user"></i>
+                      </label>
+                      <div className="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label htmlFor="email">Email Address</label>
+                      <input
+                        type="email"
+                        id="email"
+                        className="form-control"
+                        value={formData.email}
+                        placeholder="hello@websitename.com"
+                        // required
+                        data-error="Please enter your Email"
+                        name="email"
+                        onChange={handleChange}
+                      />
+                      <label htmlFor="email" className="for-icon">
+                        <i className="far fa-envelope"></i>
+                      </label>
+                      <div className="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label htmlFor="phone">Phone Number</label>
+                      <input
+                        type="text"
+                        id="phone"
+                        className="form-control"
+                        value={formData.phone}
+                        placeholder="+880 1*** ******"
+                        // required
+                        data-error="Please enter your Phone Number"
+                        name="phone"
+                        onChange={handleChange}
+                      />
+                      <label htmlFor="email" className="for-icon">
+                        <i className="far fa-envelope"></i>
+                      </label>
+                      <div className="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <label htmlFor="subject">Subject</label>
+                      <input
+                        type="text"
+                        id="subject"
+                        className="form-control"
+                        value={formData.subject}
+                        placeholder="Your Subject"
+                        // required
+                        data-error="Please enter your Subject"
+                        name="subject"
+                        onChange={handleChange}
+                      />
+                      <label htmlFor="subject" className="for-icon">
+                        <i className="far fa-user"></i>
+                      </label>
+                      <div className="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <label htmlFor="message">Your Message</label>
+                      <textarea
+                        name="message"
+                        id="message"
+                        className="form-control"
+                        rows={4}
+                        value={formData.message}
+                        placeholder="Write Your message"
+                        // required
+                        data-error="Please Write your Message"
+                        onChange={handleChange}
+                      ></textarea>
+                      <div className="help-block with-errors"></div>
+                    </div>
+                  </div>
+              
+                  <div className="col-md-12 text-center">
+                    <p className="input-success">
+                      We have received your mail, We will get back to you soon!
+                    </p>
+                    <p className="input-error">
+                      Sorry, Message could not send! Please try again.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="col-md-6">
-                <Label htmlFor="subject">Subject</Label>
-                <Input id="subject" name="subject" type="text" value={formData.subject} onChange={handleChange} placeholder="e.g. Wedding Photoshoot" required />
-            </div>
-        </div>
-
-        <div className="row g-4 mb-3">
-            <div className="col-md-6">
-                <Label htmlFor="booking_type">Booking Type</Label>
-                <Select id="booking_type" name="booking_type" value={formData.booking_type} onChange={handleChange} required>
-                {PHOTOGRAPHY_SERVICES.map(service => (
-                    <option key={service} value={service}>{service}</option>
-                ))}
-                </Select>
-            </div>
-             <div className="col-md-6">
-                <Label htmlFor="package">Select Package</Label>
-                <Select id="package" name="package" value={formData.package} onChange={handleChange} required>
-                {PHOTOGRAPHY_PACKAGES.map(pkg => (
-                    <option key={pkg} value={pkg}>{pkg}</option>
-                ))}
-                </Select>
-            </div>
-        </div>
-
-        <div className="row g-4 mb-3">
-          <div className="col-md-6">
-            <Label htmlFor="start_date">Start Date</Label>
-            <Input id="start_date" name="start_date" type="date" value={formData.start_date} onChange={handleChange} required />
           </div>
-          <div className="col-md-6">
-            <Label htmlFor="end_date">End Date (Optional)</Label>
-            <Input id="end_date" name="end_date" type="date" value={formData.end_date} onChange={handleChange} />
-          </div>
-        </div>
-        
-        <div className="row g-4 mb-3">
-            <div className="col-md-6">
-                <Label htmlFor="location">Location / Venue</Label>
-                <Input id="location" name="location" type="text" value={formData.location} onChange={handleChange} placeholder="e.g. Central Park, NYC" required />
-            </div>
-            <div className="col-md-6">
-                <Label htmlFor="payment_method">Payment Method</Label>
-                <Select id="payment_method" name="payment_method" value={formData.payment_method} onChange={handleChange} required>
-                {PAYMENT_METHODS.map(method => (
-                    <option key={method} value={method}>{method}</option>
-                ))}
-                </Select>
-            </div>
-        </div>
-
-        <div className="mb-4">
-          <Label htmlFor="message">Message / Details</Label>
-          <Textarea 
-            id="message" 
-            name="message" 
-            rows={4} 
-            value={formData.message} 
-            onChange={handleChange} 
-            placeholder="Tell us more about your event, desired style, or any specific requests." 
-          />
-        </div>
         
         <div className="pt-2">
           <Button type="submit" className="w-100 btn-lg" disabled={isLoading}>

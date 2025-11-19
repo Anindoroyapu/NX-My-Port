@@ -26,7 +26,6 @@ const BookingListPage = () => {
     const fetchData = async () => {
       try {
         const res = await get<any>("Booking");
-        // Support different possible response shapes
         const list: Booking[] = Array.isArray(res)
           ? res
           : Array.isArray(res?.data)
@@ -41,9 +40,7 @@ const BookingListPage = () => {
   }, [get]);
 
   const normalized = (s?: string | number) =>
-    String(s ?? "")
-      .toLowerCase()
-      .trim();
+    String(s ?? "").toLowerCase().trim();
 
   const filtered = React.useMemo(() => {
     const q = normalized(search);
@@ -52,7 +49,6 @@ const BookingListPage = () => {
         return false;
       }
       if (!q) return true;
-      // match name, email, code/id
       return (
         normalized(b.name).includes(q) ||
         normalized(b.email).includes(q) ||
@@ -65,43 +61,40 @@ const BookingListPage = () => {
   const visible = filtered.slice(0, perPage);
 
   return (
-    <div className="container my-5 ">
-      <div className="card shadow-sm border-0">
-        <div className="card-header bg-white d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
-          <div className="d-flex flex-column">
-            <div className="d-flex align-items-center gap-3">
-              <h3 className="mb-0">Booking List</h3>
-              <small className="text-muted">
+    <div className="max-w-7xl mx-auto my-6 px-4">
+      <div className="bg-white shadow rounded-md overflow-hidden">
+        <header className="px-5 py-4 bg-white flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <div>
+            <div className="flex items-center gap-3">
+              <h3 className="text-lg font-semibold m-0">Booking List</h3>
+              <span className="text-sm text-gray-500">
                 Manage bookings, approvals & exports
-              </small>
+              </span>
             </div>
             <nav aria-label="breadcrumb" className="mt-2">
-              <ol className="breadcrumb mb-0">
-                <li className="breadcrumb-item">
-                  <a href="#" className="text-decoration-none small">
+              <ol className="flex gap-2 text-sm text-gray-500">
+                <li>
+                  <a href="#" className="hover:underline">
                     Home
                   </a>
                 </li>
-                <li
-                  className="breadcrumb-item active small"
-                  aria-current="page"
-                >
-                  Bookings
+                <li aria-current="page" className="text-gray-400">
+                  /
                 </li>
+                <li className="text-gray-700">Bookings</li>
               </ol>
             </nav>
           </div>
 
-          <div className="d-flex gap-2">
-            <button className="btn btn-success d-flex align-items-center gap-2">
-              <span className="fs-6">＋</span>
+          <div className="flex gap-2">
+            <button className="inline-flex items-center gap-2 bg-green-600 text-white px-3 py-1.5 rounded hover:bg-green-700">
+              <span className="text-xl leading-none">＋</span>
               <span>Add Booking</span>
             </button>
             <button
-              className="btn btn-outline-secondary"
+              className="border border-gray-300 text-gray-700 px-3 py-1.5 rounded hover:bg-gray-50"
               title="Refresh list"
               onClick={() => {
-                // refetch quickly by calling the same fetch logic
                 (async () => {
                   try {
                     const res = await get<any>("Booking");
@@ -120,18 +113,16 @@ const BookingListPage = () => {
               ⟳ Refresh
             </button>
           </div>
-        </div>
+        </header>
 
-        <div className="card-body">
+        <div className="px-5 py-6">
           {/* Controls */}
-          <div className="row g-3 mb-4 align-items-center">
-            <div className="col-12 col-md-6">
-              <div className="input-group shadow-sm">
-                <span className="input-group-text bg-white border-end-0">
-                  🔍
-                </span>
+          <div className="flex flex-col md:flex-row md:items-center gap-3 mb-5">
+            <div className="flex-1">
+              <div className="flex items-center bg-white border border-gray-200 rounded shadow-sm overflow-hidden">
+                <span className="px-3 text-gray-500">🔍</span>
                 <input
-                  className="form-control border-start-0"
+                  className="flex-1 px-3 py-2 outline-none"
                   placeholder="Search bookings by name, id or email..."
                   type="search"
                   aria-label="Search bookings"
@@ -139,7 +130,7 @@ const BookingListPage = () => {
                   onChange={(e) => setSearch(e.target.value)}
                 />
                 <button
-                  className="btn btn-outline-secondary"
+                  className="px-3 text-gray-500 hover:bg-gray-100"
                   type="button"
                   aria-label="Clear search"
                   onClick={() => setSearch("")}
@@ -149,9 +140,9 @@ const BookingListPage = () => {
               </div>
             </div>
 
-            <div className="col-6 col-md-2">
+            <div className="w-36">
               <select
-                className="form-select form-select-sm"
+                className="w-full border border-gray-200 rounded px-2 py-2 text-sm"
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
                 aria-label="Filter by status"
@@ -163,9 +154,9 @@ const BookingListPage = () => {
               </select>
             </div>
 
-            <div className="col-4 col-md-2">
+            <div className="w-36">
               <select
-                className="form-select form-select-sm"
+                className="w-full border border-gray-200 rounded px-2 py-2 text-sm"
                 value={String(perPage)}
                 onChange={(e) => setPerPage(Number(e.target.value))}
                 aria-label="Results per page"
@@ -176,37 +167,37 @@ const BookingListPage = () => {
               </select>
             </div>
 
-            <div className="col-8 col-md-2 text-md-end">
-              <div
-                className="btn-group"
-                role="group"
-                aria-label="export actions"
-              >
-                <button className="btn btn-outline-info btn-sm">CSV</button>
-                <button className="btn btn-outline-info btn-sm">PDF</button>
+            <div className="ml-auto">
+              <div className="inline-flex gap-2">
+                <button className="px-3 py-1.5 border border-blue-400 text-blue-600 rounded text-sm">
+                  CSV
+                </button>
+                <button className="px-3 py-1.5 border border-blue-400 text-blue-600 rounded text-sm">
+                  PDF
+                </button>
               </div>
             </div>
           </div>
 
           {/* List / Table */}
-          <div className="table-responsive shadow-sm rounded">
-            <table className="table table-hover align-middle mb-0">
-              <thead className="table-light">
+          <div className="overflow-x-auto rounded-md border border-gray-100">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
                 <tr>
-                  <th style={{ width: 40 }}>
+                  <th className="px-4 py-3 text-left w-10">
                     <input aria-label="select all" type="checkbox" />
                   </th>
-                  <th>Booking</th>
-                  <th className="text-nowrap">Date</th>
-                  <th>Status</th>
-                  <th className="text-end">Actions</th>
+                  <th className="px-4 py-3 text-left">Booking</th>
+                  <th className="px-4 py-3 text-left">Date</th>
+                  <th className="px-4 py-3 text-left">Status</th>
+                  <th className="px-4 py-3 text-right">Actions</th>
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody className="bg-white divide-y divide-gray-100">
                 {visible.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="text-center text-muted py-4">
+                    <td colSpan={5} className="text-center text-gray-500 py-8">
                       No bookings found
                     </td>
                   </tr>
@@ -224,66 +215,71 @@ const BookingListPage = () => {
                         : "BK");
                     const colorClass =
                       b.color === "warning"
-                        ? "bg-warning text-dark"
+                        ? "bg-yellow-400 text-black"
                         : b.color === "danger"
-                        ? "bg-danger text-white"
-                        : "bg-primary text-white";
+                        ? "bg-red-600 text-white"
+                        : "bg-blue-600 text-white";
                     return (
-                      <tr key={b.id ?? idx}>
-                        <td>
+                      <tr
+                        key={b.id ?? idx}
+                        className="hover:bg-gray-50 transition-colors"
+                      >
+                        <td className="px-4 py-4">
                           <input
                             type="checkbox"
                             aria-label={`select booking ${b.id ?? idx}`}
                           />
                         </td>
-                        <td>
-                          <div className="d-flex align-items-center gap-3">
+                        <td className="px-4 py-4">
+                          <div className="flex items-center gap-4">
                             <div
-                              className={`rounded-circle ${colorClass} d-inline-flex justify-content-center align-items-center`}
+                              className={`${colorClass} rounded-full inline-flex items-center justify-center`}
                               style={{ width: 44, height: 44, fontWeight: 600 }}
                               aria-hidden
                             >
                               {initials}
                             </div>
-                            <div className="flex-grow-1">
-                              <div className="fw-semibold">
+                            <div className="flex-1">
+                              <div className="font-medium">
                                 {b.name ?? `Booking ${b.id ?? ""}`}
                               </div>
-                              <div className="text-muted small">
+                              <div className="text-sm text-gray-500">
                                 {b.name ?? "No name"} • {b.email ?? "—"}
                               </div>
-                              <div className="small text-muted">
+                              <div className="text-sm text-gray-400">
                                 {b.code ??
                                   `#BK-${String(b.id ?? "").padStart(5, "0")}`}
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td className="text-nowrap">{b.date ?? "—"}</td>
-                        <td>
+                        <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-700">
+                          {b.date ?? "—"}
+                        </td>
+                        <td className="px-4 py-4">
                           {String(b.status).toLowerCase() === "approved" ? (
-                            <span className="badge rounded-pill bg-success">
+                            <span className="inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-800 text-sm">
                               Approved
                             </span>
                           ) : String(b.status).toLowerCase() === "pending" ? (
-                            <span className="badge rounded-pill bg-warning text-dark">
+                            <span className="inline-flex items-center px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-sm">
                               Pending
                             </span>
                           ) : (
-                            <span className="badge rounded-pill bg-danger">
+                            <span className="inline-flex items-center px-3 py-1 rounded-full bg-red-100 text-red-800 text-sm">
                               {b.status ? b.status : "Unknown"}
                             </span>
                           )}
                         </td>
-                        <td className="text-end">
-                          <div className="btn-group" role="group">
-                            <button className="btn btn-sm btn-outline-primary">
+                        <td className="px-4 py-4 text-right">
+                          <div className="inline-flex gap-2">
+                            <button className="px-2 py-1 text-sm border border-blue-300 text-blue-700 rounded">
                               View
                             </button>
-                            <button className="btn btn-sm btn-success">
+                            <button className="px-2 py-1 text-sm bg-green-600 text-white rounded">
                               Approve
                             </button>
-                            <button className="btn btn-sm btn-danger">
+                            <button className="px-2 py-1 text-sm bg-red-600 text-white rounded">
                               Reject
                             </button>
                           </div>
@@ -297,16 +293,16 @@ const BookingListPage = () => {
           </div>
 
           {/* Bulk actions & pagination */}
-          <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3 gap-3">
-            <div className="d-flex gap-2">
-              <button className="btn btn-outline-danger btn-sm">
+          <div className="mt-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <div className="flex gap-2">
+              <button className="px-3 py-1.5 text-sm border border-red-300 text-red-600 rounded">
                 Delete Selected
               </button>
-              <button className="btn btn-outline-warning btn-sm">
+              <button className="px-3 py-1.5 text-sm border border-yellow-300 text-yellow-700 rounded">
                 Mark as Read
               </button>
               <button
-                className="btn btn-outline-secondary btn-sm"
+                className="px-3 py-1.5 text-sm border border-gray-300 rounded"
                 onClick={() => {
                   setSearch("");
                   setStatusFilter("all");
@@ -316,46 +312,38 @@ const BookingListPage = () => {
               </button>
             </div>
 
-            <div className="d-flex align-items-center gap-3">
-              <small className="text-muted">
+            <div className="flex items-center gap-4">
+              <small className="text-sm text-gray-500">
                 Showing {visible.length} of {filtered.length} matching bookings
               </small>
 
               <nav aria-label="Bookings pagination">
-                <ul className="pagination pagination-sm mb-0">
-                  <li className="page-item">
-                    <a className="page-link" href="#" aria-label="Previous">
-                      Previous
-                    </a>
-                  </li>
-                  <li className="page-item active" aria-current="page">
-                    <span className="page-link">1</span>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      2
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#" aria-label="Next">
-                      Next
-                    </a>
-                  </li>
-                </ul>
+                <div className="inline-flex items-center gap-1">
+                  <button className="px-3 py-1 border border-gray-200 rounded text-sm">
+                    Previous
+                  </button>
+                  <span className="px-3 py-1 bg-gray-100 rounded text-sm">1</span>
+                  <button className="px-3 py-1 border border-gray-200 rounded text-sm">
+                    2
+                  </button>
+                  <button className="px-3 py-1 border border-gray-200 rounded text-sm">
+                    Next
+                  </button>
+                </div>
               </nav>
             </div>
           </div>
         </div>
 
-        <div className="card-footer bg-white border-top d-flex justify-content-between align-items-center">
-          <small className="text-muted">
+        <footer className="px-5 py-3 bg-white border-t border-gray-100 flex items-center justify-between">
+          <small className="text-sm text-gray-500">
             Tip: Use search or filters to quickly find bookings
           </small>
-          <div>
-            <button className="btn btn-link btn-sm">Help</button>
-            <button className="btn btn-link btn-sm">Privacy</button>
+          <div className="flex gap-3">
+            <button className="text-sm text-gray-500 hover:underline">Help</button>
+            <button className="text-sm text-gray-500 hover:underline">Privacy</button>
           </div>
-        </div>
+        </footer>
       </div>
     </div>
   );

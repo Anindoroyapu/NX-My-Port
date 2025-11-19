@@ -1,15 +1,17 @@
 export interface BookingFormData {
-  full_name: string;
+  fullName: string;
   email: string;
   phone: string;
   subject: string;
-  booking_type: string;
-  start_date: string;
-  end_date: string;
+  bookingType: string;
+  startDate: string;
+  endDate: string;
   location: string;
   message: string;
   package: string;
-  payment_method: string;
+  paymentMethod: string;
   status: string;
-  payment_status: string;
+  paymentStatus: string;
+  bookingCost: string;
+  totalCost?: string;
 }
