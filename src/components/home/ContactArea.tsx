@@ -4,12 +4,13 @@ import { handleAxiosError } from "@/utils/handleAxiosError";
 import useApi from "@/utils/useApi";
 import React, { useState } from "react";
 import SuccessModal from "../contact/modal/SuccessModal";
+import Link from "next/link";
 
 export default function ContactArea() {
   const { post } = useApi();
   const { setMessage } = useTemplate();
-const [successMessage, setSuccessMessage] = useState<boolean>();
-
+const [successMessage, setSuccessMessage] = useState<boolean>(false);
+console.log(successMessage,"successMessage")
 
   type TFormData = {
     fullName: string;
@@ -26,16 +27,25 @@ const [successMessage, setSuccessMessage] = useState<boolean>();
     subject: "",
     message: "",
   });
-  const handleContact = async () => {
+ 
+  const handleContact = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     try {
-      const { message } = await post<any>(`Contact`, {
-        fullName: formData.fullName,
+      const res = await fetch("https://admin.ashaa.xyz/api/Contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
         email: formData.email,
         phone: formData.phone,
         subject: formData.subject,
         message: formData.message,
+        }),
       });
-      setMessage("success", message);
+
       setSuccessMessage(true);
       setFormData({
         fullName: "",
@@ -44,8 +54,8 @@ const [successMessage, setSuccessMessage] = useState<boolean>();
         subject: "",
         message: "",
       });
-    } catch (ex) {
-      setMessage("error", handleAxiosError(ex));
+    } catch (err) {
+      console.error("POST Error:", err);
     }
   };
 
@@ -242,6 +252,10 @@ const [successMessage, setSuccessMessage] = useState<boolean>();
                       >
                         Send Me Message <i className="ri-mail-line"></i>
                       </button>
+                      <button className="px-3 text-black">Or</button>
+                      <Link className="theme-btn rounded-3" href="https://manage.ashaa.xyz/#/make-booking">
+                Booking Us
+              </Link>s
                       {/* <div id="msgSubmit" className="hidden"></div> */}
                     </div>
                   </div>
@@ -260,9 +274,8 @@ const [successMessage, setSuccessMessage] = useState<boolean>();
         </div>
       </div>
 
-      {/* //success message */}
-     
-        {/* <SuccessModal isOpen={successMessage} onClose={() => setSuccessMessage(false)} productName={formData.fullName} /> */}
+        {/* //success message */}
+        <SuccessModal isOpen={successMessage} onClose={() => setSuccessMessage(false)} productName={formData.fullName} />
      
     </section>
   );

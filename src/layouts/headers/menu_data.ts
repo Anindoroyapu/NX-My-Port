@@ -57,5 +57,11 @@ const menu_data: DataType[] = [
     link: "/posts",
     has_dropdown: false,
   },
+  {
+    id: 8,
+    title: "Booking Us",
+    link: "https://manage.ashaa.xyz/#/make-bookings",
+    has_dropdown: false,
+  }
 ];
 export default menu_data;

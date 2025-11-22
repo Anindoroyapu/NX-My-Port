@@ -86,7 +86,7 @@ export default function HeroArea() {
                 dedicated to crafting user-friendly and visually appealing
                 digital experiences.
               </p>
-              <Link className="theme-btn rounded-3" href="/booking">
+              <Link className="theme-btn rounded-3" href="https://manage.ashaa.xyz/#/make-booking">
                 Booking Us
               </Link>
             </div>
