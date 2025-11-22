@@ -10,7 +10,7 @@ export default function ContactArea() {
   const { post } = useApi();
   const { setMessage } = useTemplate();
 const [successMessage, setSuccessMessage] = useState<boolean>(false);
-console.log(successMessage,"successMessage")
+
 
   type TFormData = {
     fullName: string;

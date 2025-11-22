@@ -60,7 +60,7 @@ const menu_data: DataType[] = [
   {
     id: 8,
     title: "Booking Us",
-    link: "https://manage.ashaa.xyz/#/make-bookings",
+    link: "https://manage.ashaa.xyz/#/make-booking",
     has_dropdown: false,
   }
 ];
