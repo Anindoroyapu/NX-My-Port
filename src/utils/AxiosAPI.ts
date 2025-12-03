@@ -35,7 +35,7 @@ class AxiosAPI {
       .join("/");
 
     // ⛳️ TODO: Replace with environment variable in production
-    const url = new URLParse(`http://localhost:5050/api/${rUrl}`, true);
+    const url = new URLParse(`http://admin.ashaa.xyz/api/${rUrl}`, true);
 
     const newQuery = { ...url.query, ...query };
     url.set("query", newQuery);
@@ -53,7 +53,7 @@ class AxiosAPI {
       .get(this.url, options)
       .then((response: AxiosResponse) => response)
       .catch((err) => {
-        console.error("GET error:", err); // 🔍 Debug
+        console.error("GET error:", err);
         throw err;
       });
   }

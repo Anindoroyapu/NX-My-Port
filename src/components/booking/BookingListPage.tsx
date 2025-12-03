@@ -1,7 +1,9 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { handleAxiosError } from "@/utils/handleAxiosError";
 import useApi from "@/utils/useApi";
+import Link from "next/link";
+import { useTemplate } from "@/contexts/TemplateProvider";
 
 type Booking = {
   id?: string | number;
@@ -16,29 +18,27 @@ type Booking = {
 
 const BookingListPage = () => {
   const { get } = useApi();
-
+  const { setMessage } = useTemplate();
   const [bookings, setBookings] = React.useState<Booking[]>([]);
   const [search, setSearch] = React.useState("");
   const [statusFilter, setStatusFilter] = React.useState<string>("all");
   const [perPage, setPerPage] = React.useState<number>(10);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await get<any>("Booking");
-        // Support different possible response shapes
-        const list: Booking[] = Array.isArray(res)
-          ? res
-          : Array.isArray(res?.data)
-          ? res.data
-          : [];
-        setBookings(list);
-      } catch (ex) {
-        console.error(handleAxiosError(ex));
+        const data = await get<any>(`/Booking`);
+        console.log(data, "data");
+        setBookings(data as any);
+      } catch (ex: any) {
+        setMessage("error", handleAxiosError(ex));
+      } finally {
       }
     };
     fetchData();
-  }, [get]);
+  }, []);
+
+  console.log(bookings, "bookings");
 
   const normalized = (s?: string | number) =>
     String(s ?? "")
@@ -93,10 +93,13 @@ const BookingListPage = () => {
           </div>
 
           <div className="d-flex gap-2">
-            <button className="btn btn-success d-flex align-items-center gap-2">
+            <Link
+              href={"/add-booking"}
+              className="btn btn-success d-flex align-items-center gap-2"
+            >
               <span className="fs-6">＋</span>
               <span>Add Booking</span>
-            </button>
+            </Link>
             <button
               className="btn btn-outline-secondary"
               title="Refresh list"
