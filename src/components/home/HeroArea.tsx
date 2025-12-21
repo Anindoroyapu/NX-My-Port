@@ -23,7 +23,7 @@ export default function HeroArea() {
         <div className="row">
           <div className="col-lg-12">
             <div className="hero-content wow fadeInUp text-center delay-0-2s">
-              <h2 className="  ">ASHA LENSCRAFT</h2>
+              <h2 className=" md:text-nowrap ">ASHA LENSCRAFT</h2>
             </div>
           </div>
         </div>
