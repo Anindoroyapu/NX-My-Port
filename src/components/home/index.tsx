@@ -10,6 +10,7 @@ import BlogArea from "./BlogArea";
 import ContactArea from "./ContactArea";
 import FooterOne from "@/layouts/footers/FooterOne";
 import AlbumPage from "./AlbumPage";
+import CtaSection from "./CtaSection";
 
 export default function Home() {
   return (
@@ -24,7 +25,7 @@ export default function Home() {
             {/* <ServiceArea /> */}
             <AlbumPage />
             <PortfolioArea />
-
+            <CtaSection />
             <TestimonoalArea />
             <BlogArea />
             <ContactArea />

@@ -23,11 +23,52 @@ export default function HeroArea() {
         sizes="100vw"
         style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
       />
-      <div className="container" style={{ position: "relative", zIndex: 1 }}>
+      {/* Dark gradient overlay for text readability */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 1,
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.28) 50%, rgba(0,0,0,0.65) 100%)",
+        }}
+      />
+
+      <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <div className="row">
           <div className="col-lg-12">
             <div className="hero-content wow fadeInUp text-center delay-0-2s">
-              <h2 className=" md:text-nowrap ">ASHA LENSCRAFT</h2>
+              <span
+                style={{
+                  display: "inline-block",
+                  background: "rgba(255,255,255,0.12)",
+                  backdropFilter: "blur(10px)",
+                  border: "1px solid rgba(255,255,255,0.22)",
+                  borderRadius: "50px",
+                  padding: "6px 24px",
+                  color: "rgba(255,255,255,0.88)",
+                  fontSize: "11px",
+                  letterSpacing: "3px",
+                  textTransform: "uppercase",
+                  marginBottom: "18px",
+                }}
+              >
+                ✦ &nbsp; Professional Photography Studio
+              </span>
+              <h2 className="md:text-nowrap">ASHA LENSCRAFT</h2>
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.7)",
+                  fontSize: "12px",
+                  letterSpacing: "4px",
+                  textTransform: "uppercase",
+                  marginTop: "10px",
+                  marginBottom: 0,
+                }}
+              >
+                Wedding &nbsp;·&nbsp; Portrait &nbsp;·&nbsp; Wildlife
+                &nbsp;·&nbsp; Fashion
+              </p>
             </div>
           </div>
         </div>
@@ -89,16 +130,46 @@ export default function HeroArea() {
           <div className="col-lg-3 pt-30">
             <div className="hero-content wow fadeInUp delay-0-4s">
               <p>
-                Hi, I’m Anindo—a passionate photographer and a creative mind
-                dedicated to crafting user-friendly and visually appealing
-                digital experiences.
+                Hi, I&apos;m Anindo — a passionate photographer dedicated to
+                capturing life&apos;s most meaningful moments with artistry and
+                emotion.
               </p>
-              <Link
-                className="theme-btn rounded-3"
-                href="https://manage.ashaa.xyz/#/make-booking"
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                  marginTop: "28px",
+                }}
               >
-                Booking Us
-              </Link>
+                <Link
+                  className="theme-btn rounded-3"
+                  href="https://manage.ashaa.xyz/#/make-booking"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "8px",
+                    fontSize: "15px",
+                    fontWeight: 600,
+                  }}
+                >
+                  <i className="ri-calendar-check-line"></i>
+                  Book a Session
+                </Link>
+                <Link
+                  className="theme-btn theme-btn-two rounded-3"
+                  href="#portfolio"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  Explore Our Work
+                </Link>
+              </div>
             </div>
           </div>
         </div>

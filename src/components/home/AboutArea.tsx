@@ -35,11 +35,43 @@ export default function AboutArea() {
               <p>
                 I am Anindo Roy, a seasoned photographer with over 8 years of
                 experience in crafting intuitive and engaging digital
-                experiences. My journey began with wildlife photography &
-                potrait photography where I discovered my passion for
+                experiences. My journey began with wildlife photography &amp;
+                portrait photography where I discovered my passion for
                 understanding user behavior and translating it into seamless
                 interactions.
               </p>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "10px",
+                  marginTop: "20px",
+                }}
+              >
+                {[
+                  "Wedding Photography",
+                  "Portrait Sessions",
+                  "Wildlife",
+                  "Fashion",
+                  "Events",
+                  "Product Shoots",
+                ].map((tag) => (
+                  <span
+                    key={tag}
+                    style={{
+                      display: "inline-block",
+                      border: "1px solid currentColor",
+                      borderRadius: "50px",
+                      padding: "4px 16px",
+                      fontSize: "12px",
+                      letterSpacing: "1px",
+                      opacity: 0.7,
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
             <div className="hero-counter-area d-flex justify-content-between wow fadeInUp delay-0-4s">
               {counter_data.map((item, i) => (
