@@ -54,7 +54,7 @@ export default function BrandArea() {
                     alt="Company"
                   />
                   <img
-                    src="../../../public/assets/images/client-logos/Asha-Lensecraft_White.png"
+                    src="assets/images/client-logos/Asha-Lensecraft_White.png"
                     alt="Company"
                   />
                   <img
@@ -62,7 +62,7 @@ export default function BrandArea() {
                     alt="Company"
                   />
                   <img
-                    src="../../../public/assets/images/client-logos/Asha-Lensecraft_White.png"
+                    src="assets/images/client-logos/Asha-Lensecraft_White.png"
                     alt="Company"
                   />
                   <img
@@ -70,7 +70,7 @@ export default function BrandArea() {
                     alt="Company"
                   />
                   <img
-                    src="../../../public/assets/images/client-logos/Asha-Lensecraft_White.png"
+                    src="assets/images/client-logos/Asha-Lensecraft_White.png"
                     alt="Company"
                   />
                 </div>
