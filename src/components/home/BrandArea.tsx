@@ -25,20 +25,20 @@ export default function BrandArea() {
   }, []);
 
   const [images2, setImages] = useState<string[]>([]);
-  
-    useEffect(() => {
-      async function fetchImages() {
-        const res = await fetch(
-          "https://api.github.com/repos/Anindoroyapu/image_ar/contents"
-        );
-        const data = await res.json();
-        const imageFiles = data
-          .filter((file: any) => file.name.match(/\.(jpg|jpeg|png|gif)$/i))
-          .map((file: any) => file.download_url);
-        setImages(imageFiles);
-      }
-      fetchImages();
-    }, []);
+
+  useEffect(() => {
+    async function fetchImages() {
+      const res = await fetch(
+        "https://api.github.com/repos/Anindoroyapu/image_ar/contents",
+      );
+      const data = await res.json();
+      const imageFiles = data
+        .filter((file: any) => file.name.match(/\.(jpg|jpeg|png|gif)$/i))
+        .map((file: any) => file.download_url);
+      setImages(imageFiles);
+    }
+    fetchImages();
+  }, []);
 
   return (
     <div className="company-design-area">
@@ -52,20 +52,27 @@ export default function BrandArea() {
                   <img
                     src="assets/images/client-logos/icon-bik-logo.svg"
                     alt="Company"
-                  /> <img
+                  />{" "}
+                  <img
+                    src="assets/images/client-logos/Asha-Lenscraft_White.png"
+                    alt="Company"
+                  />{" "}
+                  <img
                     src="assets/images/client-logos/icon-bik-logo.svg"
                     alt="Company"
-                  /> <img
+                  />{" "}
+                  <img
+                    src="assets/images/client-logos/Asha-Lenscraft_White.png"
+                    alt="Company"
+                  />{" "}
+                  <img
                     src="assets/images/client-logos/icon-bik-logo.svg"
                     alt="Company"
-                  /> <img
-                    src="assets/images/client-logos/icon-bik-logo.svg"
+                  />
+                  <img
+                    src="assets/images/client-logos/Asha-Lenscraft_White.png"
                     alt="Company"
-                  /> <img
-                    src="assets/images/client-logos/icon-bik-logo.svg"
-                    alt="Company"
-                  /> 
-                
+                  />
                 </div>
               </div>
             </div>
@@ -77,15 +84,22 @@ export default function BrandArea() {
               >
                 <div className="scroller__inner_img d-flex ">
                   {images2.map((url, index) => (
-                    <Image width={100} height={100} sizes="100vw" className=" h-full w-auto" key={index} src={url} alt={`Company ${index + 1}`}  />
+                    <Image
+                      width={100}
+                      height={100}
+                      sizes="100vw"
+                      className=" h-full w-auto"
+                      key={index}
+                      src={url}
+                      alt={`Company ${index + 1}`}
+                    />
                   ))}
-                </div>
-              </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
- 
+      </div>
+    </div>
   );
 }

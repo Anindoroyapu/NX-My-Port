@@ -1428,3 +1428,11 @@ Version      : 1.0
     padding: 0 15px;
   }
 }
+
+/* Scroller shadow: 20px on mobile */
+@media only screen and (max-width: 767px) {
+  .scroller[data-animated="true"] {
+    -webkit-mask: linear-gradient(90deg, transparent, white 20px, white calc(100% - 20px), transparent);
+    mask: linear-gradient(90deg, transparent, white 20px, white calc(100% - 20px), transparent);
+  }
+}
