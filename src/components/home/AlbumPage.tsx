@@ -61,7 +61,7 @@ const AlbumPage = () => {
   useEffect(() => {
     async function fetchImages() {
       const res = await fetch(
-        "https://api.github.com/repos/Anindoroyapu/image_ar/contents"
+        "https://api.github.com/repos/Anindoroyapu/image_ar/contents",
       );
       const data = await res.json();
       const imageFiles = data
@@ -113,6 +113,7 @@ const AlbumPage = () => {
                         key={imgIndex}
                         src={image}
                         alt={image}
+                        loading="lazy"
                         className="img-fluid position-absolute shadow-lg rounded "
                         style={{
                           width: "85%",

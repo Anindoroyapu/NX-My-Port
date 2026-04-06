@@ -112,6 +112,9 @@ export default function PortfolioArea() {
                       src={item.image}
                       alt=""
                       style={{ height: "auto" }}
+                      loading="lazy"
+                      quality={80}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       data-rjs="2"
                     />
                     <span className="portfolio-category">{item.category}</span>

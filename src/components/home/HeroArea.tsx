@@ -12,14 +12,18 @@ export default function HeroArea() {
     <section
       id="home"
       className="main-hero-area "
-      style={{
-        backgroundImage: `url(${indexHeaderBg.src})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        // opacity: 0.5,
-      }}
+      style={{ position: "relative" }}
     >
-      <div className="container">
+      <Image
+        src={indexHeaderBg}
+        alt=""
+        fill
+        priority
+        quality={75}
+        sizes="100vw"
+        style={{ objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+      />
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div className="row">
           <div className="col-lg-12">
             <div className="hero-content wow fadeInUp text-center delay-0-2s">
@@ -39,24 +43,27 @@ export default function HeroArea() {
                       alt="tanjirul"
                       width={100}
                       height={100}
+                      priority
                     />
                   </li>
                   <li>
                     <Image
                       className="img-fluid"
                       src={FarabiImg}
-                      alt="tanjirul"
+                      alt="farabi"
                       width={100}
                       height={100}
+                      priority
                     />
                   </li>
                   <li>
                     <Image
                       className="img-fluid"
                       src={PanthoImg}
-                      alt="tanjirul"
+                      alt="pantho"
                       width={100}
                       height={100}
+                      priority
                     />
                   </li>
                 </ul>
@@ -72,9 +79,9 @@ export default function HeroArea() {
               <Image
                 src={HeroImg}
                 alt=""
-                width={0}
-                height={0}
-                sizes="100vh"
+                priority
+                quality={80}
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="w-full h-auto"
               />
             </div>
@@ -86,7 +93,10 @@ export default function HeroArea() {
                 dedicated to crafting user-friendly and visually appealing
                 digital experiences.
               </p>
-              <Link className="theme-btn rounded-3" href="https://manage.ashaa.xyz/#/make-booking">
+              <Link
+                className="theme-btn rounded-3"
+                href="https://manage.ashaa.xyz/#/make-booking"
+              >
                 Booking Us
               </Link>
             </div>
