@@ -52,25 +52,25 @@ export default function BrandArea() {
                   <img
                     src="assets/images/client-logos/icon-bik-logo.svg"
                     alt="Company"
-                  />{" "}
+                  />
                   <img
-                    src="assets/images/client-logos/Asha-Lenscraft_White.png"
+                    src="../../../public/assets/images/client-logos/Asha-Lensecraft_White.png"
                     alt="Company"
-                  />{" "}
-                  <img
-                    src="assets/images/client-logos/icon-bik-logo.svg"
-                    alt="Company"
-                  />{" "}
-                  <img
-                    src="assets/images/client-logos/Asha-Lenscraft_White.png"
-                    alt="Company"
-                  />{" "}
+                  />
                   <img
                     src="assets/images/client-logos/icon-bik-logo.svg"
                     alt="Company"
                   />
                   <img
-                    src="assets/images/client-logos/Asha-Lenscraft_White.png"
+                    src="../../../public/assets/images/client-logos/Asha-Lensecraft_White.png"
+                    alt="Company"
+                  />
+                  <img
+                    src="assets/images/client-logos/icon-bik-logo.svg"
+                    alt="Company"
+                  />
+                  <img
+                    src="../../../public/assets/images/client-logos/Asha-Lensecraft_White.png"
                     alt="Company"
                   />
                 </div>
