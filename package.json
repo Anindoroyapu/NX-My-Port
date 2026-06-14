@@ -8,7 +8,6 @@
     "start": "next start -p 3100 -H 0.0.0.0",
     "lint": "next lint"
   },
-  
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@popperjs/core": "^2.11.8",
@@ -20,6 +19,7 @@
     "clsx": "^2.1.1",
     "gsap": "^3.12.5",
     "lucide-react": "^0.525.0",
+    "mysql2": "^3.22.5",
     "next": "14.2.16",
     "postcss": "^8.5.6",
     "react": "^18",

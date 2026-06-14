@@ -1,16 +1,10 @@
 "use client";
-import { useTemplate } from "@/contexts/TemplateProvider";
-import { handleAxiosError } from "@/utils/handleAxiosError";
-import useApi from "@/utils/useApi";
 import React, { useState } from "react";
 import SuccessModal from "../contact/modal/SuccessModal";
 import Link from "next/link";
 
 export default function ContactArea() {
-  const { post } = useApi();
-  const { setMessage } = useTemplate();
 const [successMessage, setSuccessMessage] = useState<boolean>(false);
-
 
   type TFormData = {
     fullName: string;
@@ -27,24 +21,30 @@ const [successMessage, setSuccessMessage] = useState<boolean>(false);
     subject: "",
     message: "",
   });
- 
+
   const handleContact = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://admin.ashaa.xyz/api/Contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           fullName: formData.fullName,
-        email: formData.email,
-        phone: formData.phone,
-        subject: formData.subject,
-        message: formData.message,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
         }),
       });
+
+      if (!res.ok) {
+        const errData = await res.json();
+        console.error("API Error:", errData);
+        return;
+      }
 
       setSuccessMessage(true);
       setFormData({
