@@ -4,6 +4,7 @@ import ComposeProviders from "@/lib/ComposeProviders";
 import React from "react";
 import "tailwindcss";
 import type { Metadata } from "next";
+import Tracker from "@/components/Tracker";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ashaa.xyz"),
@@ -165,6 +166,7 @@ export default function RootLayout({
         <ComposeProviders components={[TemplateProvider]}>
           <main>{children}</main>
         </ComposeProviders>
+        <Tracker />
       </body>
     </html>
   );

@@ -7,7 +7,6 @@ import { Select } from './ui/Select';
 import { Textarea } from './ui/Textarea';
 import { Button } from './ui/Button';
 import { Label } from './ui/Label';
-import useApi from '@/utils/useApi';
 
 const initialFormData: BookingFormData = {
   fullName: 'asha lenscraft',
@@ -51,21 +50,26 @@ const BookingForm: React.FC = () => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
-const { post } = useApi();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
- 
+    setIsLoading(true);
+
     try {
-   const { message } = await post<any>(`Booking`, {
-      ...formData
-      });}
-    catch (error) {
+      const res = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setIsSubmitted(true);
+      }
+    } catch (error) {
       console.error('Error submitting booking form:', error);
     } finally {
-
+      setIsLoading(false);
     }
-   
   };
 
   if (isSubmitted) {
