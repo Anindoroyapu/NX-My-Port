@@ -4,7 +4,7 @@ import { getDb } from "@/lib/db";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { pageUrl, referrer } = body;
+    const { pageUrl, referrer, name, email, phone, location } = body;
 
     const forwarded = req.headers.get("x-forwarded-for");
     const ip = forwarded
@@ -21,13 +21,41 @@ export async function POST(req: NextRequest) {
         user_agent TEXT DEFAULT NULL,
         page_url VARCHAR(500) DEFAULT NULL,
         referrer VARCHAR(500) DEFAULT NULL,
+        name VARCHAR(255) DEFAULT NULL,
+        email VARCHAR(255) DEFAULT NULL,
+        phone VARCHAR(100) DEFAULT NULL,
+        location VARCHAR(255) DEFAULT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
     `);
 
+    for (const col of [
+      ["name", "VARCHAR(255) DEFAULT NULL", "referrer"],
+      ["email", "VARCHAR(255) DEFAULT NULL", "name"],
+      ["phone", "VARCHAR(100) DEFAULT NULL", "email"],
+      ["location", "VARCHAR(255) DEFAULT NULL", "phone"],
+    ]) {
+      try {
+        await db.execute(
+          `ALTER TABLE visitors ADD COLUMN ${col[0]} ${col[1]} AFTER ${col[2]}`
+        );
+      } catch {
+        // column already exists — proceed
+      }
+    }
+
     await db.execute(
-      `INSERT INTO visitors (ip_address, user_agent, page_url, referrer) VALUES (?, ?, ?, ?)`,
-      [ip, userAgent, pageUrl || null, referrer || null]
+      `INSERT INTO visitors (ip_address, user_agent, page_url, referrer, name, email, phone, location) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        ip,
+        userAgent,
+        pageUrl || null,
+        referrer || null,
+        name || null,
+        email || null,
+        phone || null,
+        location || null,
+      ]
     );
 
     return NextResponse.json({ success: true });
