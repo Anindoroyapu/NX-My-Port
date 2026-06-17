@@ -1,16 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 
+async function getLocationFromIP(ip: string): Promise<string | null> {
+  try {
+    const res = await fetch(`http://ip-api.com/json/${ip}?fields=city,country`, {
+      signal: AbortSignal.timeout(3000),
+    });
+    const data = await res.json();
+    if (data.status === "success") {
+      return [data.city, data.country].filter(Boolean).join(", ") || null;
+    }
+  } catch {
+    // geolocation failed — proceed
+  }
+  return null;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { pageUrl, referrer, name, email, phone, location } = body;
+    const { pageUrl, referrer, language, timezone, screen, platform } = body;
 
     const forwarded = req.headers.get("x-forwarded-for");
     const ip = forwarded
       ? forwarded.split(",")[0].trim()
       : req.headers.get("x-real-ip") || "127.0.0.1";
     const userAgent = req.headers.get("user-agent") || "";
+
+    const [location, browserLang] = await Promise.all([
+      ip && ip !== "127.0.0.1" ? getLocationFromIP(ip) : Promise.resolve(null),
+      Promise.resolve(language || null),
+    ]);
 
     const db = getDb();
 
@@ -21,19 +41,21 @@ export async function POST(req: NextRequest) {
         user_agent TEXT DEFAULT NULL,
         page_url VARCHAR(500) DEFAULT NULL,
         referrer VARCHAR(500) DEFAULT NULL,
-        name VARCHAR(255) DEFAULT NULL,
-        email VARCHAR(255) DEFAULT NULL,
-        phone VARCHAR(100) DEFAULT NULL,
         location VARCHAR(255) DEFAULT NULL,
+        browser_language VARCHAR(50) DEFAULT NULL,
+        timezone VARCHAR(100) DEFAULT NULL,
+        screen_resolution VARCHAR(20) DEFAULT NULL,
+        platform VARCHAR(100) DEFAULT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
     `);
 
     for (const col of [
-      ["name", "VARCHAR(255) DEFAULT NULL", "referrer"],
-      ["email", "VARCHAR(255) DEFAULT NULL", "name"],
-      ["phone", "VARCHAR(100) DEFAULT NULL", "email"],
-      ["location", "VARCHAR(255) DEFAULT NULL", "phone"],
+      ["location", "VARCHAR(255) DEFAULT NULL", "referrer"],
+      ["browser_language", "VARCHAR(50) DEFAULT NULL", "location"],
+      ["timezone", "VARCHAR(100) DEFAULT NULL", "browser_language"],
+      ["screen_resolution", "VARCHAR(20) DEFAULT NULL", "timezone"],
+      ["platform", "VARCHAR(100) DEFAULT NULL", "screen_resolution"],
     ]) {
       try {
         await db.execute(
@@ -45,16 +67,17 @@ export async function POST(req: NextRequest) {
     }
 
     await db.execute(
-      `INSERT INTO visitors (ip_address, user_agent, page_url, referrer, name, email, phone, location) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO visitors (ip_address, user_agent, page_url, referrer, location, browser_language, timezone, screen_resolution, platform) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         ip,
         userAgent,
         pageUrl || null,
         referrer || null,
-        name || null,
-        email || null,
-        phone || null,
-        location || null,
+        location,
+        browserLang,
+        timezone || null,
+        screen || null,
+        platform || null,
       ]
     );
 
