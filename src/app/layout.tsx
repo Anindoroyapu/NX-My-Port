@@ -5,6 +5,7 @@ import React from "react";
 import "tailwindcss";
 import type { Metadata } from "next";
 import Tracker from "@/components/Tracker";
+import FirstVisitModal from "@/components/common/FirstVisitModal";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ashaa.xyz"),
@@ -167,6 +168,7 @@ export default function RootLayout({
           <main>{children}</main>
         </ComposeProviders>
         <Tracker />
+        <FirstVisitModal />
       </body>
     </html>
   );
