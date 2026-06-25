@@ -57,85 +57,85 @@ export default function AdminContacts() {
     <div className="flex min-h-screen bg-slate-50">
       <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex flex-1 flex-col lg:ml-64">
-        <header className="sticky top-0 z-20 flex h-16 items-center gap-4 border-b bg-white px-6 shadow-sm">
+        <header className="sticky top-0 z-20 flex h-14 sm:h-16 items-center gap-3 border-b bg-white px-4 sm:px-6 shadow-sm">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden rounded-lg p-2 text-slate-600 hover:bg-slate-100"
+            className="lg:hidden rounded-lg p-2 text-slate-600 hover:bg-slate-100 active:bg-slate-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
-            <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg className="size-5 sm:size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          <h1 className="text-xl font-semibold text-slate-800">Contact Messages</h1>
+          <h1 className="text-lg sm:text-xl font-semibold text-slate-800">Contact Messages</h1>
         </header>
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-3 sm:p-4 lg:p-6">
           <div className="rounded-xl border bg-white shadow-sm">
-            <div className="border-b px-6 py-4">
+            <div className="border-b px-4 sm:px-6 py-3 sm:py-4">
               <input
                 type="text"
                 placeholder="Search by name, email or subject..."
                 value={search}
                 onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-                className="w-full rounded-lg border border-slate-300 px-4 py-2 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 sm:w-72"
+                className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 sm:w-72 min-h-[44px]"
               />
             </div>
 
             {loading ? (
-              <div className="flex items-center justify-center py-20">
+              <div className="flex items-center justify-center py-16 sm:py-20">
                 <div className="size-8 animate-spin rounded-full border-4 border-amber-400 border-t-transparent" />
               </div>
             ) : paginated.length === 0 ? (
-              <div className="py-20 text-center text-sm text-slate-500">No messages found.</div>
+              <div className="py-16 sm:py-20 text-center text-sm text-slate-500">No messages found.</div>
             ) : (
               <div className="divide-y">
                 {paginated.map((c) => (
-                  <div key={c.id} className="px-6 py-4">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <p className="font-medium text-slate-800">{c.fullName}</p>
-                        <p className="text-sm text-slate-500">{c.email}{c.phone ? ` • ${c.phone}` : ""}</p>
+                  <div key={c.id} className="px-4 sm:px-6 py-3 sm:py-4">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+                      <div className="min-w-0 flex-1">
+                        <p className="font-medium text-slate-800 text-sm sm:text-base">{c.fullName}</p>
+                        <p className="text-xs sm:text-sm text-slate-500 truncate">{c.email}{c.phone ? ` • ${c.phone}` : ""}</p>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-xs text-slate-400">
+                      <div className="flex items-center gap-3 shrink-0">
+                        <span className="text-xs text-slate-400 whitespace-nowrap">
                           {new Date(c.created_at).toLocaleDateString()}
                         </span>
                         <button
                           onClick={() => deleteContact(c.id)}
-                          className="rounded-lg px-3 py-1 text-xs font-medium text-red-600 transition-colors hover:bg-red-50"
+                          className="rounded-lg px-3 py-1.5 text-xs font-medium text-red-600 transition-colors hover:bg-red-50 min-h-[36px]"
                         >
                           Delete
                         </button>
                       </div>
                     </div>
                     {c.subject && (
-                      <p className="mt-2 text-sm font-medium text-slate-600">
+                      <p className="mt-2 text-xs sm:text-sm font-medium text-slate-600">
                         Subject: {c.subject}
                       </p>
                     )}
-                    <p className="mt-1 text-sm text-slate-600 leading-relaxed">{c.message}</p>
+                    <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed break-words">{c.message}</p>
                   </div>
                 ))}
               </div>
             )}
 
             {totalPages > 1 && (
-              <div className="flex items-center justify-between border-t px-6 py-4">
-                <span className="text-sm text-slate-500">
-                  Page {page} of {totalPages}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t px-4 sm:px-6 py-3 sm:py-4">
+                <span className="text-sm text-slate-500 order-2 sm:order-1">
+                  Page {page} of {totalPages} ({filtered.length} total)
                 </span>
-                <div className="flex gap-2">
+                <div className="flex gap-2 order-1 sm:order-2">
                   <button
                     onClick={() => setPage((p) => Math.max(1, p - 1))}
                     disabled={page === 1}
-                    className="rounded-lg border px-3 py-1.5 text-sm text-slate-600 transition-colors hover:bg-slate-50 disabled:opacity-40"
+                    className="rounded-lg border px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-50 disabled:opacity-40 min-h-[44px]"
                   >
                     Previous
                   </button>
                   <button
                     onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                     disabled={page === totalPages}
-                    className="rounded-lg border px-3 py-1.5 text-sm text-slate-600 transition-colors hover:bg-slate-50 disabled:opacity-40"
+                    className="rounded-lg border px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-50 disabled:opacity-40 min-h-[44px]"
                   >
                     Next
                   </button>

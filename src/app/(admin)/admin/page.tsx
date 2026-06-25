@@ -68,45 +68,45 @@ export default function AdminDashboard() {
     <div className="flex min-h-screen bg-slate-50">
       <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex flex-1 flex-col lg:ml-64">
-        <header className="sticky top-0 z-20 flex h-16 items-center gap-4 border-b bg-white px-6 shadow-sm">
+        <header className="sticky top-0 z-20 flex h-14 sm:h-16 items-center gap-3 border-b bg-white px-4 sm:px-6 shadow-sm">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden rounded-lg p-2 text-slate-600 hover:bg-slate-100"
+            className="lg:hidden rounded-lg p-2 text-slate-600 hover:bg-slate-100 active:bg-slate-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
-            <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg className="size-5 sm:size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          <h1 className="text-xl font-semibold text-slate-800">Dashboard</h1>
+          <h1 className="text-lg sm:text-xl font-semibold text-slate-800">Dashboard</h1>
         </header>
 
-        <main className="flex-1 p-6">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <main className="flex-1 p-3 sm:p-4 lg:p-6">
+          <div className="grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {cards.map((card) => (
               <div
                 key={card.label}
-                className={`rounded-xl bg-gradient-to-br ${card.color} p-5 text-white shadow-lg`}
+                className={`rounded-xl bg-gradient-to-br ${card.color} p-4 sm:p-5 text-white shadow-lg`}
               >
-                <p className="text-sm font-medium text-white/80">{card.label}</p>
-                <p className="mt-2 text-3xl font-bold">{card.value}</p>
+                <p className="text-xs sm:text-sm font-medium text-white/80 truncate">{card.label}</p>
+                <p className="mt-1 sm:mt-2 text-xl sm:text-2xl lg:text-3xl font-bold truncate">{card.value}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            <div className="rounded-xl border bg-white p-6 shadow-sm">
-              <h2 className="mb-4 text-lg font-semibold text-slate-800">Recent Bookings</h2>
+          <div className="mt-4 sm:mt-6 lg:mt-8 grid gap-4 sm:gap-6 lg:grid-cols-2">
+            <div className="rounded-xl border bg-white p-4 sm:p-6 shadow-sm">
+              <h2 className="mb-3 sm:mb-4 text-base sm:text-lg font-semibold text-slate-800">Recent Bookings</h2>
               {recentBookings.length === 0 ? (
                 <p className="text-sm text-slate-500">No bookings yet.</p>
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   {recentBookings.map((b) => (
-                    <div key={b.id} className="flex items-center justify-between rounded-lg border p-3">
-                      <div>
-                        <p className="text-sm font-medium text-slate-800">{b.fullName}</p>
-                        <p className="text-xs text-slate-500">{b.email}</p>
+                    <div key={b.id} className="flex items-center justify-between rounded-lg border p-3 sm:p-3 gap-2">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-medium text-slate-800 truncate">{b.fullName}</p>
+                        <p className="text-xs text-slate-500 truncate">{b.email}</p>
                       </div>
-                      <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-700">
+                      <span className="shrink-0 rounded-full bg-amber-100 px-2.5 sm:px-3 py-1 text-xs font-medium text-amber-700 whitespace-nowrap">
                         {b.status || "pending"}
                       </span>
                     </div>
@@ -115,19 +115,19 @@ export default function AdminDashboard() {
               )}
             </div>
 
-            <div className="rounded-xl border bg-white p-6 shadow-sm">
-              <h2 className="mb-4 text-lg font-semibold text-slate-800">Recent Messages</h2>
+            <div className="rounded-xl border bg-white p-4 sm:p-6 shadow-sm">
+              <h2 className="mb-3 sm:mb-4 text-base sm:text-lg font-semibold text-slate-800">Recent Messages</h2>
               {recentContacts.length === 0 ? (
                 <p className="text-sm text-slate-500">No messages yet.</p>
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   {recentContacts.map((c) => (
-                    <div key={c.id} className="rounded-lg border p-3">
-                      <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium text-slate-800">{c.fullName}</p>
-                        <span className="text-xs text-slate-400">{new Date(c.created_at).toLocaleDateString()}</span>
+                    <div key={c.id} className="rounded-lg border p-3 sm:p-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="text-sm font-medium text-slate-800 truncate">{c.fullName}</p>
+                        <span className="shrink-0 text-xs text-slate-400">{new Date(c.created_at).toLocaleDateString()}</span>
                       </div>
-                      <p className="mt-1 text-xs text-slate-500">{c.subject || c.email}</p>
+                      <p className="mt-1 text-xs text-slate-500 truncate">{c.subject || c.email}</p>
                     </div>
                   ))}
                 </div>

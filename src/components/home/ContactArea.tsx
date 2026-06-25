@@ -255,7 +255,7 @@ const [successMessage, setSuccessMessage] = useState<boolean>(false);
                       <button className="px-3 text-black">Or</button>
                       <Link className="theme-btn rounded-3" href="https://manage.ashaa.xyz/#/make-booking">
                 Booking Us
-              </Link>s
+              </Link>
                       {/* <div id="msgSubmit" className="hidden"></div> */}
                     </div>
                   </div>

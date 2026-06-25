@@ -1436,3 +1436,131 @@ Version      : 1.0
     mask: linear-gradient(90deg, transparent, white 20px, white calc(100% - 20px), transparent);
   }
 }
+
+/* Hide custom cursor and light-dark on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  #magic-cursor,
+  #ball,
+  .light-dark-version {
+    display: none !important;
+  }
+}
+
+/* Extra small devices (320px - 479px) */
+@media only screen and (max-width: 479px) {
+  .hero-content h2 {
+    font-size: 48px;
+    line-height: 1.1em;
+  }
+  .footer-top h2 {
+    font-size: 62px;
+    line-height: 1.1em;
+  }
+  .single-page-hero-area h2 {
+    font-size: 48px;
+    line-height: 1.1em;
+  }
+  .section-title h2 {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  .hero-content p {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+  .single-page-hero-area p {
+    padding: 0 15px;
+    font-size: 14px;
+  }
+  .hero-counter-area {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .hero-counter-area .count-text {
+    font-size: 28px;
+  }
+  .about-content-part h2 {
+    font-size: 26px;
+    line-height: 34px;
+  }
+  .about-counter-part {
+    padding: 30px 15px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .about-counter-part h2 {
+    font-size: 50px;
+  }
+  .section-title p {
+    font-size: 14px;
+  }
+  .contact-form {
+    padding: 25px 15px;
+  }
+  .contact-page-form {
+    padding: 25px 15px;
+  }
+  .blog-post-caption h2 a {
+    font-size: 22px;
+  }
+  .sidebar__area {
+    right: -290px;
+    width: 290px;
+  }
+  .sidebar__area.sidebar-opened {
+    right: 0;
+  }
+  .comment-form-area {
+    margin-left: 0;
+  }
+  .container-inner {
+    padding: 40px 15px;
+  }
+  .footer-top {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .footer-top p {
+    font-size: 16px;
+    padding: 0 15px;
+  }
+  .single-page-hero-area {
+    padding-bottom: 30px;
+  }
+  .hero-image img {
+    width: 100%;
+    max-width: 280px;
+  }
+  .author-image-part .bg-circle {
+    width: 200px;
+    height: 200px;
+  }
+  .progress-wrap {
+    right: 8px;
+    bottom: 15px;
+    width: 36px;
+    height: 36px;
+  }
+  .scroller__inner_img img {
+    height: 280px;
+  }
+}
+
+/* Small devices (480px - 575px) */
+@media only screen and (min-width: 480px) and (max-width: 575px) {
+  .hero-content h2 {
+    font-size: 65px;
+  }
+  .footer-top h2 {
+    font-size: 80px;
+  }
+  .single-page-hero-area h2 {
+    font-size: 65px;
+  }
+}
+
+/* Fix sidebar open transition */
+.sidebar__area.sidebar-opened {
+  right: 0;
+}
