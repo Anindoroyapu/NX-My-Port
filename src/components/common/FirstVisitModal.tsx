@@ -22,8 +22,17 @@ const FirstVisitModal = () => {
     }
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      await fetch("/api/visitor-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, contact }),
+      });
+    } catch {
+      // silently fail — don't block the user
+    }
     localStorage.setItem("first_visit_done", "true");
     setSubmitted(true);
     setTimeout(() => setOpen(false), 800);
