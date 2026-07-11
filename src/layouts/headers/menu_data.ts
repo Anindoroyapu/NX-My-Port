@@ -53,12 +53,18 @@ const menu_data: DataType[] = [
   },
   {
     id: 7,
+    title: "Reviews",
+    link: "/reviews",
+    has_dropdown: false,
+  },
+  {
+    id: 8,
     title: "Posts",
     link: "/posts",
     has_dropdown: false,
   },
   {
-    id: 8,
+    id: 9,
     title: "Booking Us",
     link: "https://manage.ashaa.xyz/#/make-booking",
     has_dropdown: false,
