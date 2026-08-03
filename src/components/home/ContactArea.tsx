@@ -4,7 +4,7 @@ import SuccessModal from "../contact/modal/SuccessModal";
 import Link from "next/link";
 
 export default function ContactArea() {
-const [successMessage, setSuccessMessage] = useState<boolean>(false);
+  const [successMessage, setSuccessMessage] = useState<boolean>(false);
 
   type TFormData = {
     fullName: string;
@@ -59,9 +59,8 @@ const [successMessage, setSuccessMessage] = useState<boolean>(false);
     }
   };
 
-
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     if (name) {
@@ -254,8 +253,8 @@ const [successMessage, setSuccessMessage] = useState<boolean>(false);
                       </button>
                       <button className="px-3 text-black">Or</button>
                       <Link className="theme-btn rounded-3" href="/booking">
-                Booking Us
-              </Link>
+                        Booking Us
+                      </Link>
                       {/* <div id="msgSubmit" className="hidden"></div> */}
                     </div>
                   </div>
@@ -274,9 +273,12 @@ const [successMessage, setSuccessMessage] = useState<boolean>(false);
         </div>
       </div>
 
-        {/* //success message */}
-        <SuccessModal isOpen={successMessage} onClose={() => setSuccessMessage(false)} productName={formData.fullName} />
-     
+      {/* //success message */}
+      <SuccessModal
+        isOpen={successMessage}
+        onClose={() => setSuccessMessage(false)}
+        productName={formData.fullName}
+      />
     </section>
   );
 }
