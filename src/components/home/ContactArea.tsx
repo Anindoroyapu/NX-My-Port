@@ -253,7 +253,7 @@ const [successMessage, setSuccessMessage] = useState<boolean>(false);
                         Send Me Message <i className="ri-mail-line"></i>
                       </button>
                       <button className="px-3 text-black">Or</button>
-                      <Link className="theme-btn rounded-3" href="https://manage.ashaa.xyz/#/make-booking">
+                      <Link className="theme-btn rounded-3" href="/booking">
                 Booking Us
               </Link>
                       {/* <div id="msgSubmit" className="hidden"></div> */}

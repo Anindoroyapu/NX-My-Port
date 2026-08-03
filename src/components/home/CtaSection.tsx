@@ -92,7 +92,7 @@ export default function CtaSection() {
               }}
             >
               <Link
-                href="https://manage.ashaa.xyz/#/make-booking"
+                href="/booking"
                 className="theme-btn rounded-3"
                 style={{
                   display: "inline-flex",

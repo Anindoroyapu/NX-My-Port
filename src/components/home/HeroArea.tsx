@@ -144,7 +144,7 @@ export default function HeroArea() {
               >
                 <Link
                   className="theme-btn rounded-3"
-                  href="https://manage.ashaa.xyz/#/make-booking"
+                  href="/booking"
                   style={{
                     display: "flex",
                     justifyContent: "center",

@@ -168,7 +168,7 @@ export default function RootLayout({
           <main>{children}</main>
         </ComposeProviders>
         <Tracker />
-        {/* <FirstVisitModal /> */}
+        <FirstVisitModal />
       </body>
     </html>
   );
