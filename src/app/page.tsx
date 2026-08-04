@@ -5,16 +5,30 @@ import Home from "@/components/home";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata: Metadata = {
-  title: "Asha Lenscraft | Professional Photography Studio in Khulna",
+  title: "Asha Lenscraft | Photography & Videography Studio in Khulna",
   description:
-    "Asha Lenscraft — Khulna's premier photography studio by Anindo Roy. 8+ years of experience in wedding, portrait, wildlife & fashion photography. 100+ five-star reviews. Book your session today.",
+    "Asha Lenscraft — Khulna's premier photography & videography studio by Anindo Roy. Wedding, event, couple, single, outdoor & indoor photography and videography. 100+ five-star reviews. Book your session today.",
+  keywords: [
+    "photography Khulna",
+    "videography Khulna",
+    "wedding photography Khulna",
+    "wedding videography Khulna",
+    "event photography Khulna",
+    "couple photoshoot Khulna",
+    "single portrait photography Khulna",
+    "outdoor photography Khulna",
+    "indoor studio photoshoot Khulna",
+    "best photographer in Khulna",
+    "খুলনা ফটোগ্রাফি",
+    "খুলনা ভিডিওগ্রাফি",
+  ],
   alternates: {
     canonical: "https://ashaa.xyz",
   },
   openGraph: {
-    title: "Asha Lenscraft | Professional Photography Studio in Khulna",
+    title: "Asha Lenscraft | Photography & Videography Studio in Khulna",
     description:
-      "Capturing life's most meaningful moments with artistry and emotion. Book your session with Anindo Roy — 100+ five-star reviews.",
+      "Wedding, event, couple, single, outdoor & indoor photography and videography in Khulna. Book your session with Anindo Roy — 100+ five-star reviews.",
     url: "https://ashaa.xyz",
     images: [
       {

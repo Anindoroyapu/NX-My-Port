@@ -51,7 +51,6 @@ export default function FirstVisitModal() {
       setErrorMessage("Please enter your name and contact details.");
       return;
     }
-
     setIsSubmitting(true);
     setErrorMessage(null);
 

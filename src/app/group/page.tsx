@@ -4,9 +4,13 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "Group Events | Anindo - Portfolio Next JS",
+  title: "Event Management | Asha Lenscraft",
   description:
-    "Manage and organize event data in separate sections from the Group page.",
+    "Internal event management for Asha Lenscraft photography & videography bookings.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function GroupPage() {

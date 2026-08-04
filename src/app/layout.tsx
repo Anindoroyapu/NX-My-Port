@@ -10,21 +10,54 @@ import FirstVisitModal from "@/components/common/FirstVisitModal";
 export const metadata: Metadata = {
   metadataBase: new URL("https://ashaa.xyz"),
   title: {
-    default: "Asha Lenscraft | Professional Photography Studio in Khulna",
+    default:
+      "Asha Lenscraft | Photography & Videography Studio in Khulna",
     template: "%s | Asha Lenscraft",
   },
   description:
-    "Asha Lenscraft — professional photography studio in Khulna, Bangladesh. Specializing in wedding, portrait, wildlife & fashion photography. Book your session today.",
+    "Asha Lenscraft — Khulna's photography & videography studio. Wedding, event, couple, single, outdoor & indoor photography and videography in Khulna, Bangladesh. Book your session today.",
   keywords: [
+    // Core services in Khulna (English)
+    "photography Khulna",
+    "videography Khulna",
+    "photographer in Khulna",
+    "videographer in Khulna",
     "photography studio Khulna",
-    "wedding photographer Bangladesh",
+    "wedding photography Khulna",
+    "wedding videography Khulna",
+    "event photography Khulna",
+    "event videography Khulna",
+    "couple photography Khulna",
+    "couple photoshoot Khulna",
+    "pre wedding photography Khulna",
+    "single portrait photography Khulna",
+    "solo photoshoot Khulna",
+    "outdoor photography Khulna",
+    "outdoor photoshoot Khulna",
+    "indoor photography Khulna",
+    "indoor studio photoshoot Khulna",
     "portrait photographer Khulna",
+    "fashion photography Khulna",
+    "wildlife photography Bangladesh",
+    "cinematography Khulna",
+    "birthday photographer Khulna",
+    "professional photographer Khulna",
+    "professional videographer Khulna",
+    "best photographer in Khulna",
+    "photo studio near me Khulna",
+    // Brand
     "Asha Lenscraft",
     "Anindo Roy photographer",
-    "wildlife photography Bangladesh",
-    "fashion photography Khulna",
-    "event photographer Khulna",
-    "professional photographer BD",
+    "Anindo Roy videographer",
+    // Bengali / local search terms
+    "খুলনা ফটোগ্রাফি",
+    "খুলনা ভিডিওগ্রাফি",
+    "খুলনা ফটোগ্রাফার",
+    "খুলনা বিয়ের ফটোগ্রাফি",
+    "খুলনা ইভেন্ট ফটোগ্রাফি",
+    "খুলনা কাপল ফটোশুট",
+    "খুলনা আউটডোর ফটোশুট",
+    "খুলনা ইনডোর ফটোশুট",
   ],
   authors: [{ name: "Anindo Roy", url: "https://ashaa.xyz" }],
   creator: "Anindo Roy",
@@ -34,9 +67,9 @@ export const metadata: Metadata = {
     locale: "en_BD",
     url: "https://ashaa.xyz",
     siteName: "Asha Lenscraft",
-    title: "Asha Lenscraft | Professional Photography Studio in Khulna",
+    title: "Asha Lenscraft | Photography & Videography Studio in Khulna",
     description:
-      "Capturing life's most meaningful moments with artistry and emotion. Wedding, portrait, wildlife & fashion photography in Khulna, Bangladesh.",
+      "Wedding, event, couple, single, outdoor & indoor photography and videography in Khulna, Bangladesh. Capturing life's most meaningful moments with artistry and emotion.",
     images: [
       {
         url: "/assets/images/projects/asha-main.jpg",
@@ -48,9 +81,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Asha Lenscraft | Professional Photography Studio in Khulna",
+    title: "Asha Lenscraft | Photography & Videography Studio in Khulna",
     description:
-      "Capturing life's most meaningful moments with artistry and emotion.",
+      "Wedding, event, couple, outdoor & indoor photography and videography in Khulna, Bangladesh.",
     images: ["/assets/images/projects/asha-main.jpg"],
   },
   robots: {
@@ -76,7 +109,7 @@ const jsonLd = {
       "@id": "https://ashaa.xyz/#business",
       name: "Asha Lenscraft",
       description:
-        "Professional photography studio specializing in wedding, portrait, wildlife and fashion photography in Khulna, Bangladesh.",
+        "Professional photography and videography studio specializing in wedding, event, couple, single, outdoor and indoor photography and videography in Khulna, Bangladesh.",
       url: "https://ashaa.xyz",
       telephone: "+8801533780593",
       email: "anindoroy112@gmail.com",
@@ -88,6 +121,20 @@ const jsonLd = {
       },
       image: "https://ashaa.xyz/assets/images/projects/asha-main.jpg",
       sameAs: ["https://www.facebook.com/anindoroy441/"],
+      areaServed: {
+        "@type": "City",
+        name: "Khulna",
+      },
+      knowsAbout: [
+        "Wedding Photography",
+        "Wedding Videography",
+        "Event Photography",
+        "Event Videography",
+        "Couple Photoshoot",
+        "Portrait Photography",
+        "Outdoor Photography",
+        "Indoor Studio Photography",
+      ],
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: "4.96",
@@ -96,19 +143,63 @@ const jsonLd = {
       },
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Photography Services",
+        name: "Photography & Videography Services",
         itemListElement: [
           {
             "@type": "Offer",
-            itemOffered: { "@type": "Service", name: "Wedding Photography" },
+            itemOffered: {
+              "@type": "Service",
+              name: "Wedding Photography",
+              areaServed: "Khulna",
+            },
           },
           {
             "@type": "Offer",
-            itemOffered: { "@type": "Service", name: "Portrait Photography" },
+            itemOffered: {
+              "@type": "Service",
+              name: "Wedding Videography",
+              areaServed: "Khulna",
+            },
           },
           {
             "@type": "Offer",
-            itemOffered: { "@type": "Service", name: "Wildlife Photography" },
+            itemOffered: {
+              "@type": "Service",
+              name: "Event Photography & Videography",
+              areaServed: "Khulna",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Couple & Pre-Wedding Photoshoot",
+              areaServed: "Khulna",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Single / Portrait Photography",
+              areaServed: "Khulna",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Outdoor Photography & Videography",
+              areaServed: "Khulna",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Indoor Studio Photography",
+              areaServed: "Khulna",
+            },
           },
           {
             "@type": "Offer",
@@ -116,7 +207,7 @@ const jsonLd = {
           },
           {
             "@type": "Offer",
-            itemOffered: { "@type": "Service", name: "Event Photography" },
+            itemOffered: { "@type": "Service", name: "Wildlife Photography" },
           },
         ],
       },
@@ -125,7 +216,7 @@ const jsonLd = {
       "@type": "Person",
       "@id": "https://ashaa.xyz/#person",
       name: "Anindo Roy",
-      jobTitle: "Professional Photographer",
+      jobTitle: "Professional Photographer & Videographer",
       worksFor: { "@id": "https://ashaa.xyz/#business" },
       url: "https://ashaa.xyz",
       sameAs: ["https://www.facebook.com/anindoroy441/"],
