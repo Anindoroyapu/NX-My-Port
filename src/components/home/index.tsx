@@ -21,13 +21,13 @@ export default function Home() {
           <main>
             <HeroArea />
             <BrandArea />
-            <AboutArea />
+            {/* <AboutArea /> */}
             {/* <ServiceArea /> */}
-            <AlbumPage />
+            {/* <AlbumPage /> */}
             <PortfolioArea />
             <CtaSection />
-            <TestimonoalArea />
-            <BlogArea />
+            {/* <TestimonoalArea /> */}
+            {/* <BlogArea /> */}
             <ContactArea />
           </main>
           <FooterOne />
