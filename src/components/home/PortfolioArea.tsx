@@ -1,6 +1,6 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ImagePopup from "@/modals/ImagePopup";
 
 import portfolio_img_1 from "@/assets/images/projects/_MG_0151 copy.jpg";
@@ -87,21 +87,6 @@ export default function PortfolioArea() {
     setIsOpen(true);
   };
 
-  const [images2, setImages] = useState<string[]>([]);
-
-  useEffect(() => {
-    async function fetchImages() {
-      const res = await fetch(
-        "https://api.github.com/repos/Anindoroyapu/image_ar/contents",
-      );
-      const data = await res.json();
-      const imageFiles = data
-        .filter((file: any) => file.name.match(/\.(jpg|jpeg|png|gif)$/i))
-        .map((file: any) => file.download_url);
-      setImages(imageFiles);
-    }
-    fetchImages();
-  }, []);
   const image = portfolio_data.slice(0, 5).map((item) => item.image.src);
 
   return (
@@ -112,31 +97,26 @@ export default function PortfolioArea() {
         </div>
         <div className="container-fluid">
           <div className="row g-4 portfolio-grid">
-            {images2.map((url, index) => (
+            {portfolio_data.map((item, i) => (
               <div
-                key={index}
-                className={`col-6 col-md-6 col-xl-4 portfolio-item category-1`}
+                key={i}
+                className={`col-md-6 col-xl-${item.col} portfolio-item category-1`}
               >
                 <a
                   style={{ cursor: "pointer" }}
-                  onClick={() => handleImagePopup(index)}
+                  onClick={() => handleImagePopup(i)}
                   className="work-popup"
                 >
                   <div className="portfolio-box">
                     <Image
-                      src={url}
+                      src={item.image}
                       alt=""
                       style={{ height: "auto" }}
-                      loading="lazy"
-                      quality={80}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       data-rjs="2"
-                      width={500}
-                      height={500}
                     />
-                    <span className="portfolio-category">{index}</span>
+                    <span className="portfolio-category">{item.category}</span>
                     <div className="portfolio-caption">
-                      <h1>{index}</h1>
+                      <h1>{item.title}</h1>
                     </div>
                   </div>
                 </a>

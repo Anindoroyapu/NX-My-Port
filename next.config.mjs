@@ -2,18 +2,8 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    formats: ["image/avif", "image/webp"],
-    minimumCacheTTL: 86400,
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "raw.githubusercontent.com",
-      },
-      {
-        protocol: "https",
-        hostname: "images.pexels.com",
-      },
-    ],
+    domains: ["raw.githubusercontent.com"],
+    unoptimized: true,
   },
   fontFamily: {
     permanentMarker: ["Permanent Marker", "cursive"],

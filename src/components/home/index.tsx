@@ -4,14 +4,12 @@ import BrandArea from "./BrandArea";
 import AboutArea from "./AboutArea";
 import ServiceArea from "./ServiceArea";
 import HeaderOne from "@/layouts/headers/HeaderOne";
-import VideoSection from "./VideoSection";
 import PortfolioArea from "./PortfolioArea";
 import TestimonoalArea from "./TestimonoalArea";
 import BlogArea from "./BlogArea";
 import ContactArea from "./ContactArea";
 import FooterOne from "@/layouts/footers/FooterOne";
 import AlbumPage from "./AlbumPage";
-import CtaSection from "./CtaSection";
 
 export default function Home() {
   return (
@@ -22,14 +20,13 @@ export default function Home() {
           <main>
             <HeroArea />
             <BrandArea />
-            {/* <AboutArea /> */}
+            <AboutArea />
             {/* <ServiceArea /> */}
-            {/* <AlbumPage /> */}
+            <AlbumPage />
             <PortfolioArea />
-            <VideoSection />
-            <CtaSection />
-            {/* <TestimonoalArea /> */}
-            {/* <BlogArea /> */}
+
+            <TestimonoalArea />
+            <BlogArea />
             <ContactArea />
           </main>
           <FooterOne />

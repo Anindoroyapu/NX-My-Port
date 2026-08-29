@@ -1,6 +1,5 @@
 "use client";
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 export default function BrandArea() {
   useEffect(() => {
@@ -24,22 +23,6 @@ export default function BrandArea() {
     }
   }, []);
 
-  const [images2, setImages] = useState<string[]>([]);
-
-  useEffect(() => {
-    async function fetchImages() {
-      const res = await fetch(
-        "https://api.github.com/repos/Anindoroyapu/image_ar/contents",
-      );
-      const data = await res.json();
-      const imageFiles = data
-        .filter((file: any) => file.name.match(/\.(jpg|jpeg|png|gif)$/i))
-        .map((file: any) => file.download_url);
-      setImages(imageFiles);
-    }
-    fetchImages();
-  }, []);
-
   return (
     <div className="company-design-area">
       <div className="container">
@@ -54,7 +37,7 @@ export default function BrandArea() {
                     alt="Company"
                   />
                   <img
-                    src="assets/images/client-logos/Asha-Lensecraft_White.png"
+                    src="assets/images/client-logos/icon-bik-logo.svg"
                     alt="Company"
                   />
                   <img
@@ -62,15 +45,7 @@ export default function BrandArea() {
                     alt="Company"
                   />
                   <img
-                    src="assets/images/client-logos/Asha-Lensecraft_White.png"
-                    alt="Company"
-                  />
-                  <img
                     src="assets/images/client-logos/icon-bik-logo.svg"
-                    alt="Company"
-                  />
-                  <img
-                    src="assets/images/client-logos/Asha-Lensecraft_White.png"
                     alt="Company"
                   />
                 </div>
@@ -82,18 +57,21 @@ export default function BrandArea() {
                 data-direction="right"
                 data-speed="slow"
               >
-                <div className="scroller__inner_img d-flex ">
-                  {images2.map((url, index) => (
-                    <Image
-                      width={100}
-                      height={100}
-                      sizes="100vw"
-                      className=" h-full w-auto"
-                      key={index}
-                      src={url}
-                      alt={`Company ${index + 1}`}
-                    />
-                  ))}
+                <div className="scroller__inner_img d-flex">
+                  <img src="assets/images/client-logos/01.jpg" alt="Company" />
+                  <img src="assets/images/client-logos/02.jpg" alt="Company" />
+                  <img src="assets/images/client-logos/03.jpg" alt="Company" />
+                  <img src="assets/images/client-logos/04.jpg" alt="Company" />
+                  <img src="assets/images/client-logos/05.jpg" alt="Company" />
+                  <img src="assets/images/client-logos/06.jpg" alt="Company" />
+                  <img src="assets/images/client-logos/07.jpg" alt="Company" />
+                  <img src="assets/images/client-logos/08.jpg" alt="Company" />
+                  <img src="assets/images/client-logos/09.jpg" alt="Company" />
+                  <img src="assets/images/client-logos/10.jpg" alt="Company" />
+                  <img src="assets/images/client-logos/11.jpg" alt="Company" />
+                  <img src="assets/images/client-logos/12.jpg" alt="Company" />
+                  <img src="assets/images/client-logos/13.jpg" alt="Company" />
+                  <img src="assets/images/client-logos/14.jpg" alt="Company" />
                 </div>
               </div>
             </div>

@@ -22,12 +22,12 @@ const menu_data: DataType[] = [
     link: "/about",
     has_dropdown: false,
   },
-  // {
-  //   id: 3,
-  //   title: "services",
-  //   link: "/service",
-  //   has_dropdown: false,
-  // },
+  {
+    id: 3,
+    title: "services",
+    link: "/service",
+    has_dropdown: false,
+  },
   {
     id: 4,
     title: "Projects",
@@ -35,7 +35,6 @@ const menu_data: DataType[] = [
     has_dropdown: true,
     sub_menus: [
       { link: "/projects", title: "Projects List" },
-      { link: "/videography", title: "Videography" },
       { link: "/single-project", title: "Single Portfolio" },
       { link: "/project-details", title: "Project Details" },
     ],
@@ -52,23 +51,11 @@ const menu_data: DataType[] = [
     link: "/contact",
     has_dropdown: false,
   },
-  // {
-  //   id: 7,
-  //   title: "Reviews",
-  //   link: "/reviews",
-  //   has_dropdown: false,
-  // },
-  // {
-  //   id: 8,
-  //   title: "Posts",
-  //   link: "/posts",
-  //   has_dropdown: false,
-  // },
   {
-    id: 9,
-    title: "Booking Us",
-    link: "/booking",
+    id: 7,
+    title: "Posts",
+    link: "/posts",
     has_dropdown: false,
-  }
+  },
 ];
 export default menu_data;

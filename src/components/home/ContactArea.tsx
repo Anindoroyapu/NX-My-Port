@@ -1,10 +1,12 @@
 "use client";
+import { useTemplate } from "@/contexts/TemplateProvider";
+import { handleAxiosError } from "@/utils/handleAxiosError";
+import useApi from "@/utils/useApi";
 import React, { useState } from "react";
-import SuccessModal from "../contact/modal/SuccessModal";
-import Link from "next/link";
 
 export default function ContactArea() {
-  const [successMessage, setSuccessMessage] = useState<boolean>(false);
+  const { post } = useApi();
+  const { setMessage } = useTemplate();
 
   type TFormData = {
     fullName: string;
@@ -21,46 +23,23 @@ export default function ContactArea() {
     subject: "",
     message: "",
   });
-
-  const handleContact = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const handleContact = async () => {
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fullName: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
-          subject: formData.subject,
-          message: formData.message,
-        }),
+      const { message } = await post<any>(`AshaContact`, {
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
       });
-
-      if (!res.ok) {
-        const errData = await res.json();
-        console.error("API Error:", errData);
-        return;
-      }
-
-      setSuccessMessage(true);
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
-    } catch (err) {
-      console.error("POST Error:", err);
+      setMessage("success", message);
+    } catch (ex) {
+      setMessage("error", handleAxiosError(ex));
     }
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     if (name) {
@@ -69,7 +48,7 @@ export default function ContactArea() {
   };
 
   return (
-    <section id="contact" className="contact-area relative">
+    <section id="contact" className="contact-area">
       <div className="container">
         <div className="row">
           <div className="col-xl-12 col-lg-12">
@@ -251,10 +230,6 @@ export default function ContactArea() {
                       >
                         Send Me Message <i className="ri-mail-line"></i>
                       </button>
-                      <button className="px-3 text-black">Or</button>
-                      <Link className="theme-btn rounded-3" href="/booking">
-                        Booking Us
-                      </Link>
                       {/* <div id="msgSubmit" className="hidden"></div> */}
                     </div>
                   </div>
@@ -272,13 +247,6 @@ export default function ContactArea() {
           </div>
         </div>
       </div>
-
-      {/* //success message */}
-      <SuccessModal
-        isOpen={successMessage}
-        onClose={() => setSuccessMessage(false)}
-        productName={formData.fullName}
-      />
     </section>
   );
 }

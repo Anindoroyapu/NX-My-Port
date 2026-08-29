@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const albums = [
   {
@@ -56,21 +56,7 @@ const albums = [
 ];
 const AlbumPage = () => {
   const [hovered, setHovered] = React.useState(false);
-  const [images2, setImages] = useState<string[]>([]);
 
-  useEffect(() => {
-    async function fetchImages() {
-      const res = await fetch(
-        "https://api.github.com/repos/Anindoroyapu/image_ar/contents",
-      );
-      const data = await res.json();
-      const imageFiles = data
-        .filter((file: any) => file.name.match(/\.(jpg|jpeg|png|gif)$/i))
-        .map((file: any) => file.download_url);
-      setImages(imageFiles);
-    }
-    fetchImages();
-  }, []);
   return (
     <div className="bg-white">
       <section id="albums" className="container  my-5 py-md-5">
@@ -89,7 +75,7 @@ const AlbumPage = () => {
                   className="position-relative d-flex justify-content-center align-items-center album-preview-container"
                   style={{ height: "280px", cursor: "pointer" }}
                 >
-                  {images2.slice(3, 6).map((image, imgIndex) => {
+                  {album.images.slice(0, 3).map((image, imgIndex) => {
                     const styles = [
                       {
                         zIndex: 3,
@@ -111,9 +97,8 @@ const AlbumPage = () => {
                     return (
                       <img
                         key={imgIndex}
-                        src={image}
-                        alt={image}
-                        loading="lazy"
+                        src={image.src}
+                        alt={image.alt}
                         className="img-fluid position-absolute shadow-lg rounded "
                         style={{
                           width: "85%",
