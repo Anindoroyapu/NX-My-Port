@@ -9,7 +9,7 @@ type Video = {
   thumbnail_url?: string;
 };
 
-export default function VideoSection() {
+export default function Videography() {
   const [videos, setVideos] = useState<Video[]>([]);
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -20,9 +20,10 @@ export default function VideoSection() {
         const res = await fetch("/api/videos");
         const data = await res.json();
         if (data.success) {
-          setVideos(data.data);
-          if (data.data.length > 0) {
-            setSelectedVideo(data.data[data.data.length - 1]);
+          const reversed = data.data.reverse();
+          setVideos(reversed);
+          if (reversed.length > 0) {
+            setSelectedVideo(reversed[0]);
             setIsOpen(true);
           }
         }

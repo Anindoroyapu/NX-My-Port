@@ -1,7 +1,9 @@
 "use client";
 
 import { X } from "lucide-react";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import logo from "@/assets/images/Asha-Lensecraft_Black.png";
 
 const HOUR_MS = 60 * 60 * 1000;
 
@@ -132,17 +134,8 @@ export default function FirstVisitModal() {
         <div className="p-3 p-sm-3">
           <div className="d-flex align-items-center justify-content-between gap-2 mb-2">
             <div className="d-flex align-items-center gap-2">
-              <div
-                className="d-inline-flex align-items-center justify-content-center rounded-circle"
-                style={{
-                  width: 42,
-                  height: 42,
-                  background:
-                    "linear-gradient(135deg, #0f172a, #334155 55%, #f97316)",
-                  boxShadow: "0 12px 24px rgba(249, 115, 22, 0.18)",
-                }}
-              >
-                <i className="ri-calendar-event-line text-white fs-6"></i>
+              <div className="d-inline-flex align-items-center justify-content-center rounded-circle">
+                <Image src={logo} alt="logo" width={42} height={42} />
               </div>
 
               <div>

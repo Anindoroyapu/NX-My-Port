@@ -4,15 +4,16 @@ import { getDb } from "@/lib/db";
 type VideoRow = {
   id: number;
   title: string;
-  link: string;
-  active: number;
+  video_url: string;
+  thumbnail_url: string;
+  status: string;
 };
 
 export async function GET() {
   try {
     const db = getDb();
     const [rows] = await db.execute(
-      `SELECT id, title, link, active FROM videos WHERE active = 1 ORDER BY id ASC`
+      `SELECT id, title, video_url, thumbnail_url, status FROM ashalenscraft_videos WHERE status = 'active' ORDER BY id ASC`
     );
 
     return NextResponse.json({ success: true, data: rows });

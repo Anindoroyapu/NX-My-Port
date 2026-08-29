@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 type Video = {
   id: number;
   title: string;
-  link: string;
+  video_url: string;
 };
 
 type Props = {
@@ -31,6 +31,22 @@ function isYouTubeUrl(url: string): boolean {
   return getYouTubeId(url) !== null;
 }
 
+function getGoogleDriveId(url: string): string | null {
+  const patterns = [
+    /(?:drive\.google\.com\/file\/d\/)([^/?]+)/,
+    /(?:drive\.google\.com\/open\?id=)([^&]+)/,
+  ];
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match) return match[1];
+  }
+  return null;
+}
+
+function isGoogleDriveUrl(url: string): boolean {
+  return getGoogleDriveId(url) !== null;
+}
+
 export default function VideoPlayerModal({ video, isOpen, setIsOpen }: Props) {
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -50,8 +66,8 @@ export default function VideoPlayerModal({ video, isOpen, setIsOpen }: Props) {
 
   if (!isOpen) return null;
 
-  const youtubeId = getYouTubeId(video.link);
-  const isYt = isYouTubeUrl(video.link);
+  const youtubeId = getYouTubeId(video.video_url);
+  const isYt = isYouTubeUrl(video.video_url);
 
   return (
     <div
@@ -104,10 +120,25 @@ export default function VideoPlayerModal({ video, isOpen, setIsOpen }: Props) {
               borderRadius: "8px",
             }}
           />
+        ) : isGoogleDriveUrl(video.video_url) ? (
+          <iframe
+            src={`https://drive.google.com/uc?export=download&id=${getGoogleDriveId(video.video_url)}`}
+            title={video.title}
+            allow="autoplay"
+            allowFullScreen
+            style={{
+              width: "100%",
+              height: "100vh",
+              maxHeight: "calc(100vh - 80px)",
+              border: "none",
+              borderRadius: "8px",
+            }}
+          />
         ) : (
           <video
-            src={video.link}
+            src={video.video_url}
             controls
+            controlsList="nodownload"
             autoPlay
             style={{
               width: "100%",
