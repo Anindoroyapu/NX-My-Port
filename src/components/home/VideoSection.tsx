@@ -21,10 +21,6 @@ export default function VideoSection() {
         const data = await res.json();
         if (data.success) {
           setVideos(data.data);
-          if (data.data.length > 0) {
-            setSelectedVideo(data.data[data.data.length - 1]);
-            setIsOpen(true);
-          }
         }
       } catch (err) {
         console.error("Failed to fetch videos:", err);

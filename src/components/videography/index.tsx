@@ -52,7 +52,7 @@ export default function Videography() {
             {videos.map((video) => (
               <div
                 key={video.id}
-                className="col-12 col-md-6 col-lg-3"
+                className="col-6"
               >
                 <div
                   className="video-card"
