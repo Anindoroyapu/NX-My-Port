@@ -11,8 +11,7 @@ type Video = {
 
 export default function Videography() {
   const [videos, setVideos] = useState<Video[]>([]);
-  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
 
   useEffect(() => {
     async function fetchVideos() {
@@ -22,10 +21,6 @@ export default function Videography() {
         if (data.success) {
           const reversed = data.data.reverse();
           setVideos(reversed);
-          if (reversed.length > 0) {
-            setSelectedVideo(reversed[0]);
-            setIsOpen(true);
-          }
         }
       } catch (err) {
         console.error("Failed to fetch videos:", err);
@@ -34,9 +29,8 @@ export default function Videography() {
     fetchVideos();
   }, []);
 
-  const handlePlay = (video: Video) => {
-    setSelectedVideo(video);
-    setIsOpen(true);
+  const handlePlay = (id: number) => {
+    setActiveVideoId(id);
   };
 
   return (
@@ -44,110 +38,170 @@ export default function Videography() {
       <section id="videos" className="py-5">
         <div className="container">
           <div className="text-center mb-4">
-            <h2 className="fw-bold" style={{ fontSize: "clamp(24px, 3vw, 36px)" }}>
+            <h2
+              className="fw-bold"
+              style={{ fontSize: "clamp(24px, 3vw, 36px)" }}
+            >
               Our Videos
             </h2>
           </div>
           <div className="row g-3">
-            {videos.map((video) => (
-              <div
-                key={video.id}
-                className="col-6"
-              >
-                <div
-                  className="video-card"
-                  style={{
-                    cursor: "pointer",
-                    borderRadius: "12px",
-                    overflow: "hidden",
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
-                    transition: "transform 0.3s, box-shadow 0.3s",
-                    background: "#fff",
-                  }}
-                  onClick={() => handlePlay(video)}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-5px)";
-                    e.currentTarget.style.boxShadow =
-                      "0 8px 30px rgba(0,0,0,0.2)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow =
-                      "0 4px 20px rgba(0,0,0,0.12)";
-                  }}
-                >
+            {videos.map((video) => {
+              const isPlaying = activeVideoId === video.id;
+              return (
+                <div key={video.id} className="col-6">
                   <div
+                    className="video-card"
                     style={{
-                      position: "relative",
-                      paddingTop: "56.25%",
-                      background: "#1a1a1a",
+                      cursor: "pointer",
+                      borderRadius: "12px",
+                      overflow: "hidden",
+                      boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
+                      transition: "transform 0.3s, box-shadow 0.3s",
+                      background: "#fff",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "translateY(-5px)";
+                      e.currentTarget.style.boxShadow =
+                        "0 8px 30px rgba(0,0,0,0.2)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.boxShadow =
+                        "0 4px 20px rgba(0,0,0,0.12)";
                     }}
                   >
-                    <img
-                      src={getVideoThumbnail(video.video_url)}
-                      alt={video.title}
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
-                      loading="lazy"
-                    />
                     <div
                       style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        width: "50px",
-                        height: "50px",
-                        borderRadius: "50%",
-                        background: "rgba(255,255,255,0.9)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
+                        position: "relative",
+                        paddingTop: "56.25%",
+                        background: "#1a1a1a",
                       }}
                     >
-                      <i
-                        className="ri-play-fill"
+                      {isPlaying ? (
+                        isYouTubeUrl(video.video_url) ? (
+                          <iframe
+                            src={`https://www.youtube.com/embed/${getYouTubeId(video.video_url)}?autoplay=1&mute=0&rel=0`}
+                            title={video.title}
+                            allow="autoplay; encrypted-media"
+                            allowFullScreen
+                            style={{
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              width: "100%",
+                              height: "100%",
+                              border: "none",
+                            }}
+                          />
+                        ) : isGoogleDriveUrl(video.video_url) ? (
+                          <iframe
+                            src={`https://drive.google.com/file/d/${getGoogleDriveId(video.video_url)}/preview`}
+                            title={video.title}
+                            allow="autoplay; encrypted-media"
+                            allowFullScreen
+                            style={{
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              width: "100%",
+                              height: "100%",
+                              border: "none",
+                            }}
+                          />
+                        ) : (
+                          <video
+                            src={video.video_url}
+                            controls
+                            autoPlay
+                            style={{
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                            }}
+                          />
+                        )
+                      ) : (
+                        <div
+                          onClick={() => handlePlay(video.id)}
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100%",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <img
+                            src={getVideoThumbnail(video.video_url)}
+                            alt={video.title}
+                            style={{
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                            }}
+                            loading="lazy"
+                          />
+                          <div
+                            style={{
+                              position: "absolute",
+                              top: "50%",
+                              left: "50%",
+                              transform: "translate(-50%, -50%)",
+                              width: "50px",
+                              height: "50px",
+                              borderRadius: "50%",
+                              background: "rgba(255,255,255,0.9)",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <i
+                              className="ri-play-fill"
+                              style={{
+                                color: "#e50914",
+                                fontSize: "20px",
+                                marginLeft: "3px",
+                              }}
+                            ></i>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <div style={{ padding: "4px 10px" }}>
+                      <h5
+                        className="line-clamp-1 overflow-ellipsis"
                         style={{
-                          color: "#e50914",
-                          fontSize: "20px",
-                          marginLeft: "3px",
+                          fontSize: "14px",
+                          fontWeight: 600,
+                          marginBottom: 0,
+                          color: "#333",
+                          lineHeight: 1.4,
+                          lineClamp: 1,
+                          display: "-webkit-box",
+                          WebkitBoxOrient: "vertical",
+                          WebkitLineClamp: 1,
+                          overflow: "hidden",
                         }}
-                      ></i>
+                      >
+                        {video.title}
+                      </h5>
                     </div>
                   </div>
-                  <div style={{ padding: "12px" }}>
-                    <h5
-                      style={{
-                        fontSize: "14px",
-                        fontWeight: 600,
-                        marginBottom: 0,
-                        color: "#333",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {video.title}
-                    </h5>
-                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
-
-      {isOpen && selectedVideo && (
-        <VideoPlayerModal
-          video={selectedVideo}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-        />
-      )}
     </>
   );
 }
