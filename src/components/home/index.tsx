@@ -4,6 +4,7 @@ import BrandArea from "./BrandArea";
 import AboutArea from "./AboutArea";
 import ServiceArea from "./ServiceArea";
 import HeaderOne from "@/layouts/headers/HeaderOne";
+import VideoSection from "./VideoSection";
 import PortfolioArea from "./PortfolioArea";
 import TestimonoalArea from "./TestimonoalArea";
 import BlogArea from "./BlogArea";
@@ -25,6 +26,7 @@ export default function Home() {
             {/* <ServiceArea /> */}
             {/* <AlbumPage /> */}
             <PortfolioArea />
+            <VideoSection />
             <CtaSection />
             {/* <TestimonoalArea /> */}
             {/* <BlogArea /> */}
