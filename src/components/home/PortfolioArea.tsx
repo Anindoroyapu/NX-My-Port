@@ -115,7 +115,7 @@ export default function PortfolioArea() {
             {images2.map((url, index) => (
               <div
                 key={index}
-                className={`col-md-6 col-xl-4 portfolio-item category-1`}
+                className={`col-6 col-md-6 col-xl-4 portfolio-item category-1`}
               >
                 <a
                   style={{ cursor: "pointer" }}
