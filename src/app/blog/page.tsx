@@ -4,8 +4,16 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "About Anindo - Portfolio Next JS Template",
-  description: "Anindo - Portfolio Next JS Template fresh and clean Design. ",
+  title: "Stories & Blog | Asha Lenscraft Photography",
+  description:
+    "Photography stories, tips and behind-the-scenes from Asha Lenscraft. Birds, wildlife, flowers and more captured by Anindo Roy.",
+  alternates: { canonical: "https://ashaa.xyz/blog" },
+  openGraph: {
+    title: "Photography Stories | Asha Lenscraft",
+    description:
+      "Photography stories, tips and behind-the-scenes by Anindo Roy.",
+    url: "https://ashaa.xyz/blog",
+  },
 };
 
 export default function index() {

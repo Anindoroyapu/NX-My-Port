@@ -16,7 +16,7 @@ export default function BlogArea() {
           <div className="col-lg-6">
             <div className="blog-post-img">
               <a href="#">
-                <img src="assets/images/blog/004.jpg" alt="" />
+                <img src="assets/images/blog/004.jpg" alt="" loading="lazy" />
               </a>
               <div className="blog-post-category">
                 <a href="#">Birds Photography</a>
@@ -42,7 +42,7 @@ export default function BlogArea() {
           <div className="col-lg-6">
             <div className="blog-post-img">
               <a href="#">
-                <img src="assets/images/blog/003.jpg" alt="" />
+                <img src="assets/images/blog/003.jpg" alt="" loading="lazy" />
               </a>
               <div className="blog-post-category">
                 <a href="#">Animal Photography</a>
@@ -68,7 +68,11 @@ export default function BlogArea() {
           <div className="col-lg-6">
             <div className="blog-post-img">
               <a href="#">
-                <img src="assets/images/blog/IMG_8650.jpg" alt="" />
+                <img
+                  src="assets/images/blog/IMG_8650.jpg"
+                  alt=""
+                  loading="lazy"
+                />
               </a>
               <div className="blog-post-category">
                 <a href="#">Flower Photography</a>

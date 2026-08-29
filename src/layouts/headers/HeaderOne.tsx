@@ -4,7 +4,7 @@ import UseSticky from "@/hooks/UseSticky";
 import NavMenu from "./NavMenu";
 import { useState } from "react";
 import Sidebar from "@/components/common/Sidebar";
-import Logo from "@/assets/images/SignMy@2x.png";
+import Logo from "@/assets/images/Asha-Lensecraft_Black.png";
 import Image from "next/image";
 
 export default function HeaderOne() {
@@ -20,8 +20,24 @@ export default function HeaderOne() {
               <div className="row align-items-center">
                 <div className="col-xl-2 col-lg-2 col-md-6 col-6 col-sm-3">
                   <div className="logo-area">
-                    <Link href="/">
-                      <Image src={Logo} alt="" width={1000} height={40} />
+                    <Link
+                      href="/"
+                      className=" "
+                      style={{
+                        height: "50px",
+                        width: "100%",
+                      }}
+                    >
+                      <Image
+                        src={Logo}
+                        alt=""
+                        width={100}
+                        height={100}
+                        style={{
+                          height: "50px",
+                          width: "auto",
+                        }}
+                      />
                     </Link>
                   </div>
                 </div>
