@@ -12,6 +12,7 @@ type Video = {
 export default function Videography() {
   const [videos, setVideos] = useState<Video[]>([]);
   const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
+  const [autoPlayedId, setAutoPlayedId] = useState<number | null>(null);
 
   useEffect(() => {
     async function fetchVideos() {
@@ -21,6 +22,10 @@ export default function Videography() {
         if (data.success) {
           const reversed = data.data.reverse();
           setVideos(reversed);
+          if (reversed.length > 0) {
+            setActiveVideoId(reversed[0].id);
+            setAutoPlayedId(reversed[0].id); // track auto-played (will be muted)
+          }
         }
       } catch (err) {
         console.error("Failed to fetch videos:", err);
@@ -81,7 +86,7 @@ export default function Videography() {
                       {isPlaying ? (
                         isYouTubeUrl(video.video_url) ? (
                           <iframe
-                            src={`https://www.youtube.com/embed/${getYouTubeId(video.video_url)}?autoplay=1&mute=0&rel=0`}
+                            src={`https://www.youtube.com/embed/${getYouTubeId(video.video_url)}?autoplay=1&mute=${autoPlayedId === video.id ? 1 : 0}&rel=0&enablejsapi=1`}
                             title={video.title}
                             allow="autoplay; encrypted-media"
                             allowFullScreen
