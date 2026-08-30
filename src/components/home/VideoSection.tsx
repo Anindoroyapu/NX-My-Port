@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 type VideoItem = {
   id: number;
@@ -9,12 +9,52 @@ type VideoItem = {
 };
 
 const localVideos: VideoItem[] = [
-  { id: 2, title: "rec", video_url: "/videos/rec.mp4" },
-  { id: 1, title: "WED Phomo 1", video_url: "/videos/WED Phomo 1.mp4" },
+  { id: 11, title: "rec", video_url: "/videos/rec.mp4" },
+  { id: 7, title: "WED Phomo 1", video_url: "/videos/WED Phomo 1.mp4" },
 ];
 
 export default function VideoSection() {
   const [activeIdx, setActiveIdx] = useState<number | null>(0);
+  const [viewsMap, setViewsMap] = useState<Record<number, number>>({});
+
+  useEffect(() => {
+    async function fetchViews() {
+      try {
+        const res = await fetch("/api/videos");
+        const data = await res.json();
+        if (data.success) {
+          const map: Record<number, number> = {};
+          data.data.forEach((v: any) => {
+            map[v.id] = v.views || 0;
+          });
+          setViewsMap(map);
+        }
+      } catch (err) {
+        console.error("Failed to fetch views:", err);
+      }
+    }
+    fetchViews();
+  }, []);
+
+  const handleVideoPlay = async (id: number) => {
+    // Optimistic UI update
+    setViewsMap((prev) => ({
+      ...prev,
+      [id]: (prev[id] || 0) + 1,
+    }));
+
+    try {
+      await fetch("/api/videos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+    } catch (err) {
+      console.error("Failed to increment view:", err);
+    }
+  };
 
   return (
     <>
@@ -87,6 +127,8 @@ export default function VideoSection() {
               onActivate={() => setActiveIdx(idx)}
               onDeactivate={() => setActiveIdx(null)}
               isFirst={idx === 0}
+              views={viewsMap[video.id] || 0}
+              onPlay={() => handleVideoPlay(video.id)}
             />
           ))}
         </div>
@@ -117,7 +159,6 @@ export default function VideoSection() {
   );
 }
 
-/* ─── Single Video Card ─────────────────────────────────── */
 function VideoCard({
   src,
   thumbnailUrl,
@@ -125,6 +166,8 @@ function VideoCard({
   onActivate,
   onDeactivate,
   isFirst,
+  views,
+  onPlay,
 }: {
   src: string;
   thumbnailUrl?: string;
@@ -132,6 +175,8 @@ function VideoCard({
   onActivate: () => void;
   onDeactivate: () => void;
   isFirst: boolean;
+  views: number;
+  onPlay: () => void;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [loaded, setLoaded] = useState(false);
@@ -162,6 +207,7 @@ function VideoCard({
   const handlePlay = () => {
     setMuted(false); // Play with sound when manually clicked
     onActivate();
+    onPlay();
   };
 
   const handlePause = () => {
@@ -177,190 +223,228 @@ function VideoCard({
     <div
       className="vid-card"
       style={{
-        position: "relative",
-        paddingTop: "56.25%",
-        background: "#111",
-        borderRadius: "4px",
+        borderRadius: "8px",
         overflow: "hidden",
+        background: "#111",
+        boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
         cursor: "pointer",
       }}
-      onClick={isActive ? handlePause : handlePlay}
     >
-      {isActive && isYouTube ? (
-        /* YouTube Embed Iframe */
-        <iframe
-          src={`https://www.youtube.com/embed/${ytId}?autoplay=1&mute=${muted ? 1 : 0}&rel=0`}
-          title="Video Player"
-          allow="autoplay; encrypted-media; fullscreen"
-          allowFullScreen
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            border: "none",
-            zIndex: 5,
-          }}
-        />
-      ) : (
-        /* Native HTML5 video player (Google Drive direct stream or raw URL) */
-        <video
-          ref={videoRef}
-          src={directStreamUrl}
-          preload="metadata"
-          playsInline
-          loop
-          muted={muted}
-          onCanPlay={() => setLoaded(true)}
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            display: "block",
-          }}
-        />
-      )}
-
-      {/* Overlay — visible when NOT playing */}
-      {!isActive && (
-        <div
-          className="vid-overlay"
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(160deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.6) 100%)",
-            opacity: 1,
-            zIndex: 2,
-          }}
-        />
-      )}
-
-      {/* Thumbnail Image — visible when NOT active */}
-      {!isActive && thumbnail && (
-        <img
-          src={thumbnail}
-          alt="Video Thumbnail"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            zIndex: 1,
-          }}
-          loading="lazy"
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-          }}
-        />
-      )}
-
-      {/* Gold shimmer bar at bottom when not playing */}
-      {!isActive && (
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "3px",
-            background:
-              "linear-gradient(90deg, transparent, #c8a96e, transparent)",
-            opacity: 0.7,
-            zIndex: 3,
-          }}
-        />
-      )}
-
-      {/* Play button — shown when not active */}
-      {!isActive && (
-        <div
-          className="vid-play-btn"
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "60px",
-            height: "60px",
-            borderRadius: "50%",
-            border: "2px solid rgba(255,255,255,0.85)",
-            background: "rgba(0,0,0,0.35)",
-            backdropFilter: "blur(6px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 3,
-          }}
-        >
-          <i
-            className="ri-play-fill"
+      {/* 16:9 Video Box */}
+      <div
+        style={{
+          position: "relative",
+          paddingTop: "56.25%",
+          background: "#000",
+        }}
+        onClick={isActive ? handlePause : handlePlay}
+      >
+        {isActive && isYouTube ? (
+          /* YouTube Embed Iframe */
+          <iframe
+            src={`https://www.youtube.com/embed/${ytId}?autoplay=1&mute=${muted ? 1 : 0}&rel=0`}
+            title="Video Player"
+            allow="autoplay; encrypted-media; fullscreen"
+            allowFullScreen
             style={{
-              color: "#fff",
-              fontSize: "26px",
-              marginLeft: "4px",
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              border: "none",
+              zIndex: 5,
             }}
           />
-        </div>
-      )}
-
-      {/* Mute/Unmute floating button when active */}
-      {isActive && (
-        <div
-          onClick={toggleMute}
-          style={{
-            position: "absolute",
-            top: "12px",
-            right: "12px",
-            width: "36px",
-            height: "36px",
-            borderRadius: "50%",
-            background: "rgba(0,0,0,0.6)",
-            backdropFilter: "blur(4px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#fff",
-            zIndex: 10,
-            cursor: "pointer",
-          }}
-        >
-          <i
-            className={muted ? "ri-volume-mute-fill" : "ri-volume-up-fill"}
-            style={{ fontSize: "18px" }}
+        ) : (
+          /* Native HTML5 video player (Google Drive direct stream or raw URL) */
+          <video
+            ref={videoRef}
+            src={directStreamUrl}
+            preload="metadata"
+            playsInline
+            loop
+            muted={muted}
+            onCanPlay={() => setLoaded(true)}
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
           />
-        </div>
-      )}
+        )}
 
-      {/* Loading state */}
-      {!isYouTube && !loaded && (
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "#111",
-            zIndex: 4,
-          }}
-        >
+        {/* Overlay — visible when NOT playing */}
+        {!isActive && (
+          <div
+            className="vid-overlay"
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(160deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.6) 100%)",
+              opacity: 1,
+              zIndex: 2,
+            }}
+          />
+        )}
+
+        {/* Thumbnail Image — visible when NOT active */}
+        {!isActive && thumbnail && (
+          <img
+            src={thumbnail}
+            alt="Video Thumbnail"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              zIndex: 1,
+            }}
+            loading="lazy"
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
+            }}
+          />
+        )}
+
+        {/* Gold shimmer bar at bottom when not playing */}
+        {!isActive && (
           <div
             style={{
-              width: "32px",
-              height: "32px",
-              border: "2px solid rgba(200,169,110,0.3)",
-              borderTop: "2px solid #c8a96e",
-              borderRadius: "50%",
-              animation: "vidspin 0.9s linear infinite",
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: "3px",
+              background:
+                "linear-gradient(90deg, transparent, #c8a96e, transparent)",
+              opacity: 0.7,
+              zIndex: 3,
             }}
           />
-        </div>
-      )}
+        )}
 
+        {/* Play button — shown when not active */}
+        {!isActive && (
+          <div
+            className="vid-play-btn"
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "60px",
+              height: "60px",
+              borderRadius: "50%",
+              border: "2px solid rgba(255,255,255,0.85)",
+              background: "rgba(0,0,0,0.35)",
+              backdropFilter: "blur(6px)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 3,
+            }}
+          >
+            <i
+              className="ri-play-fill"
+              style={{
+                color: "#fff",
+                fontSize: "26px",
+                marginLeft: "4px",
+              }}
+            />
+          </div>
+        )}
+
+        {/* Mute/Unmute floating button when active */}
+        {isActive && (
+          <div
+            onClick={toggleMute}
+            style={{
+              position: "absolute",
+              top: "12px",
+              right: "12px",
+              width: "36px",
+              height: "36px",
+              borderRadius: "50%",
+              background: "rgba(0,0,0,0.6)",
+              backdropFilter: "blur(4px)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#fff",
+              zIndex: 10,
+              cursor: "pointer",
+            }}
+          >
+            <i
+              className={muted ? "ri-volume-mute-fill" : "ri-volume-up-fill"}
+              style={{ fontSize: "18px" }}
+            />
+          </div>
+        )}
+
+        {/* Loading state */}
+        {!isYouTube && !loaded && (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "#111",
+              zIndex: 4,
+            }}
+          >
+            <div
+              style={{
+                width: "32px",
+                height: "32px",
+                border: "2px solid rgba(200,169,110,0.3)",
+                borderTop: "2px solid #c8a96e",
+                borderRadius: "50%",
+                animation: "vidspin 0.9s linear infinite",
+              }}
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Views count display under the video */}
+      <div
+        style={{
+          padding: "8px 16px",
+          background: "#111",
+          borderTop: "1px solid #1a1a1a",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <span
+          style={{
+            color: "#aaa",
+            fontSize: "12px",
+            display: "flex",
+            alignItems: "center",
+            fontFamily: "inherit",
+          }}
+        >
+          <i
+            className="ri-eye-line"
+            style={{
+              marginRight: "6px",
+              fontSize: "14px",
+              color: "#c8a96e",
+            }}
+          />
+          {views} views
+        </span>
+      </div>
       <style>{`@keyframes vidspin { to { transform: rotate(360deg); } }`}</style>
     </div>
   );
