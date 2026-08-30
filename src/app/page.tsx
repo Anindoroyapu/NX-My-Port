@@ -5,19 +5,21 @@ import Home from "@/components/home";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata: Metadata = {
-  title: "Asha Lenscraft | Photography & Videography Studio in Khulna",
+  title:
+    "Asha Lenscraft | Professional Photography & Videography Studio in Khulna & Indore",
   description:
-    "Asha Lenscraft — Khulna's premier photography & videography studio by Anindo Roy. Wedding, event, couple, single, outdoor & indoor photography and videography. 100+ five-star reviews. Book your session today.",
+    "Asha Lenscraft — Your premier destination for professional photography & videography in Khulna and Indore. Specialized in wedding, event, couple, portrait, outdoor & indoor shoots. Book your session today.",
   keywords: [
     "photography Khulna",
     "videography Khulna",
+    "photography Indore",
+    "videography Indore",
     "wedding photography Khulna",
-    "wedding videography Khulna",
-    "event photography Khulna",
-    "couple photoshoot Khulna",
-    "single portrait photography Khulna",
-    "outdoor photography Khulna",
-    "indoor studio photoshoot Khulna",
+    "wedding photography Indore",
+    "event photography Indore",
+    "couple photoshoot Indore",
+    "outdoor photography Indore",
+    "indoor studio photoshoot Indore",
     "best photographer in Khulna",
     "খুলনা ফটোগ্রাফি",
     "খুলনা ভিডিওগ্রাফি",

@@ -4,16 +4,19 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "About Anindo Roy | Photographer & Videographer at Asha Lenscraft",
+  title:
+    "About Anindo Roy | Professional Photographer & Videographer in Khulna & Indore",
   description:
-    "Meet Anindo Roy — a professional photographer & videographer with 8+ years of experience in wedding, event, couple, outdoor & indoor photography and videography based in Khulna, Bangladesh.",
+    "Meet Anindo Roy — a professional photographer & videographer with 8+ years of experience in wedding, event, couple, outdoor & indoor photography and videography serving clients in Khulna, Bangladesh and Indore, India.",
   keywords: [
     "Anindo Roy photographer",
     "Anindo Roy videographer",
     "photographer in Khulna",
+    "photographer in Indore",
     "videographer in Khulna",
-    "wedding photographer Khulna",
-    "event videographer Khulna",
+    "videographer in Indore",
+    "wedding photographer Indore",
+    "event videographer Indore",
   ],
   alternates: { canonical: "https://ashaa.xyz/about" },
   openGraph: {
