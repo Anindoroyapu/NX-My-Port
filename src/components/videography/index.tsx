@@ -29,6 +29,18 @@ export default function Videography() {
           data.data.forEach((v: any) => {
             map[v.id] = v.views || 0;
           });
+
+          // Autoplay video view increment on mount
+          const autoplayId = localVideos[0]?.id;
+          if (autoplayId) {
+            map[autoplayId] = (map[autoplayId] || 0) + 1;
+            fetch("/api/videos", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ id: autoplayId }),
+            }).catch((err) => console.error(err));
+          }
+
           setViewsMap(map);
         }
       } catch (err) {
