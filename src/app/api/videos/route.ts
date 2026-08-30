@@ -9,6 +9,8 @@ type VideoRow = {
   status: string;
 };
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const db = getDb();
