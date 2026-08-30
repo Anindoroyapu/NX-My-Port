@@ -1,5 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
+import HeaderOne from "@/layouts/headers/HeaderOne";
+import FooterOne from "@/layouts/footers/FooterOne";
 
 type VideoItem = {
   id: number;
@@ -18,80 +20,88 @@ export default function Videography() {
 
   return (
     <>
-      <section
-        id="videos"
-        style={{
-          background: "#0a0a0a",
-          minHeight: "100vh",
-          padding: "60px 0 80px",
-        }}
-      >
-        {/* Section heading */}
-        <div
-          style={{
-            textAlign: "center",
-            marginBottom: "48px",
-          }}
-        >
-          <p
-            style={{
-              color: "#888",
-              fontSize: "12px",
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              marginBottom: "10px",
-            }}
-          >
-            Asha Lenscraft
-          </p>
-          <h2
-            style={{
-              color: "#fff",
-              fontSize: "clamp(28px, 4vw, 48px)",
-              fontWeight: 700,
-              letterSpacing: "-0.5px",
-              margin: 0,
-            }}
-          >
-            Our Work
-          </h2>
-          <div
-            style={{
-              width: "40px",
-              height: "2px",
-              background: "linear-gradient(90deg, #c8a96e, #f0d090)",
-              margin: "16px auto 0",
-              borderRadius: "2px",
-            }}
-          />
-        </div>
+      <HeaderOne />
+      <div id="smooth-wrapper">
+        <div id="smooth-content">
+          <main>
+            <section
+              id="videos"
+              style={{
+                background: "#0a0a0a",
+                minHeight: "100vh",
+                padding: "160px 0 80px",
+              }}
+            >
+              {/* Section heading */}
+              <div
+                style={{
+                  textAlign: "center",
+                  marginBottom: "48px",
+                }}
+              >
+                <p
+                  style={{
+                    color: "#888",
+                    fontSize: "12px",
+                    letterSpacing: "4px",
+                    textTransform: "uppercase",
+                    marginBottom: "10px",
+                  }}
+                >
+                  Asha Lenscraft
+                </p>
+                <h2
+                  style={{
+                    color: "#fff",
+                    fontSize: "clamp(28px, 4vw, 48px)",
+                    fontWeight: 700,
+                    letterSpacing: "-0.5px",
+                    margin: 0,
+                  }}
+                >
+                  Our Work
+                </h2>
+                <div
+                  style={{
+                    width: "40px",
+                    height: "2px",
+                    background: "linear-gradient(90deg, #c8a96e, #f0d090)",
+                    margin: "16px auto 0",
+                    borderRadius: "2px",
+                  }}
+                />
+              </div>
 
-        {/* Video grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gridTemplateRows: "auto auto",
-            gap: "6px",
-            maxWidth: "1100px",
-            margin: "0 auto",
-            padding: "0 16px",
-          }}
-          className="vid-grid"
-        >
-          {localVideos.map((video, idx) => (
-            <VideoCard
-              key={video.id}
-              src={video.video_url}
-              thumbnailUrl={video.thumbnail_url}
-              isActive={activeIdx === idx}
-              onActivate={() => setActiveIdx(idx)}
-              onDeactivate={() => setActiveIdx(null)}
-              isFirst={idx === 0}
-            />
-          ))}
+              {/* Video grid */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gridTemplateRows: "auto auto",
+                  gap: "6px",
+                  maxWidth: "1100px",
+                  margin: "0 auto",
+                  padding: "0 16px",
+                }}
+                className="vid-grid"
+              >
+                {localVideos.map((video, idx) => (
+                  <VideoCard
+                    key={video.id}
+                    src={video.video_url}
+                    thumbnailUrl={video.thumbnail_url}
+                    isActive={activeIdx === idx}
+                    onActivate={() => setActiveIdx(idx)}
+                    onDeactivate={() => setActiveIdx(null)}
+                    isFirst={idx === 0}
+                  />
+                ))}
+              </div>
+            </section>
+          </main>
+          <FooterOne />
         </div>
-      </section>
+      </div>
 
       <style>{`
         @media (max-width: 600px) {
