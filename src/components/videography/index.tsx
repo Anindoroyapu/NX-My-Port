@@ -54,7 +54,7 @@ export default function Videography() {
             {videos.map((video) => {
               const isPlaying = activeVideoId === video.id;
               return (
-                <div key={video.id} className="col-6">
+                <div key={video.id} className="col-12 col-md-6">
                   <div
                     className="video-card"
                     style={{
@@ -248,11 +248,14 @@ function isGoogleDriveUrl(url: string): boolean {
 function getVideoThumbnail(url: string): string {
   if (isYouTubeUrl(url)) {
     const id = getYouTubeId(url);
-    if (id) return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+    if (id) {
+      // maxresdefault = 1280×720 (highest quality), fallback to hqdefault if not available
+      return `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+    }
   }
   if (isGoogleDriveUrl(url)) {
     const id = getGoogleDriveId(url);
-    if (id) return `https://drive.google.com/thumbnail?id=${id}&sz=w400`;
+    if (id) return `https://drive.google.com/thumbnail?id=${id}&sz=w1280`;
   }
   return "";
 }
