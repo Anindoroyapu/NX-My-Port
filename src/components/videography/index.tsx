@@ -2,15 +2,15 @@
 import React, { useRef, useState } from "react";
 
 type VideoItem = {
-  src: string;
-  poster?: string;
+  id: number;
+  title: string;
+  video_url: string;
+  thumbnail_url?: string;
 };
 
-const videos: VideoItem[] = [
-  { src: "/videos/WED Phomo 1.mp4" },
-  { src: "/videos/rec.mp4" },
-  { src: "/videos/ly6.mp4" },
-  { src: "/videos/kiddo.mp4" },
+const localVideos: VideoItem[] = [
+  { id: 2, title: "rec", video_url: "/videos/rec.mp4" },
+  { id: 1, title: "WED Phomo 1", video_url: "/videos/WED Phomo 1.mp4" },
 ];
 
 export default function Videography() {
@@ -79,10 +79,11 @@ export default function Videography() {
           }}
           className="vid-grid"
         >
-          {videos.map((video, idx) => (
+          {localVideos.map((video, idx) => (
             <VideoCard
-              key={idx}
-              src={video.src}
+              key={video.id}
+              src={video.video_url}
+              thumbnailUrl={video.thumbnail_url}
               isActive={activeIdx === idx}
               onActivate={() => setActiveIdx(idx)}
               onDeactivate={() => setActiveIdx(null)}
@@ -120,12 +121,14 @@ export default function Videography() {
 /* ─── Single Video Card ─────────────────────────────────── */
 function VideoCard({
   src,
+  thumbnailUrl,
   isActive,
   onActivate,
   onDeactivate,
   isFirst,
 }: {
   src: string;
+  thumbnailUrl?: string;
   isActive: boolean;
   onActivate: () => void;
   onDeactivate: () => void;
@@ -135,19 +138,27 @@ function VideoCard({
   const [loaded, setLoaded] = useState(false);
   const [muted, setMuted] = useState(isFirst);
 
-  // Automatically play/pause based on isActive state
+  const driveId = getGoogleDriveId(src);
+  const ytId = getYouTubeId(src);
+  const isYouTube = !!ytId;
+  const directStreamUrl = getDirectStreamUrl(src);
+  const thumbnail = thumbnailUrl || getVideoThumbnail(src);
+
+  // Automatically play/pause based on isActive state (for native videos)
   React.useEffect(() => {
-    if (isActive) {
-      videoRef.current?.play().catch((err) => {
-        console.log("Video play failed or blocked:", err);
-      });
-    } else {
-      videoRef.current?.pause();
-      if (videoRef.current) {
-        videoRef.current.currentTime = 0; // reset to beginning when deactivated
+    if (!isYouTube) {
+      if (isActive) {
+        videoRef.current?.play().catch((err) => {
+          console.log("Video play failed or blocked:", err);
+        });
+      } else {
+        videoRef.current?.pause();
+        if (videoRef.current) {
+          videoRef.current.currentTime = 0; // reset to beginning when deactivated
+        }
       }
     }
-  }, [isActive]);
+  }, [isActive, isYouTube]);
 
   const handlePlay = () => {
     setMuted(false); // Play with sound when manually clicked
@@ -176,24 +187,42 @@ function VideoCard({
       }}
       onClick={isActive ? handlePause : handlePlay}
     >
-      {/* Native video — always rendered, browser handles preload */}
-      <video
-        ref={videoRef}
-        src={src}
-        preload="metadata"
-        playsInline
-        loop
-        muted={muted}
-        onCanPlay={() => setLoaded(true)}
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          display: "block",
-        }}
-      />
+      {isActive && isYouTube ? (
+        /* YouTube Embed Iframe */
+        <iframe
+          src={`https://www.youtube.com/embed/${ytId}?autoplay=1&mute=${muted ? 1 : 0}&rel=0`}
+          title="Video Player"
+          allow="autoplay; encrypted-media; fullscreen"
+          allowFullScreen
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            border: "none",
+            zIndex: 5,
+          }}
+        />
+      ) : (
+        /* Native HTML5 video player (Google Drive direct stream or raw URL) */
+        <video
+          ref={videoRef}
+          src={directStreamUrl}
+          preload="metadata"
+          playsInline
+          loop
+          muted={muted}
+          onCanPlay={() => setLoaded(true)}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      )}
 
       {/* Overlay — visible when NOT playing */}
       {!isActive && (
@@ -205,6 +234,27 @@ function VideoCard({
             background:
               "linear-gradient(160deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.6) 100%)",
             opacity: 1,
+            zIndex: 2,
+          }}
+        />
+      )}
+
+      {/* Thumbnail Image — visible when NOT active */}
+      {!isActive && thumbnail && (
+        <img
+          src={thumbnail}
+          alt="Video Thumbnail"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: 1,
+          }}
+          loading="lazy"
+          onError={(e) => {
+            e.currentTarget.style.display = "none";
           }}
         />
       )}
@@ -218,8 +268,10 @@ function VideoCard({
             left: 0,
             right: 0,
             height: "3px",
-            background: "linear-gradient(90deg, transparent, #c8a96e, transparent)",
+            background:
+              "linear-gradient(90deg, transparent, #c8a96e, transparent)",
             opacity: 0.7,
+            zIndex: 3,
           }}
         />
       )}
@@ -242,6 +294,7 @@ function VideoCard({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            zIndex: 3,
           }}
         >
           <i
@@ -284,7 +337,7 @@ function VideoCard({
       )}
 
       {/* Loading state */}
-      {!loaded && (
+      {!isYouTube && !loaded && (
         <div
           style={{
             position: "absolute",
@@ -293,6 +346,7 @@ function VideoCard({
             alignItems: "center",
             justifyContent: "center",
             background: "#111",
+            zIndex: 4,
           }}
         >
           <div
@@ -311,4 +365,53 @@ function VideoCard({
       <style>{`@keyframes vidspin { to { transform: rotate(360deg); } }`}</style>
     </div>
   );
+}
+
+/* ─── Helper functions ─────────────────────────────────────── */
+
+function getGoogleDriveId(url: string): string | null {
+  const patterns = [
+    /drive\.google\.com\/file\/d\/([^/?&]+)/,
+    /drive\.google\.com\/open\?id=([^&]+)/,
+    /drive\.google\.com\/uc\?.*id=([^&]+)/,
+  ];
+  for (const p of patterns) {
+    const m = url.match(p);
+    if (m) return m[1];
+  }
+  return null;
+}
+
+function getYouTubeId(url: string): string | null {
+  const patterns = [
+    /youtube\.com\/watch\?v=([^&]+)/,
+    /youtu\.be\/([^?]+)/,
+    /youtube\.com\/embed\/([^/?]+)/,
+    /youtube\.com\/shorts\/([^/?]+)/,
+  ];
+  for (const p of patterns) {
+    const m = url.match(p);
+    if (m) return m[1];
+  }
+  return null;
+}
+
+function getDirectStreamUrl(url: string): string {
+  const driveId = getGoogleDriveId(url);
+  if (driveId) {
+    return `https://drive.google.com/uc?export=download&id=${driveId}`;
+  }
+  return url;
+}
+
+function getVideoThumbnail(url: string): string {
+  const driveId = getGoogleDriveId(url);
+  if (driveId) {
+    return `https://drive.google.com/thumbnail?id=${driveId}&sz=w1280`;
+  }
+  const ytId = getYouTubeId(url);
+  if (ytId) {
+    return `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`;
+  }
+  return "";
 }
