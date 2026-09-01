@@ -13,35 +13,14 @@ type ReviewRow = {
   auth_method: string | null;
   created_at: string;
 };
-
-async function ensureReviewsTable() {
-  const db = getDb();
-
-  await db.execute(`
-    CREATE TABLE IF NOT EXISTS reviews (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      name VARCHAR(255) DEFAULT NULL,
-      email VARCHAR(255) DEFAULT NULL,
-      phone VARCHAR(100) DEFAULT NULL,
-      profile_photo LONGTEXT DEFAULT NULL,
-      rating TINYINT NOT NULL,
-      review_text TEXT NOT NULL,
-      review_image LONGTEXT DEFAULT NULL,
-      auth_method VARCHAR(20) DEFAULT NULL,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
-  `);
-
-  return db;
-}
-
 export async function GET() {
   try {
-    const db = await ensureReviewsTable();
+    const db = getDb();
     const [rows] = await db.execute(
       `SELECT id, name, email, phone, profile_photo, rating, review_text, review_image, auth_method, created_at
        FROM reviews
-       ORDER BY created_at DESC`
+       ORDER BY created_at DESC
+       LIMIT 100`
     );
 
     return NextResponse.json({ success: true, data: rows });
@@ -102,7 +81,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const db = await ensureReviewsTable();
+    const db = getDb();
     const displayName =
       normalizedAuthMethod === "google"
         ? finalName || finalEmail.split("@")[0]
@@ -110,7 +89,7 @@ export async function POST(req: NextRequest) {
 
     await db.execute(
       `INSERT INTO reviews (name, email, phone, profile_photo, rating, review_text, review_image, auth_method)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)` ,
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         displayName || null,
         finalEmail || null,
@@ -128,4 +107,4 @@ export async function POST(req: NextRequest) {
     console.error("Reviews POST Error:", err);
     return NextResponse.json({ error: true, message: "Failed to save review" }, { status: 500 });
   }
-}
+}

@@ -27,18 +27,23 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const { id } = await req.json();
-    if (!id) {
-      return NextResponse.json({ error: true, message: "Missing video id" }, { status: 400 });
+    const body = await req.json().catch(() => ({}));
+    const rawId = body?.id;
+    const id = Number(rawId);
+
+    if (!id || isNaN(id)) {
+      return NextResponse.json({ error: true, message: "Missing or invalid video id" }, { status: 400 });
     }
+
     const db = getDb();
     await db.execute(
       "UPDATE ashalenscraft_videos SET views = COALESCE(views, 0) + 1 WHERE id = ?",
       [id]
     );
+
     return NextResponse.json({ success: true, message: "View incremented" });
   } catch (err) {
     console.error("Videos POST Error:", err);
     return NextResponse.json({ error: true, message: "Failed to increment view" }, { status: 500 });
   }
-}
+}

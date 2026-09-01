@@ -4,9 +4,13 @@ import { getDb } from "@/lib/db";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { fullName, email, phone, subject, message } = body;
+    const { fullName, email, phone, subject, message } = body ?? {};
 
-    if (!fullName || !email || !message) {
+    const cleanFullName = typeof fullName === "string" ? fullName.trim() : "";
+    const cleanEmail = typeof email === "string" ? email.trim() : "";
+    const cleanMessage = typeof message === "string" ? message.trim() : "";
+
+    if (!cleanFullName || !cleanEmail || !cleanMessage) {
       return NextResponse.json(
         { error: "fullName, email, and message are required" },
         { status: 400 }
@@ -15,21 +19,15 @@ export async function POST(req: NextRequest) {
 
     const db = getDb();
 
-    await db.execute(`
-      CREATE TABLE IF NOT EXISTS contacts (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        fullName VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        phone VARCHAR(100) DEFAULT NULL,
-        subject VARCHAR(255) DEFAULT NULL,
-        message TEXT NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
-    `);
-
     await db.execute(
       `INSERT INTO contacts (fullName, email, phone, subject, message) VALUES (?, ?, ?, ?, ?)`,
-      [fullName, email, phone || null, subject || null, message]
+      [
+        cleanFullName,
+        cleanEmail,
+        phone ? String(phone).trim() : null,
+        subject ? String(subject).trim() : null,
+        cleanMessage
+      ]
     );
 
     return NextResponse.json({ success: true, message: "Message sent successfully" });
@@ -41,3 +39,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+

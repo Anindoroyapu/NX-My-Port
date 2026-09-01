@@ -1,12 +1,19 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 
-export async function GET() {
-  try {
-    const db = getDb();
+export const dynamic = "force-dynamic";
 
+export async function GET(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const limit = Math.min(Number(searchParams.get("limit")) || 500, 2000);
+
+    const db = getDb();
     const [rows] = await db.execute(
-      "SELECT * FROM visitors ORDER BY created_at DESC"
+      `SELECT id, ip_address, user_agent, page_url, referrer, location, browser_language, timezone, screen_resolution, platform, created_at
+       FROM visitors
+       ORDER BY created_at DESC
+       LIMIT ${limit}`
     ) as any[];
 
     return NextResponse.json({ error: 0, data: rows || [] });
@@ -18,3 +25,4 @@ export async function GET() {
     );
   }
 }
+
