@@ -11,6 +11,7 @@ type VideoItem = {
 };
 
 const localVideos: VideoItem[] = [
+  { id: 1, title: "wedding", video_url: "/videos/Sra 1.mp4" },
   { id: 11, title: "rec", video_url: "/videos/rec.mp4" },
   { id: 10, title: "ly6", video_url: "/videos/ly6.mp4" },
   { id: 8, title: "kiddo", video_url: "/videos/kiddo.mp4" },

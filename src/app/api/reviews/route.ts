@@ -1,18 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 
-type ReviewRow = {
-  id: number;
-  name: string | null;
-  email: string | null;
-  phone: string | null;
-  profile_photo: string | null;
-  rating: number;
-  review_text: string;
-  review_image: string | null;
-  auth_method: string | null;
-  created_at: string;
-};
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const db = getDb();
