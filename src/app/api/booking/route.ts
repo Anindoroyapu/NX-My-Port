@@ -8,9 +8,12 @@ export async function POST(req: NextRequest) {
       fullName, email, phone, subject, bookingType, startDate, endDate,
       location, message, package: pkg, paymentMethod, status, paymentStatus,
       bookingCost, totalCost
-    } = body;
+    } = body ?? {};
 
-    if (!fullName || !email) {
+    const cleanFullName = typeof fullName === "string" ? fullName.trim() : "";
+    const cleanEmail = typeof email === "string" ? email.trim() : "";
+
+    if (!cleanFullName || !cleanEmail) {
       return NextResponse.json(
         { error: 1, message: "fullName and email are required" },
         { status: 400 }
@@ -19,36 +22,25 @@ export async function POST(req: NextRequest) {
 
     const db = getDb();
 
-    await db.execute(`
-      CREATE TABLE IF NOT EXISTS bookings (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        fullName VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        phone VARCHAR(100) DEFAULT NULL,
-        subject VARCHAR(255) DEFAULT NULL,
-        bookingType VARCHAR(100) DEFAULT NULL,
-        startDate VARCHAR(50) DEFAULT NULL,
-        endDate VARCHAR(50) DEFAULT NULL,
-        location VARCHAR(255) DEFAULT NULL,
-        message TEXT DEFAULT NULL,
-        package_name VARCHAR(100) DEFAULT NULL,
-        paymentMethod VARCHAR(100) DEFAULT NULL,
-        status VARCHAR(50) DEFAULT 'pending',
-        paymentStatus VARCHAR(50) DEFAULT 'unpaid',
-        bookingCost VARCHAR(50) DEFAULT NULL,
-        totalCost VARCHAR(50) DEFAULT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
-    `);
-
     await db.execute(
       `INSERT INTO bookings (fullName, email, phone, subject, bookingType, startDate, endDate, location, message, package_name, paymentMethod, status, paymentStatus, bookingCost, totalCost)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        fullName, email, phone || null, subject || null, bookingType || null,
-        startDate || null, endDate || null, location || null, message || null,
-        pkg || null, paymentMethod || null, status || 'pending',
-        paymentStatus || 'unpaid', bookingCost || null, totalCost || null
+        cleanFullName,
+        cleanEmail,
+        phone ? String(phone).trim() : null,
+        subject ? String(subject).trim() : null,
+        bookingType ? String(bookingType).trim() : null,
+        startDate ? String(startDate).trim() : null,
+        endDate ? String(endDate).trim() : null,
+        location ? String(location).trim() : null,
+        message ? String(message).trim() : null,
+        pkg ? String(pkg).trim() : null,
+        paymentMethod ? String(paymentMethod).trim() : null,
+        status ? String(status).trim() : "pending",
+        paymentStatus ? String(paymentStatus).trim() : "unpaid",
+        bookingCost ? String(bookingCost).trim() : null,
+        totalCost ? String(totalCost).trim() : null
       ]
     );
 
@@ -61,3 +53,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+

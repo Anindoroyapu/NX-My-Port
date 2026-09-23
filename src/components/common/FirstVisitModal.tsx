@@ -88,6 +88,12 @@ export default function FirstVisitModal() {
   const handleSkip = () => {
     localStorage.setItem("first_visit_skipped_at", String(Date.now()));
     setOpen(false);
+
+    fetch("/api/visitor-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "", contact: "" }),
+    }).catch((err) => console.error("Error logging skipped lead:", err));
   };
 
   if (!open) return null;

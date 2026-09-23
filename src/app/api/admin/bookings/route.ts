@@ -1,12 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 
-export async function GET() {
-  try {
-    const db = getDb();
+export const dynamic = "force-dynamic";
 
+export async function GET(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const limit = Math.min(Number(searchParams.get("limit")) || 500, 1000);
+
+    const db = getDb();
     const [rows] = await db.execute(
-      "SELECT * FROM bookings ORDER BY created_at DESC"
+      `SELECT * FROM bookings ORDER BY created_at DESC LIMIT ${limit}`
     ) as any[];
 
     return NextResponse.json({ error: 0, data: rows || [] });
@@ -21,8 +25,8 @@ export async function GET() {
 
 export async function PATCH(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { id, status } = body;
+    const body = await req.json().catch(() => ({}));
+    const { id, status } = body ?? {};
 
     if (!id || !status) {
       return NextResponse.json(
@@ -32,7 +36,7 @@ export async function PATCH(req: NextRequest) {
     }
 
     const db = getDb();
-    await db.execute("UPDATE bookings SET status = ? WHERE id = ?", [status, id]);
+    await db.execute("UPDATE bookings SET status = ? WHERE id = ?", [String(status).trim(), Number(id)]);
 
     return NextResponse.json({ error: 0, message: "Booking updated" });
   } catch (err) {
@@ -46,8 +50,8 @@ export async function PATCH(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { id } = body;
+    const body = await req.json().catch(() => ({}));
+    const { id } = body ?? {};
 
     if (!id) {
       return NextResponse.json(
@@ -57,7 +61,7 @@ export async function DELETE(req: NextRequest) {
     }
 
     const db = getDb();
-    await db.execute("DELETE FROM bookings WHERE id = ?", [id]);
+    await db.execute("DELETE FROM bookings WHERE id = ?", [Number(id)]);
 
     return NextResponse.json({ error: 0, message: "Booking deleted" });
   } catch (err) {
@@ -68,3 +72,4 @@ export async function DELETE(req: NextRequest) {
     );
   }
 }
+
