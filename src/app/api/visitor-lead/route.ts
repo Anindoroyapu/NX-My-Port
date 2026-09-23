@@ -3,18 +3,11 @@ import { getDb } from "@/lib/db";
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    const body = await req.json().catch(() => ({}));
     const { name, contact } = body ?? {};
 
     const cleanName = typeof name === "string" ? name.trim() : "";
     const cleanContact = typeof contact === "string" ? contact.trim() : "";
-
-    if (!cleanName || !cleanContact) {
-      return NextResponse.json(
-        { error: 1, message: "Name and contact are required" },
-        { status: 400 }
-      );
-    }
 
     const db = getDb();
 
@@ -32,4 +25,5 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
 
